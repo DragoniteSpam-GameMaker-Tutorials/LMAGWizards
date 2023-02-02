@@ -20,6 +20,7 @@
   },
   "resources": [
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},"order":0,},
+    {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},"order":0,},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
