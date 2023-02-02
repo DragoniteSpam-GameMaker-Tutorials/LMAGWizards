@@ -11,12 +11,15 @@
   },
   "defaultScriptType": 1,
   "Folders": [],
-  "IncludedFiles": [],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"block_singular.vbuff","CopyToMask":-1,"filePath":"datafiles",},
+  ],
   "isEcma": false,
   "MetaData": {
     "IDEVersion": "2023.1.0.58",
   },
   "resources": [
+    {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},"order":0,},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
