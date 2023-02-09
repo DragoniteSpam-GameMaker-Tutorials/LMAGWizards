@@ -1,9 +1,16 @@
 {
-  "FolderOrderSettings": [],
+  "FolderOrderSettings": [
+    {"name":"Penguin","order":5,"path":"folders/Penguin.yy",},
+  ],
   "ResourceOrderSettings": [
     {"name":"tex_block_singular","order":3,"path":"sprites/tex_block_singular/tex_block_singular.yy",},
+    {"name":"penguin_load","order":1,"path":"scripts/penguin_load/penguin_load.yy",},
+    {"name":"tex_ground","order":9,"path":"sprites/tex_ground/tex_ground.yy",},
+    {"name":"tex_barrel","order":8,"path":"sprites/tex_barrel/tex_barrel.yy",},
+    {"name":"tex_rocks","order":7,"path":"sprites/tex_rocks/tex_rocks.yy",},
     {"name":"Camera","order":4,"path":"scripts/Camera/Camera.yy",},
     {"name":"obj_game","order":2,"path":"objects/obj_game/obj_game.yy",},
+    {"name":"tex_chest","order":6,"path":"sprites/tex_chest/tex_chest.yy",},
     {"name":"Room1","order":1,"path":"rooms/Room1/Room1.yy",},
   ],
 }

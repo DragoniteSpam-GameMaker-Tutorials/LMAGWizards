@@ -15,6 +15,7 @@
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"block_singular.vbuff","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"meshes.derg","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
   "MetaData": {
@@ -24,8 +25,12 @@
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},"order":0,},
     {"id":{"name":"__penguin_classes","path":"scripts/__penguin_classes/__penguin_classes.yy",},"order":0,},
     {"id":{"name":"penguin_load","path":"scripts/penguin_load/penguin_load.yy",},"order":0,},
+    {"id":{"name":"tex_ground","path":"sprites/tex_ground/tex_ground.yy",},"order":0,},
+    {"id":{"name":"tex_barrel","path":"sprites/tex_barrel/tex_barrel.yy",},"order":0,},
+    {"id":{"name":"tex_rocks","path":"sprites/tex_rocks/tex_rocks.yy",},"order":0,},
     {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},"order":0,},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},"order":0,},
+    {"id":{"name":"tex_chest","path":"sprites/tex_chest/tex_chest.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "RoomOrderNodes": [
