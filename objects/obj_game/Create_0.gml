@@ -13,3 +13,8 @@ buffer_delete(buffer);
 self.meshes = penguin_load("meshes.derg", self.vertex_format);
 
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
+
+self.gbuff_normal = surface_create(window_get_width(), window_get_height());
+self.gbuff_depth = surface_create(window_get_width(), window_get_height());
+
+application_surface_draw_enable(false);
