@@ -24,7 +24,7 @@ function cluck_apply(shader, view_mat) {
             array_copy(light_active_data_tertiary, index, global.__cluck_light_data, i + 8, 4);
             
             // transform everything from world space to view space
-            switch (global.__cluck_light_data[i + 3]) {
+            switch (global.__cluck_light_data[i + 3] % 16) {
                 case CLUCK_LIGHT_DIRECTIONAL:
                     var transformed_direction = matrix_transform_vertex(view_mat, light_active_data_primary[index + 0], light_active_data_primary[index + 1], light_active_data_primary[index + 2], 0);
                     var mag = point_distance_3d(0, 0, 0, transformed_direction[0], transformed_direction[1], transformed_direction[2]);
