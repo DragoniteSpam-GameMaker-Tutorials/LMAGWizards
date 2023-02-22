@@ -33,5 +33,5 @@ void main() {
     float fragment_depth = GetDepthFromColorLinear(col_depth.rgb);
     vec3 fragment_position = GetPositionFromDepthVS(fragment_depth);
     
-    gl_FragColor = mix(final_color
+    gl_FragColor = final_color;
 }

@@ -2,8 +2,6 @@ gpu_set_ztestenable(true);
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(cull_counterclockwise);
 
-draw_clear(c_black);
-
 self.camera.UpdateFree();
 self.camera.Apply();
 
@@ -11,6 +9,8 @@ shader_set(shd_gbuff_main);
 shader_set_uniform_f(shader_get_uniform(shd_gbuff_main, "u_CameraZFar"), self.camera.zfar);
 surface_set_target_ext(1, self.gbuff_normal);
 surface_set_target_ext(2, self.gbuff_depth);
+
+draw_clear(c_black);
 
 matrix_set(matrix_world, matrix_build_identity());
 self.meshes.ground.Render();
