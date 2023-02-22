@@ -6,9 +6,7 @@ self.camera.UpdateFree();
 self.camera.Apply();
 
 shader_set(shd_gbuff_main);
-shader_set_uniform_f(shader_get_uniform(shd_gbuff_main, "u_CameraZFar"), self.camera.zfar);
-surface_set_target_ext(1, self.gbuff_normal);
-surface_set_target_ext(2, self.gbuff_depth);
+surface_set_target_ext(1, self.gbuff_depth);
 
 draw_clear(c_black);
 

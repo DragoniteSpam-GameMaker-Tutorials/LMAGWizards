@@ -1,41 +1,24 @@
 varying vec2 v_vTexcoord;
 
-uniform sampler2D samp_Normal;
 uniform sampler2D samp_Depth;
 
-uniform float u_CameraZFar;
-
-vec3 GetNormalFromColor(vec3 color) {
-    return (color - 0.5) * 2.0;
+vec3 GetVSNormal(vec3 vs_position) {
+    vec3 dx = dFdx(vs_position);
+    vec3 dy = dFdy(vs_position);
+    return normalize(cross(dx, dy));
 }
 
-const vec3 UNDO = vec3(1.0, 256.0, 65536.0) / 16777215.0 * 255.0;
-float GetDepthFromColorLinear(vec3 color) {
-    return dot(color, UNDO) * u_CameraZFar;
-}
-
-uniform vec2 u_FOVScale;
-
-vec3 GetPositionFromDepthVS(float depth) {
-    vec2 ndc_position = 2.0 * (0.5 - v_vTexcoord);
-    vec3 view_space_position = vec3(ndc_position * depth * u_FOVScale, depth);
-    return view_space_position;
-}
-
-void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_position, float frag_depth);
+void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_position);
 
 void main() {
     vec4 col_diffuse = texture2D(gm_BaseTexture, v_vTexcoord);
-    vec4 col_normal = texture2D(samp_Normal, v_vTexcoord);
-    vec4 col_depth = texture2D(samp_Depth, v_vTexcoord);
+    vec4 col_position = texture2D(samp_Depth, v_vTexcoord);
     
     vec4 final_color = col_diffuse;
     
-    vec3 fragment_normal = GetNormalFromColor(col_normal.rgb);
-    float fragment_depth = GetDepthFromColorLinear(col_depth.rgb);
-    vec3 fragment_position = GetPositionFromDepthVS(fragment_depth);
+    vec3 fragment_normal = GetVSNormal(col_position.xyz);
     
-    CommonLightAndFog(final_color, fragment_normal, fragment_position, fragment_depth);
+    CommonLightAndFog(final_color, fragment_normal, col_position.xyz);
     
     gl_FragColor = final_color;
 }
@@ -62,7 +45,7 @@ uniform float u_FogStart;
 uniform float u_FogEnd;
 uniform vec3 u_FogColor;
 
-void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_position, float frag_depth) {
+void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_position) {
     vec3 finalColor = u_LightAmbientColor;
     
     for (int i = 0; i < MAX_LIGHTS; i++) {
@@ -109,6 +92,6 @@ void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_p
     
     baseColor.rgb *= clamp(finalColor, vec3(0), vec3(1));
     
-    float f = clamp((frag_depth - u_FogStart) / (u_FogEnd - u_FogStart), 0., 1.);
+    float f = clamp((frag_position.z - u_FogStart) / (u_FogEnd - u_FogStart), 0., 1.);
     baseColor.rgb = mix(baseColor.rgb, u_FogColor, f * u_FogStrength);
 }
