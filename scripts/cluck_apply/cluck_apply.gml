@@ -16,46 +16,49 @@ function cluck_apply(shader, view_mat) {
     var light_count = 0;
     for (var i = 0, n = array_length(global.__cluck_light_data); i < n; i += __cluck_light_data_size) {
         if (global.__cluck_light_data[i + 3] != 0) {
-            array_copy(light_active_data_primary,    light_count * 4, global.__cluck_light_data, i + 0, 4);
-            array_copy(light_active_data_secondary,  light_count * 4, global.__cluck_light_data, i + 4, 4);
-            array_copy(light_active_data_tertiary, light_count++ * 4, global.__cluck_light_data, i + 8, 4);
+            var index = light_count * 4;
+            light_count++;
+            
+            array_copy(light_active_data_primary,    index, global.__cluck_light_data, i + 0, 4);
+            array_copy(light_active_data_secondary,  index, global.__cluck_light_data, i + 4, 4);
+            array_copy(light_active_data_tertiary, index, global.__cluck_light_data, i + 8, 4);
             
             // transform everything from world space to view space
             switch (global.__cluck_light_data[i + 3]) {
                 case CLUCK_LIGHT_DIRECTIONAL:
-                    var transformed_direction = matrix_transform_vertex(view_mat, light_active_data_primary[0], light_active_data_primary[1], light_active_data_primary[2], 0);
+                    var transformed_direction = matrix_transform_vertex(view_mat, light_active_data_primary[index + 0], light_active_data_primary[index + 1], light_active_data_primary[index + 2], 0);
                     var mag = point_distance_3d(0, 0, 0, transformed_direction[0], transformed_direction[1], transformed_direction[2]);
                     transformed_direction[0] /= mag;
                     transformed_direction[1] /= mag;
                     transformed_direction[2] /= mag;
                     
-                    light_active_data_primary[0] = transformed_direction[0];
-                    light_active_data_primary[1] = transformed_direction[1];
-                    light_active_data_primary[2] = transformed_direction[2];
+                    light_active_data_primary[index + 0] = transformed_direction[0];
+                    light_active_data_primary[index + 1] = transformed_direction[1];
+                    light_active_data_primary[index + 2] = transformed_direction[2];
                     break;
                 case CLUCK_LIGHT_POINT:
-                    var transformed_position = matrix_transform_vertex(view_mat, light_active_data_primary[0], light_active_data_primary[1], light_active_data_primary[2], 1);
+                    var transformed_position = matrix_transform_vertex(view_mat, light_active_data_primary[index + 0], light_active_data_primary[index + 1], light_active_data_primary[index + 2], 1);
                     
-                    light_active_data_primary[0] = transformed_position[0];
-                    light_active_data_primary[1] = transformed_position[1];
-                    light_active_data_primary[2] = transformed_position[2];
+                    light_active_data_primary[index + 0] = transformed_position[0];
+                    light_active_data_primary[index + 1] = transformed_position[1];
+                    light_active_data_primary[index + 2] = transformed_position[2];
                     break;
                 case CLUCK_LIGHT_SPOT:
-                    var transformed_position = matrix_transform_vertex(view_mat, light_active_data_primary[0], light_active_data_primary[1], light_active_data_primary[2], 1);
+                    var transformed_position = matrix_transform_vertex(view_mat, light_active_data_primary[index + 0], light_active_data_primary[index + 1], light_active_data_primary[index + 2], 1);
                     
-                    light_active_data_primary[0] = transformed_position[0];
-                    light_active_data_primary[1] = transformed_position[1];
-                    light_active_data_primary[2] = transformed_position[2];
+                    light_active_data_primary[index + 0] = transformed_position[0];
+                    light_active_data_primary[index + 1] = transformed_position[1];
+                    light_active_data_primary[index + 2] = transformed_position[2];
                     
-                    var transformed_direction = matrix_transform_vertex(view_mat, light_active_data_secondary[0], light_active_data_secondary[1], light_active_data_secondary[2], 0);
+                    var transformed_direction = matrix_transform_vertex(view_mat, light_active_data_secondary[index + 0], light_active_data_secondary[index + 1], light_active_data_secondary[index + 2], 0);
                     var mag = point_distance_3d(0, 0, 0, transformed_direction[0], transformed_direction[1], transformed_direction[2]);
                     transformed_direction[0] /= mag;
                     transformed_direction[1] /= mag;
                     transformed_direction[2] /= mag;
                     
-                    light_active_data_secondary[0] = transformed_direction[0];
-                    light_active_data_secondary[1] = transformed_direction[1];
-                    light_active_data_secondary[2] = transformed_direction[2];
+                    light_active_data_secondary[index + 0] = transformed_direction[0];
+                    light_active_data_secondary[index + 1] = transformed_direction[1];
+                    light_active_data_secondary[index + 2] = transformed_direction[2];
                     break;
             }
         }
