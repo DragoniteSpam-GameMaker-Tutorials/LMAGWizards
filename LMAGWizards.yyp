@@ -57,6 +57,7 @@
     {"id":{"name":"spr_billboard_test","path":"sprites/spr_billboard_test/spr_billboard_test.yy",},},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
     {"id":{"name":"tex_chest","path":"sprites/tex_chest/tex_chest.yy",},},
+    {"id":{"name":"shd_gbuff_ripple","path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},},
     {"id":{"name":"cluck_set_fog","path":"scripts/cluck_set_fog/cluck_set_fog.yy",},},
     {"id":{"name":"cluck_set_light_spot","path":"scripts/cluck_set_light_spot/cluck_set_light_spot.yy",},},
     {"id":{"name":"draw_sprite_billboard","path":"scripts/draw_sprite_billboard/draw_sprite_billboard.yy",},},

@@ -33,6 +33,7 @@
     {"name":"spr_billboard_test","order":17,"path":"sprites/spr_billboard_test/spr_billboard_test.yy",},
     {"name":"obj_game","order":2,"path":"objects/obj_game/obj_game.yy",},
     {"name":"tex_chest","order":6,"path":"sprites/tex_chest/tex_chest.yy",},
+    {"name":"shd_gbuff_ripple","order":22,"path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},
     {"name":"cluck_set_fog","order":2,"path":"scripts/cluck_set_fog/cluck_set_fog.yy",},
     {"name":"cluck_set_light_spot","order":7,"path":"scripts/cluck_set_light_spot/cluck_set_light_spot.yy",},
     {"name":"draw_sprite_billboard","order":18,"path":"scripts/draw_sprite_billboard/draw_sprite_billboard.yy",},
