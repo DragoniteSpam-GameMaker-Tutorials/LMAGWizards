@@ -12,3 +12,21 @@ self.gbuff_position = -1;
 self.gbuff_material = -1;
 
 application_surface_draw_enable(false);
+
+try {
+    var buffer = buffer_load(FILE_VIDEO_SETTINGS);
+    var json = buffer_read(buffer, buffer_text);
+    buffer_delete(buffer);
+    
+    var loaded_settings = json_parse(json);
+    var video_settings_type = static_get(Video);
+    static_set(loaded_settings, video_settings_type);
+    
+    loaded_settings.SetResolution();
+    loaded_settings.SetFullscreen();
+    loaded_settings.SetFrameRate();
+    
+    Video = loaded_settings;
+} catch (e) {
+    show_debug_message("Couldn't load the video settings for some reason: {0}", e.message);
+}

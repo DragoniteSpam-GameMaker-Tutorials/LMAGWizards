@@ -25,7 +25,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
   ],
   "IncludedFiles": [
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"block_singular.vbuff","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"meshes.derg","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,

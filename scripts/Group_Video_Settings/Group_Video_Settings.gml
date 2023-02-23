@@ -19,7 +19,7 @@ function VideoSettingsConstructor() constructor {
     
     self.fullscreen = false;
     
-    static SetResolution = function(w, h) {
+    static SetResolution = function(w = self.resolution.x, h = self.resolution.y) {
         self.resolution.x = w;
         self.resolution.y = h;
         
@@ -29,28 +29,28 @@ function VideoSettingsConstructor() constructor {
         self.Save();
     };
     
-    static SetResolutionScale = function(w, h) {
+    static SetResolutionScale = function(w = self.resolution_scale.x, h = self.resolution_scale.y) {
         self.resolution_scale.x = w;
         self.resolution_scale.y = h;
         
         self.Save();
     };
     
-    static SetFullscreen = function(fullscreen) {
+    static SetFullscreen = function(fullscreen = self.fullscreen) {
         self.fullscreen = fullscreen;
         window_set_fullscreen(fullscreen);
         
         self.Save();
     };
     
-    static SetFrameRate = function(frame_rate) {
+    static SetFrameRate = function(frame_rate = self.frame_rate) {
         self.frame_rate = frame_rate;
         game_set_speed(frame_rate, gamespeed_fps);
         
         self.Save();
     };
     
-    static SetParticleDensity = function(density) {
+    static SetParticleDensity = function(density = self.particle_density) {
         self.particle_density = density;
         
         self.Save();
