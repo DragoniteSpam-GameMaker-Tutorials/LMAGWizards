@@ -3,7 +3,7 @@
 Particles = new (function() constructor {
     //Create the particle system
     self.systems = {
-        test_effects: new spart_system([256, 600]),
+        test_unlit_effects: new spart_system([256, 600]),
     };
     
     //Create a particle type
@@ -25,7 +25,7 @@ Particles = new (function() constructor {
     
     //Create a particle emitter
     self.emitters = {
-        test_effects: new spart_emitter(self.systems.test_effects),
+        test_effects: new spart_emitter(self.systems.test_unlit_effects),
     };
     
     static BurstFromEmitter = function(emitter, type, x, y, z, amount) {
@@ -53,6 +53,8 @@ Particles = new (function() constructor {
     };
     
     static Render = function() {
-        self.systems.test_effects.draw(game_get_speed(gamespeed_microseconds) / 1000000);
+        shader_set(sh_spart);
+        shader_set_uniform_f(shader_get_uniform(sh_spart, "u_MaterialType"), 0);
+        self.systems.test_unlit_effects.draw(game_get_speed(gamespeed_microseconds) / 1000000);
     };
 })();

@@ -12,6 +12,8 @@ attribute vec4 in_Colour;
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+varying vec3 v_vVSPosition;
+
 //Batch uniforms
 uniform float u_batchInd;
 uniform float u_partNum;
@@ -226,6 +228,8 @@ void main()
 		vec4 PtWorldViewPos = gm_Matrices[MATRIX_VIEW][3] + gm_Matrices[MATRIX_VIEW] * vec4(PtWorldPos, 0.);
 		PtWorldViewPos.xy += vertPtSpacePos;
 		gl_Position = gm_Matrices[MATRIX_PROJECTION] * PtWorldViewPos;
+        
+        v_vVSPosition = PtWorldViewPos.xyz;
 		
 		//Texcoord and colour
 		float imgInd = PtGetImageIndex(PtTimeAlive,  PtLifeSpan);
