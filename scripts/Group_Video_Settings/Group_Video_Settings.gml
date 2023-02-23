@@ -11,8 +11,8 @@ function VideoSettingsConstructor() constructor {
     self.frame_rate = 60;
     
     self.resolution_scale = {
-        x: 1,
-        y: 1
+        x: 0.75,
+        y: 0.75
     };
     
     self.fullscreen = false;
@@ -25,5 +25,12 @@ function VideoSettingsConstructor() constructor {
         
         window_set_size(w, h);
         window_center();
+    };
+    
+    static GetRenderingResolution = function() {
+        return {
+            x: self.resolution.x * self.resolution_scale.x,
+            y: self.resolution.y * self.resolution_scale.y
+        };
     };
 }
