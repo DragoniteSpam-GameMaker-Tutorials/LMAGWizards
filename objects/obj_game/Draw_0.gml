@@ -41,7 +41,7 @@ matrix_set(matrix_world, matrix_build(400, 0, 400, 0, 0, 0, 1, 1, 1));
 self.meshes.rock_pile_large.Render();
 matrix_set(matrix_world, matrix_build_identity());
 
-draw_sprite_billboard(spr_billboard_test, 0, 400, 40, 100);
+draw_sprite_billboard(spr_billboard_test, 0, 400, 40, 100, shd_gbuff_billboard_ripple);
 
 Particles.Render();
 

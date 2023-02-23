@@ -11,6 +11,7 @@
   "ResourceOrderSettings": [
     {"name":"tex_block_singular","order":3,"path":"sprites/tex_block_singular/tex_block_singular.yy",},
     {"name":"cluck_set_light_ambient","order":3,"path":"scripts/cluck_set_light_ambient/cluck_set_light_ambient.yy",},
+    {"name":"spr_noise","order":21,"path":"sprites/spr_noise/spr_noise.yy",},
     {"name":"cluck_set_light_disable","order":5,"path":"scripts/cluck_set_light_disable/cluck_set_light_disable.yy",},
     {"name":"shd_deferred","order":11,"path":"shaders/shd_deferred/shd_deferred.yy",},
     {"name":"penguin_load","order":1,"path":"scripts/penguin_load/penguin_load.yy",},
@@ -23,6 +24,7 @@
     {"name":"cluck_set_light_direction","order":4,"path":"scripts/cluck_set_light_direction/cluck_set_light_direction.yy",},
     {"name":"shd_gbuff_main","order":10,"path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},
     {"name":"spart_system","order":2,"path":"scripts/spart_system/spart_system.yy",},
+    {"name":"shd_gbuff_billboard_ripple","order":20,"path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},
     {"name":"spart_type","order":3,"path":"scripts/spart_type/spart_type.yy",},
     {"name":"Group_Particles","order":15,"path":"scripts/Group_Particles/Group_Particles.yy",},
     {"name":"sh_spart_mesh","order":1,"path":"shaders/sh_spart_mesh/sh_spart_mesh.yy",},
