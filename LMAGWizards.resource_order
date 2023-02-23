@@ -15,6 +15,7 @@
   ],
   "ResourceOrderSettings": [
     {"name":"tex_block_singular","order":1,"path":"sprites/tex_block_singular/tex_block_singular.yy",},
+    {"name":"Group_Common_Library","order":2,"path":"scripts/Group_Common_Library/Group_Common_Library.yy",},
     {"name":"cluck_set_light_ambient","order":3,"path":"scripts/cluck_set_light_ambient/cluck_set_light_ambient.yy",},
     {"name":"Group_Video_Settings","order":1,"path":"scripts/Group_Video_Settings/Group_Video_Settings.yy",},
     {"name":"spr_noise","order":1,"path":"sprites/spr_noise/spr_noise.yy",},

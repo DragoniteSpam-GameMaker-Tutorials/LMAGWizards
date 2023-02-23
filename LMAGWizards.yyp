@@ -35,6 +35,7 @@
   },
   "resources": [
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},},
+    {"id":{"name":"Group_Common_Library","path":"scripts/Group_Common_Library/Group_Common_Library.yy",},},
     {"id":{"name":"cluck_set_light_ambient","path":"scripts/cluck_set_light_ambient/cluck_set_light_ambient.yy",},},
     {"id":{"name":"Group_Video_Settings","path":"scripts/Group_Video_Settings/Group_Video_Settings.yy",},},
     {"id":{"name":"__penguin_classes","path":"scripts/__penguin_classes/__penguin_classes.yy",},},
