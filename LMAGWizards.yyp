@@ -22,7 +22,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.200.0.297",
+    "IDEVersion": "2023.200.0.299",
   },
   "resources": [
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},},
@@ -44,6 +44,7 @@
     {"id":{"name":"tex_chest","path":"sprites/tex_chest/tex_chest.yy",},},
     {"id":{"name":"cluck_set_fog","path":"scripts/cluck_set_fog/cluck_set_fog.yy",},},
     {"id":{"name":"cluck_set_light_spot","path":"scripts/cluck_set_light_spot/cluck_set_light_spot.yy",},},
+    {"id":{"name":"tex_skybox_meadows","path":"sprites/tex_skybox_meadows/tex_skybox_meadows.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
