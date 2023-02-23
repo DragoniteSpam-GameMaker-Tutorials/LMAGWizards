@@ -10,8 +10,9 @@ cluck_set_fog(true, c_white, 1, 500, 1000);
 cluck_apply(shd_deferred, self.camera.GetViewMat());
 
 texture_set_stage(shader_get_sampler_index(shd_deferred, "samp_Depth"), surface_get_texture(self.gbuff_depth));
+texture_set_stage(shader_get_sampler_index(shd_deferred, "samp_Material"), surface_get_texture(self.gbuff_material));
 draw_surface(application_surface, 0, 0);
 
 shader_reset();
 
-draw_surface_ext(self.gbuff_depth, 0, 0, 0.25, 0.25, 0, c_white, 1);
+draw_surface_ext(self.gbuff_material, 0, 0, 0.25, 0.25, 0, c_white, 1);

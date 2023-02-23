@@ -1,6 +1,7 @@
 varying vec2 v_vTexcoord;
 
 uniform sampler2D samp_Depth;
+uniform sampler2D samp_Material;
 
 vec3 GetVSNormal(vec3 vs_position) {
     vec3 dx = dFdx(vs_position);
@@ -13,6 +14,7 @@ void CommonLightAndFog(inout vec4 baseColor, in vec3 frag_normal, in vec3 frag_p
 void main() {
     vec4 col_diffuse = texture2D(gm_BaseTexture, v_vTexcoord);
     vec4 col_position = texture2D(samp_Depth, v_vTexcoord);
+    float col_material = texture2D(samp_Material, v_vTexcoord).r;
     
     vec4 final_color = col_diffuse;
     
@@ -20,7 +22,7 @@ void main() {
     
     CommonLightAndFog(final_color, fragment_normal, col_position.xyz);
     
-    gl_FragColor = final_color;
+    gl_FragColor = mix(col_diffuse, final_color, col_material);
 }
 
 
