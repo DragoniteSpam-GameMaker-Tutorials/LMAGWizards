@@ -18,6 +18,11 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/sPart/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPart","folderPath":"folders/sPart/Scripts/sPart.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shaders","folderPath":"folders/sPart/Shaders.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Deferred Rendering","folderPath":"folders/Deferred Rendering.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Critical stuff","folderPath":"folders/Critical stuff.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"block_singular.vbuff","CopyToMask":-1,"filePath":"datafiles",},

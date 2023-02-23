@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Textures",
+    "path": "folders/Textures.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

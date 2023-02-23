@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "System stuff",
+    "path": "folders/System stuff.yy",
   },
 }

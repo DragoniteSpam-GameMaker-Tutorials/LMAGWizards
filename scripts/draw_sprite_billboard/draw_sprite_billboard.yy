@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Deferred Rendering",
+    "path": "folders/Deferred Rendering.yy",
   },
 }

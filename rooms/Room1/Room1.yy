@@ -16,8 +16,8 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
   ],
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Critical stuff",
+    "path": "folders/Critical stuff.yy",
   },
   "parentRoom": null,
   "physicsSettings": {
