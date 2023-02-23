@@ -22,6 +22,7 @@
     {"name":"cluck_set_light_disable","order":5,"path":"scripts/cluck_set_light_disable/cluck_set_light_disable.yy",},
     {"name":"shd_deferred","order":1,"path":"shaders/shd_deferred/shd_deferred.yy",},
     {"name":"penguin_load","order":1,"path":"scripts/penguin_load/penguin_load.yy",},
+    {"name":"macros","order":3,"path":"scripts/macros/macros.yy",},
     {"name":"shd_gbuff_billboard","order":2,"path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},
     {"name":"tex_ground","order":3,"path":"sprites/tex_ground/tex_ground.yy",},
     {"name":"sh_spart_sec","order":2,"path":"shaders/sh_spart_sec/sh_spart_sec.yy",},

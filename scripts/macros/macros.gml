@@ -1,0 +1,1 @@
+#macro FILE_VIDEO_SETTINGS "options_video.json"

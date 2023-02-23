@@ -43,6 +43,7 @@
     {"id":{"name":"cluck_set_light_disable","path":"scripts/cluck_set_light_disable/cluck_set_light_disable.yy",},},
     {"id":{"name":"shd_deferred","path":"shaders/shd_deferred/shd_deferred.yy",},},
     {"id":{"name":"penguin_load","path":"scripts/penguin_load/penguin_load.yy",},},
+    {"id":{"name":"macros","path":"scripts/macros/macros.yy",},},
     {"id":{"name":"shd_gbuff_billboard","path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},},
     {"id":{"name":"tex_ground","path":"sprites/tex_ground/tex_ground.yy",},},
     {"id":{"name":"sh_spart_sec","path":"shaders/sh_spart_sec/sh_spart_sec.yy",},},
