@@ -47,6 +47,7 @@
     {"id":{"name":"sh_spart","path":"shaders/sh_spart/sh_spart.yy",},},
     {"id":{"name":"spart_type","path":"scripts/spart_type/spart_type.yy",},},
     {"id":{"name":"spart_debug_vbuffers","path":"scripts/spart_debug_vbuffers/spart_debug_vbuffers.yy",},},
+    {"id":{"name":"Group_Particles","path":"scripts/Group_Particles/Group_Particles.yy",},},
     {"id":{"name":"sh_spart_mesh","path":"shaders/sh_spart_mesh/sh_spart_mesh.yy",},},
     {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},},
     {"id":{"name":"cluck_init","path":"scripts/cluck_init/cluck_init.yy",},},
@@ -56,6 +57,7 @@
     {"id":{"name":"cluck_set_light_spot","path":"scripts/cluck_set_light_spot/cluck_set_light_spot.yy",},},
     {"id":{"name":"tex_skybox_meadows","path":"sprites/tex_skybox_meadows/tex_skybox_meadows.yy",},},
     {"id":{"name":"spart_emitter","path":"scripts/spart_emitter/spart_emitter.yy",},},
+    {"id":{"name":"spr_particle_main","path":"sprites/spr_particle_main/spr_particle_main.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

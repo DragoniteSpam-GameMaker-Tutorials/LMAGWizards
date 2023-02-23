@@ -1,0 +1,1 @@
+Particles.BurstFromEmitter(Particles.emitters.test_effects, Particles.types.fire, 300, 0, 300, 4);

@@ -15,4 +15,5 @@ draw_surface(application_surface, 0, 0);
 
 shader_reset();
 
-draw_surface_ext(self.gbuff_material, 0, 0, 0.25, 0.25, 0, c_white, 1);
+draw_surface_ext(application_surface, 0, 0, 0.25, 0.25, 0, c_white, 1);
+draw_surface_ext(self.gbuff_material, 0, 240, 0.25, 0.25, 0, c_white, 1);

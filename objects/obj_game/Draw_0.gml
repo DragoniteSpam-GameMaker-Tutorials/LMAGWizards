@@ -41,6 +41,8 @@ matrix_set(matrix_world, matrix_build(400, 0, 400, 0, 0, 0, 1, 1, 1));
 self.meshes.rock_pile_large.Render();
 matrix_set(matrix_world, matrix_build_identity());
 
+Particles.Render();
+
 gpu_set_ztestenable(false);
 gpu_set_zwriteenable(false);
 gpu_set_cullmode(cull_noculling);
