@@ -58,16 +58,16 @@ function AudioSettingsConstructor() constructor {
         audio_set_master_gain(self.emitter_ambient, self.volume_main * self.volume_music);
     };
     
-    static PlayFX = function(sound, priority, gain, pitch) {
+    static PlayFX = function(sound, priority = SOUND_PRIORITY_DEFAULT, gain = 1, pitch = 1) {
         return audio_play_sound_on(self.emitter_fx, sound, false, priority, gain, 0, pitch);
     };
     
-    static PlayAmbient = function(sound, loop, priority, gain, pitch) {
+    static PlayAmbient = function(sound, loop = false, priority = SOUND_PRIORITY_AMBIENT, gain = 1, pitch = 1) {
         return audio_play_sound_on(self.emitter_embient, sound, loop, priority, gain, 0, pitch);
     };
     
-    static PlayBGM = function(sound, gain, pitch) {
-        return audio_play_sound_on(self.emitter_music, sound, true, priority, gain, 0, pitch);
+    static PlayBGM = function(sound, gain = 1, pitch = 1) {
+        return audio_play_sound_on(self.emitter_music, sound, true, SOUND_PRIORITY_MUSIC, gain, 0, pitch);
     };
     
     static Stop = function(sound) {
