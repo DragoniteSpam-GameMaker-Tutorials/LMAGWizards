@@ -53,9 +53,9 @@ function AudioSettingsConstructor() constructor {
     };
     
     static Apply = function() {
-        audio_set_master_gain(self.emitter_music, self.volume_main * self.volume_music);
-        audio_set_master_gain(self.emitter_fx, self.volume_main * self.volume_music);
-        audio_set_master_gain(self.emitter_ambient, self.volume_main * self.volume_music);
+        audio_emitter_gain(self.emitter_music, self.volume_main * self.volume_music);
+        audio_emitter_gain(self.emitter_fx, self.volume_main * self.volume_fx);
+        audio_emitter_gain(self.emitter_ambient, self.volume_main * self.volume_ambient);
     };
     
     static PlayFX = function(sound, priority = SOUND_PRIORITY_DEFAULT, gain = 1, pitch = 1) {
