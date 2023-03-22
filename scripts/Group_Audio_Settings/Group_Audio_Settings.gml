@@ -70,6 +70,17 @@ function AudioSettingsConstructor() constructor {
         return audio_play_sound_on(self.emitter_music, sound, true, SOUND_PRIORITY_MUSIC, gain, 0, pitch);
     };
     
+    static Fade = function(sound, target_volume, milliseconds) {
+        audio_sound_gain(sound, target_volume, milliseconds);
+    };
+    
+    static FadeOutAndStop = function(sound, milliseconds) {
+        audio_sound_gain(sound, 0, milliseconds);
+        call_later(milliseconds / 1000, time_source_units_seconds, method({ sound: sound }, function() {
+            audio_stop_sound(self.sound);
+        }));
+    };
+    
     static Stop = function(sound) {
         return audio_stop_sound(sound);
     };

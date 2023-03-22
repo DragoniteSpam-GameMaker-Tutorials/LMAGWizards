@@ -21,6 +21,17 @@ if (keyboard_check_pressed(vk_f6)) {
     Audio.SetVolumeMusic(0.5);
 }
 
+if (keyboard_check_pressed(vk_f7)) {
+    Audio.Fade(bgm_test, 0, 2000);
+}
+if (keyboard_check_pressed(vk_f8)) {
+    Audio.Fade(bgm_test, 1, 2000);
+}
+
+if (keyboard_check_pressed(vk_f9)) {
+    Audio.FadeOutAndStop(bgm_test, 2000);
+}
+
 if (keyboard_check_pressed(vk_tab)) {
     Audio.PlayFX(se_test);
 }
