@@ -36,26 +36,42 @@ function AudioSettingsConstructor() constructor {
         self.Apply();
     };
     
-    static GetVolumeMain = function(volume) {
+    static GetVolumeMain = function() {
         return self.volume_main;
     };
     
-    static GetVolumeMusic = function(volume) {
+    static GetVolumeMusic = function() {
         return self.volume_music;
     };
     
-    static GetVolumeFX = function(volume) {
+    static GetVolumeFX = function() {
         return self.volume_fx;
     };
     
-    static GetVolumeAmbient = function(volume) {
+    static GetVolumeAmbient = function() {
         return self.volume_ambient;
     };
     
     static Apply = function() {
-        audio_set_master_gain(emitter_music, self.volume_main * self.volume_music);
-        audio_set_master_gain(emitter_fx, self.volume_main * self.volume_music);
-        audio_set_master_gain(emitter_ambient, self.volume_main * self.volume_music);
+        audio_set_master_gain(self.emitter_music, self.volume_main * self.volume_music);
+        audio_set_master_gain(self.emitter_fx, self.volume_main * self.volume_music);
+        audio_set_master_gain(self.emitter_ambient, self.volume_main * self.volume_music);
+    };
+    
+    static PlayFX = function(sound, priority, gain, pitch) {
+        return audio_play_sound_on(self.emitter_fx, sound, false, priority, gain, 0, pitch);
+    };
+    
+    static PlayAmbient = function(sound, loop, priority, gain, pitch) {
+        return audio_play_sound_on(self.emitter_embient, sound, loop, priority, gain, 0, pitch);
+    };
+    
+    static PlayBGM = function(sound, gain, pitch) {
+        return audio_play_sound_on(self.emitter_music, sound, true, priority, gain, 0, pitch);
+    };
+    
+    static Stop = function(sound) {
+        return audio_stop_sound(sound);
     };
     
     static Save = function() {
