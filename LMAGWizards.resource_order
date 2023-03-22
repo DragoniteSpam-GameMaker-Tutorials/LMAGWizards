@@ -36,6 +36,7 @@
     {"name":"shd_gbuff_billboard_ripple","order":3,"path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},
     {"name":"spart_type","order":3,"path":"scripts/spart_type/spart_type.yy",},
     {"name":"sh_spart_mesh","order":1,"path":"shaders/sh_spart_mesh/sh_spart_mesh.yy",},
+    {"name":"Group_Material_Settings","order":6,"path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},
     {"name":"cluck_init","order":1,"path":"scripts/cluck_init/cluck_init.yy",},
     {"name":"obj_game","order":1,"path":"objects/obj_game/obj_game.yy",},
     {"name":"tex_chest","order":2,"path":"sprites/tex_chest/tex_chest.yy",},

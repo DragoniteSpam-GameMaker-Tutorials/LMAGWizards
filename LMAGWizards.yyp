@@ -61,6 +61,7 @@
     {"id":{"name":"spart_debug_vbuffers","path":"scripts/spart_debug_vbuffers/spart_debug_vbuffers.yy",},},
     {"id":{"name":"Group_Particles","path":"scripts/Group_Particles/Group_Particles.yy",},},
     {"id":{"name":"sh_spart_mesh","path":"shaders/sh_spart_mesh/sh_spart_mesh.yy",},},
+    {"id":{"name":"Group_Material_Settings","path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},},
     {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},},
     {"id":{"name":"cluck_init","path":"scripts/cluck_init/cluck_init.yy",},},
     {"id":{"name":"spr_billboard_test","path":"sprites/spr_billboard_test/spr_billboard_test.yy",},},
