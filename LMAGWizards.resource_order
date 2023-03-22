@@ -1,5 +1,7 @@
 {
   "FolderOrderSettings": [
+    {"name":"Critical stuff","order":26,"path":"folders/Critical stuff.yy",},
+    {"name":"Deferred Rendering","order":24,"path":"folders/Deferred Rendering.yy",},
     {"name":"Luminous Chickens","order":12,"path":"folders/Luminous Chickens.yy",},
     {"name":"Scripts","order":1,"path":"folders/Luminous Chickens/Scripts.yy",},
     {"name":"Penguin","order":5,"path":"folders/Penguin.yy",},
@@ -7,11 +9,9 @@
     {"name":"Scripts","order":1,"path":"folders/sPart/Scripts.yy",},
     {"name":"sPart","order":1,"path":"folders/sPart/Scripts/sPart.yy",},
     {"name":"Shaders","order":2,"path":"folders/sPart/Shaders.yy",},
-    {"name":"Textures","order":23,"path":"folders/Textures.yy",},
-    {"name":"Deferred Rendering","order":24,"path":"folders/Deferred Rendering.yy",},
-    {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
-    {"name":"Critical stuff","order":26,"path":"folders/Critical stuff.yy",},
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
+    {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
+    {"name":"Textures","order":23,"path":"folders/Textures.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"tex_block_singular","order":1,"path":"sprites/tex_block_singular/tex_block_singular.yy",},
@@ -43,6 +43,7 @@
     {"name":"tex_skybox_meadows","order":5,"path":"sprites/tex_skybox_meadows/tex_skybox_meadows.yy",},
     {"name":"spart_emitter","order":1,"path":"scripts/spart_emitter/spart_emitter.yy",},
     {"name":"spr_particle_main","order":2,"path":"sprites/spr_particle_main/spr_particle_main.yy",},
+    {"name":"Group_Audio_Settings","order":4,"path":"scripts/Group_Audio_Settings/Group_Audio_Settings.yy",},
     {"name":"Room1","order":2,"path":"rooms/Room1/Room1.yy",},
   ],
 }

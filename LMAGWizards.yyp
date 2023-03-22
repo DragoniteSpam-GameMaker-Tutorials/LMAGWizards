@@ -11,6 +11,8 @@
   },
   "defaultScriptType": 1,
   "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Critical stuff","folderPath":"folders/Critical stuff.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Deferred Rendering","folderPath":"folders/Deferred Rendering.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Luminous Chickens","folderPath":"folders/Luminous Chickens.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Luminous Chickens/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Penguin","folderPath":"folders/Penguin.yy",},
@@ -18,11 +20,9 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/sPart/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPart","folderPath":"folders/sPart/Scripts/sPart.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shaders","folderPath":"folders/sPart/Shaders.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Deferred Rendering","folderPath":"folders/Deferred Rendering.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Critical stuff","folderPath":"folders/Critical stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"meshes.derg","CopyToMask":-1,"filePath":"datafiles",},
@@ -30,7 +30,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.200.0.299",
+    "IDEVersion": "2023.2.1.75",
   },
   "resources": [
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},},
@@ -71,6 +71,7 @@
     {"id":{"name":"tex_skybox_meadows","path":"sprites/tex_skybox_meadows/tex_skybox_meadows.yy",},},
     {"id":{"name":"spart_emitter","path":"scripts/spart_emitter/spart_emitter.yy",},},
     {"id":{"name":"spr_particle_main","path":"sprites/spr_particle_main/spr_particle_main.yy",},},
+    {"id":{"name":"Group_Audio_Settings","path":"scripts/Group_Audio_Settings/Group_Audio_Settings.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

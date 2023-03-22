@@ -30,3 +30,17 @@ try {
 } catch (e) {
     show_debug_message("Couldn't load the video settings for some reason: {0}", e.message);
 }
+
+try {
+    var buffer = buffer_load(FILE_AUDIO_SETTINGS);
+    var json = buffer_read(buffer, buffer_text);
+    buffer_delete(buffer);
+    
+    var loaded_settings = json_parse(json);
+    var video_settings_type = static_get(Audio);
+    static_set(loaded_settings, video_settings_type);
+    
+    Audio = loaded_settings;
+} catch (e) {
+    show_debug_message("Couldn't load the audio settings for some reason: {0}", e.message);
+}
