@@ -12,8 +12,8 @@
   "conversionMode": 0,
   "duration": 30.052086,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Audio",
+    "path": "folders/Audio.yy",
   },
   "preload": false,
   "sampleRate": 44100,

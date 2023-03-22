@@ -23,6 +23,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Audio","folderPath":"folders/Audio.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"meshes.derg","CopyToMask":-1,"filePath":"datafiles",},
