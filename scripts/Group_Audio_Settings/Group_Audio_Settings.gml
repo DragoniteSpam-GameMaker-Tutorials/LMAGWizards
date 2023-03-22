@@ -8,24 +8,32 @@ function AudioSettingsConstructor() constructor {
     self.volume_fx = 1;
     self.volume_ambient = 1;
     
+    static emitter_music = audio_emitter_create();
+    static emitter_fx = audio_emitter_create();
+    static emitter_ambient = audio_emitter_create();
+    
     static SetVolumeMain = function(volume) {
         self.volume_main = volume;
         self.Save();
+        self.Apply();
     };
     
     static SetVolumeMusic = function(volume) {
         self.volume_music = volume;
         self.Save();
+        self.Apply();
     };
     
     static SetVolumeFX = function(volume) {
         self.volume_fx = volume;
         self.Save();
+        self.Apply();
     };
     
     static SetVolumeAmbient = function(volume) {
         self.volume_ambient = volume;
         self.Save();
+        self.Apply();
     };
     
     static GetVolumeMain = function(volume) {
@@ -42,6 +50,12 @@ function AudioSettingsConstructor() constructor {
     
     static GetVolumeAmbient = function(volume) {
         return self.volume_ambient;
+    };
+    
+    static Apply = function() {
+        audio_set_master_gain(emitter_music, self.volume_main * self.volume_music);
+        audio_set_master_gain(emitter_fx, self.volume_main * self.volume_music);
+        audio_set_master_gain(emitter_ambient, self.volume_main * self.volume_music);
     };
     
     static Save = function() {

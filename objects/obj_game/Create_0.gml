@@ -41,6 +41,7 @@ try {
     static_set(loaded_settings, video_settings_type);
     
     Audio = loaded_settings;
+    Audio.Apply();
 } catch (e) {
     show_debug_message("Couldn't load the audio settings for some reason: {0}", e.message);
 }
