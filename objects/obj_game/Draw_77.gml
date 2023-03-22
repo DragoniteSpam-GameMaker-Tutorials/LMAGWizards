@@ -1,6 +1,5 @@
 shader_set(shd_deferred);
 
-
 cluck_set_light_ambient(#404040);
 cluck_set_light_point(0, c_white, 250, 32, 250, 160);
 cluck_set_light_point(1, c_red, 400, 32, 250, 160);
