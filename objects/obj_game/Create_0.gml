@@ -45,3 +45,5 @@ try {
 } catch (e) {
     show_debug_message("Couldn't load the audio settings for some reason: {0}", e.message);
 }
+
+instance_create_depth(0, 0, 0, obj_player);
