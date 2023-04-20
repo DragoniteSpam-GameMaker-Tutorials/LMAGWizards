@@ -7,6 +7,7 @@ self.vertex_format = vertex_format_end();
 self.meshes = penguin_load("meshes.derg", self.vertex_format);
 
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
+self.active_camera = self.camera;
 
 input_mouse_coord_space_set(INPUT_COORD_SPACE.GUI);
 input_cursor_speed_set(12);
