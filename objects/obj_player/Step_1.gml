@@ -7,7 +7,7 @@ var dx = 0;
 var dy = 0;
 var dz = 0;
 
-var spd = 4;
+var spd = input_check("run") ? 5 : 3;
 
 if (input_check("up")) {
     dx += dcos(self.camera.direction);
@@ -32,6 +32,11 @@ if (input_check("left")) {
     dz += dcos(self.camera.direction);
     self.direction = 360 - self.camera.direction;
 }
+
+var has_moved = point_distance(dx, dz, 0, 0);
+
+var target_fov = (has_moved && input_check("run")) ? 72 : 60;
+self.camera.fov = lerp(self.camera.fov, target_fov, 0.05);
 
 self.x += dx * spd;
 self.y += dy * spd;
