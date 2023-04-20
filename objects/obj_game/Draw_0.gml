@@ -19,7 +19,7 @@ gpu_set_zwriteenable(false);
 
 material_set_material_type(EMaterialTypes.UNLIT);
 
-matrix_set(matrix_world, matrix_build(self.camera.x, self.camera.y, self.camera.z, 0, 0, 0, 1, 1, 1));
+matrix_set(matrix_world, matrix_build(obj_player.camera.x, obj_player.camera.y, obj_player.camera.z, 0, 0, 0, 1, 1, 1));
 self.meshes.skybox.Render();
 
 gpu_set_ztestenable(true);
