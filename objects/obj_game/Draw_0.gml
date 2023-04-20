@@ -1,8 +1,10 @@
 #region Set up the render targets
 gpu_set_cullmode(cull_counterclockwise);
 
-self.camera.UpdateFree();
-self.camera.Apply();
+//self.camera.UpdateFree();
+//self.camera.Apply();
+
+obj_player.camera.Apply();
 
 shader_set(shd_gbuff_main);
 surface_set_target_ext(1, self.gbuff_position);

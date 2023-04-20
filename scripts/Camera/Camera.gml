@@ -16,6 +16,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
     
     self.pitch = 0;
     self.direction = 0;
+    self.distance = 160;
     
     self.camera = camera_create();
     
