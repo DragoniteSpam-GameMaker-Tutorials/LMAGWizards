@@ -37,7 +37,7 @@ return {
         
         action:     input_binding_gamepad_button(gp_face1),
         back:       [input_binding_gamepad_button(gp_face2),        input_binding_gamepad_button(gp_select)],
-        special:    input_binding_gamepad_button(gp_face3),
+        cast:       input_binding_gamepad_button(gp_face3),
         jump:       input_binding_gamepad_button(gp_face4),
         
         run:        [input_binding_gamepad_button(gp_shoulderlb), input_binding_gamepad_button(gp_shoulderrb)],
