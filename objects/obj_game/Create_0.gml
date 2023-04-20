@@ -11,9 +11,6 @@ self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000
 input_mouse_coord_space_set(INPUT_COORD_SPACE.GUI);
 input_cursor_speed_set(12);
 input_mouse_capture_set(true);
-// this will have to be set every time the game window size changes...
-input_cursor_limit_aabb(0, 0, room_width, room_height);
-input_cursor_set(room_width / 2, room_height / 2);
 
 self.gbuff_position = -1;
 self.gbuff_material = -1;

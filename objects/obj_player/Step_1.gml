@@ -12,25 +12,25 @@ var spd = 4;
 if (input_check("up")) {
     dx += dcos(self.camera.direction);
     dz -= dsin(self.camera.direction);
-    self.direction = direction;
+    self.direction = 360 - self.camera.direction;
 }
 
 if (input_check("down")) {
     dx -= dcos(self.camera.direction);
     dz += dsin(self.camera.direction);
-    self.direction = direction;
+    self.direction = 360 - self.camera.direction;
 }
 
 if (input_check("right")) {
     dx -= dsin(self.camera.direction);
     dz -= dcos(self.camera.direction);
-    self.direction = direction;
+    self.direction = 360 - self.camera.direction;
 }
 
 if (input_check("left")) {
     dx += dsin(self.camera.direction);
     dz += dcos(self.camera.direction);
-    self.direction = direction;
+    self.direction = 360 - self.camera.direction;
 }
 
 self.x += dx * spd;
