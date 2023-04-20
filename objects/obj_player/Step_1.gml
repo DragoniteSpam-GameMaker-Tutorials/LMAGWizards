@@ -9,25 +9,25 @@ var dz = 0;
 
 var spd = 4;
 
-if (keyboard_check(ord("W"))) {
+if (input_check("up")) {
     dx += dcos(self.camera.direction);
     dz -= dsin(self.camera.direction);
     self.direction = direction;
 }
 
-if (keyboard_check(ord("S"))) {
+if (input_check("down")) {
     dx -= dcos(self.camera.direction);
     dz += dsin(self.camera.direction);
     self.direction = direction;
 }
 
-if (keyboard_check(ord("D"))) {
+if (input_check("right")) {
     dx -= dsin(self.camera.direction);
     dz -= dcos(self.camera.direction);
     self.direction = direction;
 }
 
-if (keyboard_check(ord("A"))) {
+if (input_check("left")) {
     dx += dsin(self.camera.direction);
     dz += dcos(self.camera.direction);
     self.direction = direction;
