@@ -1,0 +1,1 @@
+self.yspeed = 0;
