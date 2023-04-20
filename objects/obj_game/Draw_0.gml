@@ -1,9 +1,6 @@
 #region Set up the render targets
 gpu_set_cullmode(cull_counterclockwise);
 
-//self.camera.UpdateFree();
-//self.camera.Apply();
-
 obj_player.camera.Apply();
 
 shader_set(shd_gbuff_main);
@@ -11,19 +8,8 @@ surface_set_target_ext(1, self.gbuff_position);
 surface_set_target_ext(2, self.gbuff_material);
 
 draw_clear(c_black);
-#endregion
 
-#region Draw the skybox
-gpu_set_ztestenable(false);
-gpu_set_zwriteenable(false);
-
-material_set_material_type(EMaterialTypes.UNLIT);
-
-matrix_set(matrix_world, matrix_build(obj_player.camera.x, obj_player.camera.y, obj_player.camera.z, 0, 0, 0, 1, 1, 1));
-self.meshes.skybox.Render();
-
-gpu_set_ztestenable(true);
-gpu_set_zwriteenable(true);
+obj_player.camera.DrawSkybox(self.meshes.skybox);
 #endregion
 
 #region All of the stuff in the 3D world

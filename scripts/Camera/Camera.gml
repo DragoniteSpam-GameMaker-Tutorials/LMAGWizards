@@ -82,6 +82,13 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
         return camera_get_proj_mat(self.camera);
     };
     
-    self.DrawSkybox = function() {
+    self.DrawSkybox = function(skybox_model) {
+        gpu_set_ztestenable(false);
+        gpu_set_zwriteenable(false);
+        material_set_material_type(EMaterialTypes.UNLIT);
+        matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
+        skybox_model.Render();
+        gpu_set_ztestenable(true);
+        gpu_set_zwriteenable(true);
     };
 }
