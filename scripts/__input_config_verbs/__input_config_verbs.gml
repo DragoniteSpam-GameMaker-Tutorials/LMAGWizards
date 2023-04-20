@@ -26,6 +26,9 @@ return {
         run:        input_binding_key(vk_shift),
         
         pause:      input_binding_key(vk_escape),
+        
+        camera_in:  input_binding_mouse_wheel_up(),
+        camera_out: input_binding_mouse_wheel_down()
     },
     
     gamepad:
@@ -48,5 +51,7 @@ return {
         aim_left:   input_binding_gamepad_axis(gp_axisrh, true),
         aim_right:  input_binding_gamepad_axis(gp_axisrh, false),
         
+        camera_in:  input_binding_gamepad_button(gp_shoulderl),
+        camera_out: input_binding_gamepad_button(gp_shoulderr)
     }
 };
