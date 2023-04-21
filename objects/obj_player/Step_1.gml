@@ -70,30 +70,61 @@ dx *= spd;
 dy *= spd;
 dz *= spd;
 
+var final_dx = 0;
+var final_dy = 0;
+var final_dz = 0;
+
 self.cobject.shape.position.x = self.x + dx;
 self.cobject.shape.position.y = self.y + 16;
 self.cobject.shape.position.z = self.z;
-if (obj_game.collision.CheckObject(self.cobject)) {
-    dx = 0;
+
+if (!obj_game.collision.CheckObject(self.cobject)) {
+    final_dx = dx;
+} else {
+    for (var i = 1; i < abs(dx); i++) {
+        self.cobject.shape.position.x = self.x + i * sign(dx);
+        if (obj_game.collision.CheckObject(self.cobject)) {
+            final_dx = (i - 1) * sign(dx);
+            break;
+        }
+    }
 }
 
 self.cobject.shape.position.x = self.x;
-self.cobject.shape.position.y = self.y + 16 + dy;
+self.cobject.shape.position.y = self.y + dy + 16;
 self.cobject.shape.position.z = self.z;
-if (obj_game.collision.CheckObject(self.cobject)) {
-    dy = 0;
+
+if (!obj_game.collision.CheckObject(self.cobject)) {
+    final_dy = dy;
+} else {
+    for (var i = 1; i < abs(dy); i++) {
+        self.cobject.shape.position.y = self.y + 16 + i * sign(dy);
+        if (obj_game.collision.CheckObject(self.cobject)) {
+            final_dy = (i - 1) * sign(dy);
+            break;
+        }
+    }
 }
 
 self.cobject.shape.position.x = self.x;
 self.cobject.shape.position.y = self.y + 16;
 self.cobject.shape.position.z = self.z + dz;
-if (obj_game.collision.CheckObject(self.cobject)) {
-    dz = 0;
+
+if (!obj_game.collision.CheckObject(self.cobject)) {
+    final_dz = dz;
+} else {
+    for (var i = 1; i < abs(dz); i++) {
+        self.cobject.shape.position.z = self.z + i * sign(dz);
+        if (obj_game.collision.CheckObject(self.cobject)) {
+            final_dz = (i - 1) * sign(dz);
+            break;
+        }
+    }
 }
 
-self.x += dx;
-self.y += dy;
-self.z += dz;
+self.x += final_dx;
+self.y += final_dy;
+self.z += final_dz;
 
 if (self.y < 0) {
     self.y = 0;
