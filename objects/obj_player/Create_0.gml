@@ -11,3 +11,6 @@ self.UpdateCamera = function() {
     self.camera.y = self.camera.yto + self.camera.distance * dsin(self.camera.pitch);
     self.camera.z = self.camera.zto + self.camera.distance * dsin(self.camera.direction) * dcos(self.camera.pitch);
 };
+
+self.cshape = new ColSphere(new Vector3(0, 16, 0), 16);
+self.cobject = new ColObject(self.cshape, self.id, 1, 1);

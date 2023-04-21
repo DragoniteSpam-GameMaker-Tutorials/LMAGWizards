@@ -59,9 +59,34 @@ var fov_transition_speed = 0.05;
 var target_fov = (has_moved && input_check("run")) ? fov_run : fov_walk;
 self.camera.fov = lerp(self.camera.fov, target_fov, fov_transition_speed);
 
-self.x += dx * spd;
+dx *= spd;
+dy *= spd;
+dz *= spd;
+
+self.cobject.shape.position.x = self.x + dx;
+self.cobject.shape.position.y = self.y + 16;
+self.cobject.shape.position.z = self.z;
+if (obj_game.collision.CheckObject(self.cobject)) {
+    dx = 0;
+}
+
+self.cobject.shape.position.x = self.x;
+self.cobject.shape.position.y = self.y + 16 + dy;
+self.cobject.shape.position.z = self.z;
+if (obj_game.collision.CheckObject(self.cobject)) {
+    dy = 0;
+}
+
+self.cobject.shape.position.x = self.x;
+self.cobject.shape.position.y = self.y + 16;
+self.cobject.shape.position.z = self.z + dz;
+if (obj_game.collision.CheckObject(self.cobject)) {
+    dz = 0;
+}
+
+self.x += dx;
 self.y += dy;
-self.z += dz * spd;
+self.z += dz;
 
 if (self.y < 0) {
     self.y = 0;

@@ -52,3 +52,9 @@ try {
 }
 
 instance_create_depth(0, 0, 0, obj_player);
+
+self.collision = new ColWorld(new Vector3(-1000, -1000, -1000), new Vector3(1000, 1000, 1000), 3);
+
+var block_shape = NewColAABBFromMinMax(new Vector3(200, 0, 200), new Vector3(232, 32, 232));
+var block_object = new ColObject(block_shape, undefined, 1, 1);
+self.collision.Add(block_object);
