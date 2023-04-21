@@ -39,15 +39,22 @@ if (input_check("left")) {
     self.direction = 360 - self.camera.direction;
 }
 
-var jump_speed = 4;
+var jump_speed = 3;
 if (input_check_pressed("jump")) {
     if (self.y == 0) {
         self.yspeed = jump_speed;
     }
 }
 
-var grav = 0.15;
-self.yspeed -= grav;
+if (self.IsGrounded()) {
+    if (self.yspeed < 0) {
+        self.yspeed = 0;
+    }
+} else {
+    var grav = 0.15;
+    self.yspeed -= grav;
+}
+
 dy = self.yspeed;
 
 var has_moved = point_distance(dx, dz, 0, 0);
