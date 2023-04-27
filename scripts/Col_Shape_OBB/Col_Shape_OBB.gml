@@ -1,7 +1,7 @@
 function ColOBB(position, size, orientation) constructor {
     self.position = position;               // Vec3
     self.size = size;                       // Vec3
-    self.orientation = orientation;         // mat4
+    self.orientation = orientation;         // mat3
     
     static CheckObject = function(object) {
         return object.shape.CheckOBB(self);
