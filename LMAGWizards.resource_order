@@ -47,6 +47,7 @@
     {"name":"Gameplay","order":32,"path":"folders/Gameplay.yy",},
     {"name":"Collision Stuff","order":33,"path":"folders/Collision Stuff.yy",},
     {"name":"Shapes","order":1,"path":"folders/Collision Stuff/Shapes.yy",},
+    {"name":"3D objects","order":3,"path":"folders/Gameplay/3D objects.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},

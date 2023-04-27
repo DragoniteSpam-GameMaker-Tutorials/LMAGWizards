@@ -58,6 +58,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Gameplay","folderPath":"folders/Gameplay.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Collision Stuff","folderPath":"folders/Collision Stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shapes","folderPath":"folders/Collision Stuff/Shapes.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"3D objects","folderPath":"folders/Gameplay/3D objects.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},
@@ -108,6 +109,7 @@
     {"id":{"name":"Group_Common_Library","path":"scripts/Group_Common_Library/Group_Common_Library.yy",},},
     {"id":{"name":"input_y","path":"scripts/input_y/input_y.yy",},},
     {"id":{"name":"input_vibrate_adsr","path":"scripts/input_vibrate_adsr/input_vibrate_adsr.yy",},},
+    {"id":{"name":"obj_3d_object","path":"objects/obj_3d_object/obj_3d_object.yy",},},
     {"id":{"name":"__input_gamepad_set_vid_pid","path":"scripts/__input_gamepad_set_vid_pid/__input_gamepad_set_vid_pid.yy",},},
     {"id":{"name":"input_mouse_x","path":"scripts/input_mouse_x/input_mouse_x.yy",},},
     {"id":{"name":"__input_steam_type_set","path":"scripts/__input_steam_type_set/__input_steam_type_set.yy",},},
