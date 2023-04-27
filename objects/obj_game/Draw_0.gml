@@ -18,10 +18,6 @@ material_set_material_type(EMaterialTypes.NORMAL);
 matrix_set(matrix_world, matrix_build_identity());
 self.meshes.ground.Render();
 
-matrix_set(matrix_world, matrix_build(200, 0, 200, 0, 0, 0, 1, 1, 1));
-self.meshes.block_singular.Render();
-matrix_set(matrix_world, matrix_build_identity());
-
 with (obj_entity) {
     event_perform(ev_draw, 0);
 }
