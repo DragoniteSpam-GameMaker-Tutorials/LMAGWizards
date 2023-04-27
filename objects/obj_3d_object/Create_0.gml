@@ -4,7 +4,7 @@ self.mesh = undefined;
 self.cshapes = [];
 self.cobjects = [];
 
-self.SetMesh = function(mesh) {
+self.SetMesh = function(mesh, mask = 1, group = 1) {
     self.mesh = mesh;
     self.cshapes = [];
     self.cobjects = [];
@@ -38,7 +38,7 @@ self.SetMesh = function(mesh) {
         // if you want to add capsules you can, but it'll probably be a pain
         
         if (shape != undefined) {
-            var object = new ColObject(shape, self.id, 1, 1);
+            var object = new ColObject(shape, self.id, mask, group);
             obj_game.collision.Add(object);
             array_push(self.cshapes, shape);
             array_push(self.cobjects, object);
