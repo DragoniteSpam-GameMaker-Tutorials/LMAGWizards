@@ -15,7 +15,7 @@ self.SetMesh = function(mesh, mask = 1, group = 1) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
             var original_radius = shape_data.radius;
             shape = new ColSphere(original_position, original_radius);
-            shape.original_position = original_position;
+            shape.original_position = original_position.Mul(1);
             shape.original_radius = original_radius;
         }
         if (is_instanceof(shape_data, PenguinCollisionShapeBox)) {
@@ -23,9 +23,9 @@ self.SetMesh = function(mesh, mask = 1, group = 1) {
             var original_size = new Vector3(shape_data.scale.x, shape_data.scale.y, shape_data.scale.z).Div(2);
             var original_orientation = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);  // until i fix the penguin outpu
             shape = new ColOBB(original_position, original_size, original_orientation);
-            shape.original_position = original_position;
-            shape.original_size = original_size;
-            shape.original_orientation = original_orientation;
+            shape.original_position = original_position.Mul(1);
+            shape.original_size = original_size.Mul(1);
+            shape.original_orientation = new Matrix3(original_orientation.AsLinearArray());
         }
         // if you want to add capsules you can, but it'll probably be a pain
         
