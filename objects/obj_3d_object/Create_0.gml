@@ -4,12 +4,28 @@ self.mesh = undefined;
 self.cshapes = [];
 self.cobjects = [];
 
-self.SetMesh = function(mesh, mask = 1, group = 1) {
+self.SetMesh = function(mesh, mask = ECollisionMasks.DEFAULT, group = ECollisionMasks.DEFAULT) {
     self.mesh = mesh;
     self.cshapes = [];
     self.cobjects = [];
     for (var i = 0, n = array_length(mesh.collision_shapes); i < n; i++) {
         var shape_data = mesh.collision_shapes[i];
+        var shape_mask = mask;
+        var shape_group = group;
+       
+        // there may be some special collision shapes
+        if (string_starts_with(shape_data.name, "#")) {
+            switch (shape_data.name) {
+                case "#Climb":
+                    shape_mask = ECollisionMasks.CLIMBABLE;
+                    break;
+                case "#CameraTarget":
+                    shape_mask = ECollisionMasks.NONE;
+                    shape_group = ECollisionMasks.NONE;
+                    break;
+            }
+        }
+        
         var shape = undefined;
         if (is_instanceof(shape_data, PenguinCollisionShapeSphere)) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
@@ -20,7 +36,7 @@ self.SetMesh = function(mesh, mask = 1, group = 1) {
         }
         if (is_instanceof(shape_data, PenguinCollisionShapeBox)) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
-            var original_size = new Vector3(shape_data.scale.x, shape_data.scale.y, shape_data.scale.z).Div(2);
+            var original_size = new Vector3(shape_data.scale.x, shape_data.scale.y, shape_data.scale.z);
             var original_orientation = new Matrix3(
                 shape_data.orientation.x.x, shape_data.orientation.x.y, shape_data.orientation.x.z,
                 shape_data.orientation.y.x, shape_data.orientation.y.y, shape_data.orientation.y.z,
@@ -34,7 +50,7 @@ self.SetMesh = function(mesh, mask = 1, group = 1) {
         // if you want to add capsules you can, but it'll probably be a pain
         
         if (shape != undefined) {
-            var object = new ColObject(shape, self.id, mask, group);
+            var object = new ColObject(shape, self.id, shape_mask, shape_group);
             obj_game.collision.Add(object);
             array_push(self.cshapes, shape);
             array_push(self.cobjects, object);

@@ -58,3 +58,9 @@ self.collision = new ColWorldSpatialHash(100);
 var test_box = instance_create_depth(200, 0, 200, obj_3d_object);
 test_box.SetMesh(self.meshes.block_singular);
 test_box.UpdateCollisionPositions();
+
+enum ECollisionMasks {
+    NONE                    = 0b0000,
+    DEFAULT                 = 0b0001,
+    CLIMBABLE               = 0b0010
+}
