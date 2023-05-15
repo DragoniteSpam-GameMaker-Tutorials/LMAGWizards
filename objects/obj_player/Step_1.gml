@@ -71,3 +71,13 @@ if (input_check("camera_out")) {
 }
 
 self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
+
+// deal with climbing
+if (point_distance(dx, dy, 0, 0) > 0) {
+    var old_group = self.cobject.group;
+    self.cobject.group = ECollisionMasks.CLIMBABLE;
+    if (obj_game.collision.CheckObject(self.cobject)) {
+        show_debug_message("climbing")
+    }
+    self.cobject.group = old_group;
+}
