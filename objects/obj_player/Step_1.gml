@@ -74,22 +74,15 @@ self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
 
 // deal with climbing
 if (input_check("up")) {
-    var player_data = obj_game.meshes.player;
-    var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
-        return shape.name == "#ClimbDetection";
-    })];
-    
+    var climb_position = self.cobject_climb.shape.original_position;
     var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
-    var climb_target_transformed = matrix_transform_vertex(player_transform, player_climb_collision.position.x, player_climb_collision.position.y, player_climb_collision.position.z);
+    var climb_target_transformed = matrix_transform_vertex(player_transform, climb_position.x, climb_position.y, climb_position.z);
     
-    var original_position = new Vector3(climb_target_transformed[0], climb_target_transformed[1], climb_target_transformed[2]);
-    var original_radius = player_climb_collision.radius;
-    var climb_shape = new ColSphere(original_position, original_radius);
-    climb_shape.original_position = original_position.Mul(1);
-    climb_shape.original_radius = original_radius;
-    var climb_object = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, ECollisionMasks.CLIMBABLE);
+    self.cobject_climb.shape.position.x = climb_target_transformed[0];
+    self.cobject_climb.shape.position.y = climb_target_transformed[1];
+    self.cobject_climb.shape.position.z = climb_target_transformed[2];
     
-    if (obj_game.collision.CheckObject(climb_object)) {
+    if (obj_game.collision.CheckObject(self.cobject_climb)) {
         show_debug_message("climbing")
     }
 }

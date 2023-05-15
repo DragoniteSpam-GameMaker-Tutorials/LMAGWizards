@@ -1,5 +1,15 @@
 event_inherited();
 
+var player_data = obj_game.meshes.player;
+var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
+    return shape.name == "#ClimbDetection";
+})];
+    
+var original_position = new Vector3(player_climb_collision.position.x, player_climb_collision.position.y, player_climb_collision.position.z);
+var climb_shape = new ColSphere(original_position, player_climb_collision.radius);
+climb_shape.original_position = original_position.Mul(1);
+self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, ECollisionMasks.CLIMBABLE);
+
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
 
 self.UpdateCamera = function() {
