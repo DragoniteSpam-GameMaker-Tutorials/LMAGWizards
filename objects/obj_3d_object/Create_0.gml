@@ -21,7 +21,11 @@ self.SetMesh = function(mesh, mask = 1, group = 1) {
         if (is_instanceof(shape_data, PenguinCollisionShapeBox)) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
             var original_size = new Vector3(shape_data.scale.x, shape_data.scale.y, shape_data.scale.z).Div(2);
-            var original_orientation = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);  // until i fix the penguin outpu
+            var original_orientation = new Matrix3(
+                shape_data.orientation.x.x, shape_data.orientation.x.y, shape_data.orientation.x.z,
+                shape_data.orientation.y.x, shape_data.orientation.y.y, shape_data.orientation.y.z,
+                shape_data.orientation.z.x, shape_data.orientation.z.y, shape_data.orientation.z.z
+            );
             shape = new ColOBB(original_position, original_size, original_orientation);
             shape.original_position = original_position.Mul(1);
             shape.original_size = original_size.Mul(1);
