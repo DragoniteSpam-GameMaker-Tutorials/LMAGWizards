@@ -10,16 +10,15 @@ var climb_shape = new ColSphere(original_position, player_climb_collision.radius
 climb_shape.original_position = original_position.Mul(1);
 self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, ECollisionMasks.CLIMBABLE);
 
+self.camera_target = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
+    return shape.name == "#CameraTarget";
+})].position;
+
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
 
 self.UpdateCamera = function() {
-    static player_data = obj_game.meshes.player;
-    static camera_target_shape = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
-        return shape.name == "#CameraTarget";
-    })].position;
-    
     var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
-    var camera_target_transformed = matrix_transform_vertex(player_transform, camera_target_shape.x, camera_target_shape.y, camera_target_shape.z);
+    var camera_target_transformed = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
     
     self.camera.xto = camera_target_transformed[0];
     self.camera.yto = camera_target_transformed[1];
