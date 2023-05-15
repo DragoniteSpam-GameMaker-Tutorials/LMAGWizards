@@ -19,6 +19,10 @@ self.SetMesh = function(mesh, mask = ECollisionMasks.DEFAULT, group = ECollision
                 case "#Climb":
                     shape_mask = ECollisionMasks.CLIMBABLE;
                     break;
+                case "#ClimbDetection":
+                    shape_mask = ECollisionMasks.NONE;
+                    shape_group = ECollisionMasks.NONE;
+                    break;
                 case "#CameraTarget":
                     shape_mask = ECollisionMasks.NONE;
                     shape_group = ECollisionMasks.NONE;
