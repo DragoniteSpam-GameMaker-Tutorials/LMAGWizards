@@ -41,7 +41,7 @@ if (input_check("left")) {
 
 var jump_speed = 4;
 if (input_check_pressed("jump")) {
-    if (self.y == 0) {
+    if (self.IsGrounded()) {
         self.yspeed = jump_speed;
     }
 }
