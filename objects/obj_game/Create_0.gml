@@ -53,7 +53,7 @@ try {
 
 instance_create_depth(0, 0, 0, obj_player);
 
-self.collision = new ColWorld(new Vector3(-1000, -1000, 0), new Vector3(1000, 1000, 1000), 2);
+self.collision = new ColWorldSpatialHash(100);
 
 var test_box = instance_create_depth(200, 0, 200, obj_3d_object);
 test_box.SetMesh(self.meshes.block_singular);
