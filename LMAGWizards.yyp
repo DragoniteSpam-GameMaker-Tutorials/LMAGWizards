@@ -252,6 +252,7 @@
     {"id":{"name":"input_vibrate_set_strength","path":"scripts/input_vibrate_set_strength/input_vibrate_set_strength.yy",},},
     {"id":{"name":"shd_gbuff_main","path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},},
     {"id":{"name":"cluck_apply","path":"scripts/cluck_apply/cluck_apply.yy",},},
+    {"id":{"name":"obj_moving","path":"objects/obj_moving/obj_moving.yy",},},
     {"id":{"name":"input_value","path":"scripts/input_value/input_value.yy",},},
     {"id":{"name":"input_check_double","path":"scripts/input_check_double/input_check_double.yy",},},
     {"id":{"name":"input_verb_get_group","path":"scripts/input_verb_get_group/input_verb_get_group.yy",},},

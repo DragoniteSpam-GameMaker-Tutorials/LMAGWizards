@@ -55,12 +55,9 @@ instance_create_depth(0, 0, 0, obj_player);
 
 self.collision = new ColWorldSpatialHash(100);
 
-var test_bridge = instance_create_depth(200, 0, 200, obj_3d_object);
-test_bridge.SetMesh(self.meshes.bridge);
-test_bridge.UpdateCollisionPositions();
-var test_slope = instance_create_depth(120, 32, 200, obj_3d_object);
-test_slope.SetMesh(self.meshes.slope);
-test_slope.UpdateCollisionPositions();
+var test_mover = instance_create_depth(100, 0, 100, obj_moving);
+test_mover.SetMesh(self.meshes.block_singular);
+test_mover.UpdateCollisionPositions();
 
 enum ECollisionMasks {
     NONE                    = 0b0000,

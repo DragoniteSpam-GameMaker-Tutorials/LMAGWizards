@@ -211,6 +211,7 @@
     {"name":"__input_class_icon_category","order":7,"path":"scripts/__input_class_icon_category/__input_class_icon_category.yy",},
     {"name":"input_vibrate_set_strength","order":7,"path":"scripts/input_vibrate_set_strength/input_vibrate_set_strength.yy",},
     {"name":"shd_gbuff_main","order":4,"path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},
+    {"name":"obj_moving","order":1,"path":"objects/obj_moving/obj_moving.yy",},
     {"name":"input_value","order":18,"path":"scripts/input_value/input_value.yy",},
     {"name":"input_check_double","order":1,"path":"scripts/input_check_double/input_check_double.yy",},
     {"name":"input_verb_get_group","order":1,"path":"scripts/input_verb_get_group/input_verb_get_group.yy",},
