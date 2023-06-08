@@ -61,3 +61,9 @@ test_bridge.UpdateCollisionPositions();
 var test_slope = instance_create_depth(120, 32, 200, obj_3d_object);
 test_slope.SetMesh(self.meshes.slope);
 test_slope.UpdateCollisionPositions();
+
+enum ECollisionMasks {
+    NONE                    = 0b0000,
+    DEFAULT                 = 0b0001,
+    CLIMBABLE               = 0b0010
+}
