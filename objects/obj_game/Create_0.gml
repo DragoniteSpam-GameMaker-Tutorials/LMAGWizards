@@ -55,6 +55,9 @@ instance_create_depth(0, 0, 0, obj_player);
 
 self.collision = new ColWorld(new Vector3(-1000, -1000, 0), new Vector3(1000, 1000, 1000), 2);
 
-var test_box = instance_create_depth(200, 0, 200, obj_3d_object);
-test_box.SetMesh(self.meshes.block_singular);
-test_box.UpdateCollisionPositions();
+var test_bridge = instance_create_depth(200, 0, 200, obj_3d_object);
+test_bridge.SetMesh(self.meshes.bridge);
+test_bridge.UpdateCollisionPositions();
+var test_slope = instance_create_depth(120, 32, 200, obj_3d_object);
+test_slope.SetMesh(self.meshes.slope);
+test_slope.UpdateCollisionPositions();
