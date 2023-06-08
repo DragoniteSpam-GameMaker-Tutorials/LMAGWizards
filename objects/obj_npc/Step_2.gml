@@ -45,6 +45,7 @@ if (!obj_game.collision.CheckObject(self.cobject)) {
         self.cobject.shape.position.z = self.z + i * sign(self.zspeed);
         if (obj_game.collision.CheckObject(self.cobject)) {
             final_dz = (i - 1) * sign(self.zspeed);
+            self.yspeed = 0;
             break;
         }
     }
