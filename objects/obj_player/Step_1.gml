@@ -41,7 +41,7 @@ if (input_check("left")) {
 
 var jump_speed = 4;
 if (input_check_pressed("jump")) {
-    if (self.y == 0) {
+    if (self.IsGrounded()) {
         self.yspeed = jump_speed;
     }
 }
@@ -71,3 +71,18 @@ if (input_check("camera_out")) {
 }
 
 self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
+
+// deal with climbing
+if (input_check("up")) {
+    var climb_position = self.cobject_climb.shape.original_position;
+    var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
+    var climb_target_transformed = matrix_transform_vertex(player_transform, climb_position.x, climb_position.y, climb_position.z);
+    
+    self.cobject_climb.shape.position.x = climb_target_transformed[0];
+    self.cobject_climb.shape.position.y = climb_target_transformed[1];
+    self.cobject_climb.shape.position.z = climb_target_transformed[2];
+    
+    if (obj_game.collision.CheckObject(self.cobject_climb)) {
+        show_debug_message("climbing")
+    }
+}
