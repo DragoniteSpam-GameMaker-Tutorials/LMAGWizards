@@ -1,10 +1,12 @@
 event_inherited();
 
+self.default_collision_mask = ECollisionMasks.DEFAULT;
+
 self.mesh = undefined;
 self.cshapes = [];
 self.cobjects = [];
 
-self.SetMesh = function(mesh, mask = ECollisionMasks.DEFAULT, group = ECollisionMasks.DEFAULT) {
+self.SetMesh = function(mesh, mask = self.default_collision_mask, group = ECollisionMasks.DEFAULT) {
     self.mesh = mesh;
     self.cshapes = [];
     self.cobjects = [];

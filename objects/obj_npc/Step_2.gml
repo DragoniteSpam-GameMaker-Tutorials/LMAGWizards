@@ -2,18 +2,9 @@ var final_dx = 0;
 var final_dy = 0;
 var final_dz = 0;
 
-self.cobject.shape.position.x = self.x;
-self.cobject.shape.position.y = self.y + 16 - 1;
-self.cobject.shape.position.z = self.z;
-
 var potential = new Vector3(self.xspeed, self.yspeed, self.zspeed);
 
-var below_me = obj_game.collision.CheckObject(self.cobject);
-if (below_me != undefined) {
-    potential = potential.Add(below_me.reference.motion);
-}
-
-
+potential = potential.Add(self.CheckMovingObjects());
 
 self.cobject.shape.position.x = self.x + potential.x;
 self.cobject.shape.position.y = self.y + 16;
