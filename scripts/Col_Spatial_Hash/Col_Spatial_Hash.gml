@@ -145,7 +145,7 @@ function ColWorldSpatialHash(chunk_size) constructor {
     static CheckObject = function(object) {
         for (var i = 0; i < array_length(self.planes); i++) {
             if (self.planes[i].CheckObject(object))
-                return true;
+                return self.planes[i];
         }
         
         var bounds = self.GetBoundingChunk(object);
@@ -158,14 +158,15 @@ function ColWorldSpatialHash(chunk_size) constructor {
                     var chunk = self.GetChunk(i, j, k);
                     
                     if (chunk != undefined) {
-                        if (chunk.CheckObject(object))
-                            return true;
+                        var chunk_result = chunk.CheckObject(object);
+                        if (chunk_result != undefined)
+                            return chunk_result;
                     }
                 }
             }
         }
         
-        return false;
+        return undefined;
     };
     
     static CheckRay = function(ray, group = 1) {
@@ -285,9 +286,9 @@ function ColSpatialHashNode(bounds) constructor {
     static CheckObject = function(object) {
         for (var i = 0; i < array_length(self.objects); i++) {
             if (self.objects[i].CheckObject(object))
-                return true;
+                return self.objects[i];
         }
-        return false;
+        return undefined;
     };
     
     static CheckRay = function(ray, hit_info, group = 1) {
