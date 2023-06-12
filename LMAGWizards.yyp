@@ -52,6 +52,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Luminous Chickens","folderPath":"folders/Luminous Chickens.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/Luminous Chickens/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Penguin","folderPath":"folders/Penguin.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"SnowState","folderPath":"folders/SnowState.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPart","folderPath":"folders/sPart.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scripts","folderPath":"folders/sPart/Scripts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sPart","folderPath":"folders/sPart/Scripts/sPart.yy",},
@@ -59,7 +60,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"SnowState","folderPath":"folders/SnowState.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},

@@ -41,6 +41,7 @@
     {"name":"Luminous Chickens","order":12,"path":"folders/Luminous Chickens.yy",},
     {"name":"Scripts","order":1,"path":"folders/Luminous Chickens/Scripts.yy",},
     {"name":"Penguin","order":5,"path":"folders/Penguin.yy",},
+    {"name":"SnowState","order":34,"path":"folders/SnowState.yy",},
     {"name":"sPart","order":14,"path":"folders/sPart.yy",},
     {"name":"Scripts","order":1,"path":"folders/sPart/Scripts.yy",},
     {"name":"sPart","order":1,"path":"folders/sPart/Scripts/sPart.yy",},
@@ -48,7 +49,6 @@
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
-    {"name":"SnowState","order":34,"path":"folders/SnowState.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
