@@ -1,0 +1,1 @@
+if (self.state != undefined) self.state.update();

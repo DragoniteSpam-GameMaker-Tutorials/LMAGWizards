@@ -6,6 +6,8 @@ self.mesh = undefined;
 self.cshapes = [];
 self.cobjects = [];
 
+self.state = undefined;
+
 self.SetMesh = function(mesh, mask = self.default_collision_mask, group = ECollisionMasks.DEFAULT) {
     self.mesh = mesh;
     self.cshapes = [];

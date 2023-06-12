@@ -10,13 +10,11 @@ self.state.add("default", {
         show_debug_message("leave the default state");
     },
     update: function() {
-        self.ControlCamera();
+        self.HandleCamera();
         
         self.yspeed = 0;
-        if (input_check_pressed("jump")) {
-            self.Jump();
-        }
         
+        self.HandleJump();
         self.HandleMovement();
         self.HandleClimbing();
         
@@ -32,7 +30,7 @@ self.state.add("default", {
         show_debug_message("leave the airborne state");
     },
     update: function() {
-        self.ControlCamera();
+        self.HandleCamera();
         
         static grav = 0.15;
         self.yspeed -= grav;
@@ -75,7 +73,7 @@ self.UpdateCamera = function() {
     self.camera.z = self.camera.zto + self.camera.distance * dsin(self.camera.direction) * dcos(self.camera.pitch);
 };
 
-self.ControlCamera = function() {
+self.HandleCamera = function() {
     obj_game.active_camera = self.camera;
     var look_sensitivity = 1 / 3;
     var max_pitch = 80;
@@ -98,10 +96,12 @@ self.ControlCamera = function() {
     self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
 };
 
-self.Jump = function() {
+self.HandleJump = function() {
     static jump_speed = 4;
-    self.yspeed = jump_speed;
-    self.state.change("airborne");
+    if (input_check_pressed("jump")) {
+        self.yspeed = jump_speed;
+        self.state.change("airborne");
+    }
 };
 
 self.HandleMovement = function() {
