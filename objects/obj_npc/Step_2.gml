@@ -6,6 +6,7 @@ var potential = new Vector3(self.xspeed, self.yspeed, self.zspeed);
 
 potential = potential.Add(self.CheckMovingObjects());
 
+// tried generalizing this, didnt work out too well, would not recommend
 self.cobject.shape.position.x = self.x + potential.x;
 self.cobject.shape.position.y = self.y + 16;
 self.cobject.shape.position.z = self.z;

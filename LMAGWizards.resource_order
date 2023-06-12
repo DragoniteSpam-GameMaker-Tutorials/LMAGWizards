@@ -48,6 +48,7 @@
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
+    {"name":"SnowState","order":34,"path":"folders/SnowState.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
@@ -187,6 +188,7 @@
     {"name":"__input_trace","order":18,"path":"scripts/__input_trace/__input_trace.yy",},
     {"name":"tex_rocks","order":4,"path":"sprites/tex_rocks/tex_rocks.yy",},
     {"name":"__input_gamepad_stop_trigger_effects","order":8,"path":"scripts/__input_gamepad_stop_trigger_effects/__input_gamepad_stop_trigger_effects.yy",},
+    {"name":"SnowState","order":1,"path":"scripts/SnowState/SnowState.yy",},
     {"name":"input_verb_group_active","order":3,"path":"scripts/input_verb_group_active/input_verb_group_active.yy",},
     {"name":"input_source_mode_set","order":6,"path":"scripts/input_source_mode_set/input_source_mode_set.yy",},
     {"name":"input_check_opposing_repeat","order":9,"path":"scripts/input_check_opposing_repeat/input_check_opposing_repeat.yy",},

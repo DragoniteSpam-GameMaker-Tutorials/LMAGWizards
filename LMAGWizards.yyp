@@ -59,6 +59,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"SnowState","folderPath":"folders/SnowState.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},
@@ -224,6 +225,7 @@
     {"id":{"name":"__input_trace","path":"scripts/__input_trace/__input_trace.yy",},},
     {"id":{"name":"tex_rocks","path":"sprites/tex_rocks/tex_rocks.yy",},},
     {"id":{"name":"__input_gamepad_stop_trigger_effects","path":"scripts/__input_gamepad_stop_trigger_effects/__input_gamepad_stop_trigger_effects.yy",},},
+    {"id":{"name":"SnowState","path":"scripts/SnowState/SnowState.yy",},},
     {"id":{"name":"input_verb_group_active","path":"scripts/input_verb_group_active/input_verb_group_active.yy",},},
     {"id":{"name":"input_direction","path":"scripts/input_direction/input_direction.yy",},},
     {"id":{"name":"input_source_mode_set","path":"scripts/input_source_mode_set/input_source_mode_set.yy",},},
@@ -269,6 +271,7 @@
     {"id":{"name":"__input_config_vibration","path":"scripts/__input_config_vibration/__input_config_vibration.yy",},},
     {"id":{"name":"input_check_opposing_pressed","path":"scripts/input_check_opposing_pressed/input_check_opposing_pressed.yy",},},
     {"id":{"name":"input_verb_get_icon","path":"scripts/input_verb_get_icon/input_verb_get_icon.yy",},},
+    {"id":{"name":"__snowstate_config","path":"scripts/__snowstate_config/__snowstate_config.yy",},},
     {"id":{"name":"input_mouse_check_pressed","path":"scripts/input_mouse_check_pressed/input_mouse_check_pressed.yy",},},
     {"id":{"name":"input_accessibility_global_cooldown_set","path":"scripts/input_accessibility_global_cooldown_set/input_accessibility_global_cooldown_set.yy",},},
     {"id":{"name":"input_motion_data_get","path":"scripts/input_motion_data_get/input_motion_data_get.yy",},},
