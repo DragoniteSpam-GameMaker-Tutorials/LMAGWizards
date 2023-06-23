@@ -65,7 +65,6 @@ self.state.add("default", {
     }
 }).add("climbing advance", {
     enter: function() {
-        show_debug_message("enter the climbing advance state");
         self.advance_amount = 24;
     },
     leave: function() {
@@ -92,6 +91,9 @@ self.state.add("default", {
 
 self.climbing_target = undefined;
 
+self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
+
+#region Special collision object - climb detection
 var player_data = obj_game.meshes.player;
 var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
     return shape.name == "#ClimbDetection";
@@ -101,20 +103,24 @@ var original_position = new Vector3(player_climb_collision.position.x, player_cl
 var climb_shape = new ColSphere(original_position, player_climb_collision.radius);
 climb_shape.original_position = original_position.Mul(1);
 self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, ECollisionMasks.CLIMBABLE);
+#endregion
 
+#region Special collision object - camera target
 self.camera_target = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
     return shape.name == "#CameraTarget";
 })].position;
+#endregion
 
-self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
-
+#region Special collision object - grounded platform
 var player_grounded_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
     return shape.name == "#Grounded";
 })];
 var position = new Vector3(player_grounded_collision.position.x, player_grounded_collision.position.y, player_grounded_collision.position.z);
 var scale = new Vector3(player_grounded_collision.scale.x, player_grounded_collision.scale.y, player_grounded_collision.scale.z);
 self.cobject_grounded = new ColObject(new ColAABB(position, scale), self.id);
+#endregion
 
+// overrides obj_npc::IsGrounded
 self.IsGrounded = function() {
     if (self.y <= 0) return true;
     
