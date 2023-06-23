@@ -47,7 +47,7 @@ self.state.add("default", {
         show_debug_message("enter the climbing state");
     },
     leave: function() {
-        show_debug_message("leave the climbing state");
+        
     },
     update: function() {
         self.HandleCamera();
@@ -57,8 +57,40 @@ self.state.add("default", {
         
         static climb_speed = 1;
         self.y += climb_speed;
+        
+        if (self.y > self.climbing_target.shape.position.y + self.climbing_target.shape.size.y) {
+            self.climbing_target = undefined;
+            self.state.change("climbing advance");
+        }
+    }
+}).add("climbing advance", {
+    enter: function() {
+        show_debug_message("enter the climbing advance state");
+        self.advance_amount = 24;
+    },
+    leave: function() {
+        show_debug_message("leave the climbing state");
+    },
+    update: function() {
+        self.HandleCamera();
+        
+        self.xspeed = 0;
+        self.yspeed = 0;
+        self.zspeed = 0;
+        
+        static advance_speed = 1;
+        self.advance_amount -= advance_speed;
+        
+        self.x += dcos(self.direction) * advance_speed;
+        self.z += dsin(self.direction) * advance_speed;
+        
+        if (self.advance_amount <= 0) {
+            self.state.change("default");
+        }
     }
 });
+
+self.climbing_target = undefined;
 
 var player_data = obj_game.meshes.player;
 var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
@@ -185,7 +217,9 @@ self.HandleClimbing = function() {
         self.cobject_climb.shape.position.y = climb_target_transformed[1];
         self.cobject_climb.shape.position.z = climb_target_transformed[2];
         
-        if (obj_game.collision.CheckObject(self.cobject_climb)) {
+        var climb_object = obj_game.collision.CheckObject(self.cobject_climb);
+        if (climb_object != undefined) {
+            self.climbing_target = climb_object;
             self.state.change("climbing");
         }
     }
