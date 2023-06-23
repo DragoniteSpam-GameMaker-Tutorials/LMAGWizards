@@ -64,7 +64,7 @@ var player_data = obj_game.meshes.player;
 var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
     return shape.name == "#ClimbDetection";
 })];
-    
+
 var original_position = new Vector3(player_climb_collision.position.x, player_climb_collision.position.y, player_climb_collision.position.z);
 var climb_shape = new ColSphere(original_position, player_climb_collision.radius);
 climb_shape.original_position = original_position.Mul(1);
@@ -75,6 +75,22 @@ self.camera_target = player_data.collision_shapes[array_find_index(player_data.c
 })].position;
 
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
+
+var player_grounded_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
+    return shape.name == "#Grounded";
+})];
+var position = new Vector3(player_grounded_collision.position.x, player_grounded_collision.position.y, player_grounded_collision.position.z);
+var scale = new Vector3(player_grounded_collision.scale.x, player_grounded_collision.scale.y, player_grounded_collision.scale.z);
+self.cobject_grounded = new ColObject(new ColAABB(position, scale), self.id);
+
+self.IsGrounded = function() {
+    if (self.y <= 0) return true;
+    
+    self.cobject_grounded.shape.position.x = self.x;
+    self.cobject_grounded.shape.position.y = self.y;
+    self.cobject_grounded.shape.position.z = self.z;
+    return obj_game.collision.CheckObject(self.cobject_grounded);
+};
 
 self.UpdateCamera = function() {
     var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
