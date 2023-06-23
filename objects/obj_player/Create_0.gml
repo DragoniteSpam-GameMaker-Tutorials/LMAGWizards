@@ -42,6 +42,22 @@ self.state.add("default", {
             self.state.change("default");
         }
     }
+}).add("climbing", {
+    enter: function() {
+        show_debug_message("enter the climbing state");
+    },
+    leave: function() {
+        show_debug_message("leave the climbing state");
+    },
+    update: function() {
+        self.HandleCamera();
+        
+        self.xspeed = 0;
+        self.zspeed = 0;
+        
+        static climb_speed = 1;
+        self.y += climb_speed;
+    }
 });
 
 var player_data = obj_game.meshes.player;
@@ -154,7 +170,7 @@ self.HandleClimbing = function() {
         self.cobject_climb.shape.position.z = climb_target_transformed[2];
         
         if (obj_game.collision.CheckObject(self.cobject_climb)) {
-            show_debug_message("climbing")
+            self.state.change("climbing");
         }
     }
 };
