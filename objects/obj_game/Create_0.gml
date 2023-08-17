@@ -64,6 +64,17 @@ var test_block = instance_create_depth(300, 0, 100, obj_3d_object);
 test_block.SetMesh(self.meshes.block_singular);
 test_block.UpdateCollisionPositions();
 
+
+
+var test = instance_create_depth(400, 0, 400, obj_3d_object);
+test.SetMesh(self.meshes.slope);
+test.UpdateCollisionPositions();
+
+var test = instance_create_depth(480, -32, 400, obj_3d_object);
+test.SetMesh(self.meshes.bridge);
+test.UpdateCollisionPositions();
+
+
 enum ECollisionMasks {
     NONE                    = 0b0000,
     DEFAULT                 = 0b0001,
