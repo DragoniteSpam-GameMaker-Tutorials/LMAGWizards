@@ -4,21 +4,66 @@ function ColMesh(triangle_array) constructor {
     self.bounds_min = new Vector3(infinity, infinity, infinity);
     self.bounds_max = new Vector3(-infinity, -infinity, -infinity);
     
-    for (var i = 0; i < array_length(triangle_array); i++) {
-        var tri = triangle_array[i];
-        self.bounds_min.x = min(self.bounds_min.x, tri.a.x, tri.b.x, tri.c.x);
-        self.bounds_min.y = min(self.bounds_min.y, tri.a.y, tri.b.y, tri.c.y);
-        self.bounds_min.z = min(self.bounds_min.z, tri.a.z, tri.b.z, tri.c.z);
-        self.bounds_max.x = max(self.bounds_max.x, tri.a.x, tri.b.x, tri.c.x);
-        self.bounds_max.y = max(self.bounds_max.y, tri.a.y, tri.b.y, tri.c.y);
-        self.bounds_max.z = max(self.bounds_max.z, tri.a.z, tri.b.z, tri.c.z);
+    var bmn = self.bounds_min;
+    var bmx = self.bounds_max;
+    
+    var i = 0;
+    repeat (array_length(triangle_array)) {
+        var tri = triangle_array[i++];
+        bmn.x = min(bmn.x, tri.a.x, tri.b.x, tri.c.x);
+        bmn.y = min(bmn.y, tri.a.y, tri.b.y, tri.c.y);
+        bmn.z = min(bmn.z, tri.a.z, tri.b.z, tri.c.z);
+        bmx.x = max(bmx.x, tri.a.x, tri.b.x, tri.c.x);
+        bmx.y = max(bmx.y, tri.a.y, tri.b.y, tri.c.y);
+        bmx.z = max(bmx.z, tri.a.z, tri.b.z, tri.c.z);
     }
     
-    self.bounds = NewColAABBFromMinMax(self.bounds_min, self.bounds_max);
+    self.bounds = NewColAABBFromMinMax(bmn, bmx);
     
-    self.accelerator = new ColOctree(self.bounds, self);
+    self.accelerator = new self.octree(self.bounds, self.octree);
     self.accelerator.triangles = triangle_array;
     self.accelerator.Split(3);
+    
+    static octree = function(bounds, octree) constructor {
+        self.bounds = bounds;
+        self.octree = octree;
+        
+        self.triangles = [];
+        self.children = undefined;
+        
+        static Split = function(depth) {
+            if (depth == 0) return;
+            if (array_length(self.triangles) == 0) return;
+            if (self.children != undefined) return;
+            
+            var center = self.bounds.position;
+            var sides = self.bounds.half_extents.Mul(0.5);
+            
+            self.children = [
+                new self.octree(new ColAABB(center.Add(new Vector3(-sides.x,  sides.y, -sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3( sides.x,  sides.y, -sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3(-sides.x,  sides.y,  sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3( sides.x,  sides.y,  sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3(-sides.x, -sides.y, -sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3( sides.x, -sides.y, -sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3(-sides.x, -sides.y,  sides.z)), sides), self.octree),
+                new self.octree(new ColAABB(center.Add(new Vector3( sides.x, -sides.y,  sides.z)), sides), self.octree),
+            ];
+            
+            var i = 0;
+            repeat (8) {
+                var tree = self.children[i++];
+                var j = 0;
+                repeat (array_length(self.triangles)) {
+                    if (tree.bounds.CheckTriangle(self.triangles[j])) {
+                        array_push(tree.triangles, self.triangles[j]);
+                    }
+                    j++;
+                }
+                tree.Split(depth - 1);
+            }
+        };
+    };
     
     static CheckObject = function(object) {
         return object.shape.CheckMesh(self);
@@ -87,7 +132,9 @@ function ColMesh(triangle_array) constructor {
     
     static CheckRay = function(ray, hit_info) {
         var process_these = [self.accelerator];
-        var dummy_hit_info = new RaycastHitInformation();
+        static dummy_hit_info = new RaycastHitInformation();
+        dummy_hit_info.distance = infinity;
+        
         var hit_detected = false;
         
         while (array_length(process_these) > 0) {
@@ -113,13 +160,17 @@ function ColMesh(triangle_array) constructor {
     };
     
     static CheckLine = function(line) {
-        var dir = line.finish.Sub(line.start).Normalize();
-        var ray = new ColRay(line.start, dir);
-        var hit_info = new RaycastHitInformation();
-        if (self.CheckRay(ray, hit_info)) {
-            return (hit_info.distance <= line.Length());
+        static hit_info = new RaycastHitInformation();
+        hit_info.distance = infinity;
+        
+        if (self.CheckRay(line.property_ray, hit_info)) {
+            return (hit_info.distance <= line.property_length);
         }
         return false;
+    };
+    
+    static DisplaceSphere = function(sphere) {
+        return undefined;
     };
     
     static GetMin = function() {

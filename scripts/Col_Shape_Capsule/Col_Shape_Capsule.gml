@@ -1,6 +1,20 @@
 function ColCapsule(start, finish, radius) constructor {
-    self.line = new ColLine(start, finish);
-    self.radius = radius;
+    self.line = undefined;
+    self.Set(start, finish, radius);
+    
+    static Set = function(start = self.start, finish = self.finish, radius = self.radius) {
+        if (self.line) {
+            self.line.Set(start, finish);
+        } else {
+            self.line = new ColLine(start, finish);
+        }
+        var line = self.line;
+        self.radius = radius;
+        self.property_center = line.property_center;
+        self.property_radius = line.property_length / 2 + radius;
+        self.property_min = line.property_min.Sub(radius);
+        self.property_max = line.property_min.Add(radius);
+    };
     
     static CheckObject = function(object) {
         return object.shape.CheckCapsule(self);
@@ -10,69 +24,144 @@ function ColCapsule(start, finish, radius) constructor {
         var nearest = self.line.NearestPoint(point.position);
         var dist = nearest.DistanceTo(point.position);
         
-        return dist <= self.radius;
+        return dist < self.radius;
     };
     
     static CheckSphere = function(sphere) {
         var nearest = self.line.NearestPoint(sphere.position);
         var dist = nearest.DistanceTo(sphere.position);
         
-        return dist <= (self.radius + sphere.radius);
+        return dist < (self.radius + sphere.radius);
     };
     
     static CheckAABB = function(aabb) {
-        var endcap_start = new ColSphere(self.line.start, self.radius);
-        if (endcap_start.CheckAABB(aabb)) return true;
+        var r = self.radius;
+        var line = self.line;
+        var line_start = self.line.start;
+        var line_finish = self.line.finish;
+        var box_min = aabb.property_min;
+        var box_max = aabb.property_max;
+        var bmnx = box_min.x;
+        var bmny = box_min.y;
+        var bmnz = box_min.z;
+        var bmxx = box_max.x;
+        var bmxy = box_max.y;
+        var bmxz = box_max.z;
+        var lvx = line_finish.x - line_start.x;
+        var lvy = line_finish.y - line_start.y;
+        var lvz = line_finish.z - line_start.z;
+        var lsx = line_start.x;
+        var lsy = line_start.y;
+        var lsz = line_start.z;
+        var ldd = dot_product_3d(lvx, lvy, lvz, lvx, lvy, lvz);
         
-        var endcap_finish = new ColSphere(self.line.finish, self.radius);
-        if (endcap_finish.CheckAABB(aabb)) return true;
+        var nx = clamp(line_start.x, bmnx, bmxx);
+        var ny = clamp(line_start.y, bmny, bmxy);
+        var nz = clamp(line_start.z, bmnz, bmxz);
+        if (point_distance_3d(nx, ny, nz, line_start.x, line_start.y, line_start.z) < r) return true;
         
-        var edges = aabb.GetEdges();
+        var nx = clamp(line_finish.x, bmnx, bmxx);
+        var ny = clamp(line_finish.y, bmny, bmxy);
+        var nz = clamp(line_finish.z, bmnz, bmxz);
+        if (point_distance_3d(nx, ny, nz, line_finish.x, line_finish.y, line_finish.z) < r) return true;
         
-        for (var i = 0, n = array_length(edges); i < n; i++) {
-            var nearest_line_to_edge = edges[i].NearestConnectionToLine(self.line);
-            var start_distance = self.line.NearestPoint(nearest_line_to_edge.start).DistanceTo(nearest_line_to_edge.start);
-            if (start_distance == 0) {
-                var test_sphere = new ColSphere(nearest_line_to_edge.start, self.radius);
-                if (test_sphere.CheckAABB(aabb)) return true;
-            } else {
-                var test_sphere = new ColSphere(nearest_line_to_edge.finish, self.radius);
-                if (test_sphere.CheckAABB(aabb)) return true;
-            }
+        var edges = aabb.property_edges;
+        
+        var i = 0;
+        repeat (12) {
+            var nearest_line_to_edge = edges[i++].NearestConnectionToLine(line);
+            var nearest_start = nearest_line_to_edge.start;
+            
+            var px = nearest_start.x - lsx;
+            var py = nearest_start.y - lsy;
+            var pz = nearest_start.z - lsz;
+            var t = clamp(dot_product_3d(px, py, pz, lvx, lvy, lvz) / ldd , 0, 1);
+            
+            var p = (lsx + lvx * t == nearest_start.x && lsy + lvy * t == nearest_start.y && lsz + lvz * t == nearest_start.z) ? nearest_line_to_edge.start : nearest_line_to_edge.finish;
+            
+            var nx = clamp(p.x, bmnx, bmxx);
+            var ny = clamp(p.y, bmny, bmxy);
+            var nz = clamp(p.z, bmnz, bmxz);
+            
+            if (point_distance_3d(nx, ny, nz, p.x, p.y, p.z) < r) return true;
         }
         
         return false;
     };
     
     static CheckPlane = function(plane) {
-        var nearest_start = plane.NearestPoint(self.line.start);
-        if (self.line.start.DistanceTo(nearest_start) <= self.radius) return true;
+        var start = self.line.start;
+        var nearest = plane.NearestPoint(start);
+        if (point_distance_3d(nearest.x, nearest.y, nearest.z, start.x, start.y, start.z) < self.radius) return true;
         
-        var nearest_finish = plane.NearestPoint(self.line.finish);
-        if (self.line.finish.DistanceTo(nearest_finish) <= self.radius) return true;
+        var finish = self.line.finish;
+        var nearest = plane.NearestPoint(finish);
+        if (point_distance_3d(nearest.x, nearest.y, nearest.z, finish.x, finish.y, finish.z) < self.radius) return true;
         
         return self.line.CheckPlane(plane);
     };
     
     static CheckOBB = function(obb) {
-        var endcap_start = new ColSphere(self.line.start, self.radius);
-        if (endcap_start.CheckOBB(obb)) return true;
+        var obb_position = obb.position;
+        var obb_size_array = [obb.size.x, obb.size.y, obb.size.z];
+        var obb_orientation_array = [obb.orientation.x, obb.orientation.y, obb.orientation.z];
         
-        var endcap_finish = new ColSphere(self.line.finish, self.radius);
-        if (endcap_finish.CheckOBB(obb)) return true;
+        var r = self.radius;
+        var line = self.line;
+        var p = line.start;
         
-        var edges = obb.GetEdges();
+        var nx = obb_position.x, ny = obb_position.y, nz = obb_position.z;
+        var dx = p.x - nx, dy = p.y - ny, dz = p.z - nz;
         
-        for (var i = 0, n = array_length(edges); i < n; i++) {
-            var nearest_line_to_edge = edges[i].NearestConnectionToLine(self.line);
-            var start_distance = self.line.NearestPoint(nearest_line_to_edge.start).DistanceTo(nearest_line_to_edge.start);
-            if (start_distance == 0) {
-                var test_sphere = new ColSphere(nearest_line_to_edge.start, self.radius);
-                if (test_sphere.CheckOBB(obb)) return true;
-            } else {
-                var test_sphere = new ColSphere(nearest_line_to_edge.finish, self.radius);
-                if (test_sphere.CheckOBB(obb)) return true;
+        for (var i = 0; i < 3; i++) {
+            var axis = obb_orientation_array[i];
+            var dist = dot_product_3d(dx, dy, dz, axis.x, axis.y, axis.z);
+            dist = clamp(dist, -obb_size_array[i], obb_size_array[i]);
+            nx += axis.x * dist;
+            ny += axis.y * dist;
+            nz += axis.z * dist;
+        }
+        
+        if (point_distance_3d(nx, ny, nz, p.x, p.y, p.z) < r) return true;
+        p = line.finish;
+        
+        var nx = obb_position.x, ny = obb_position.y, nz = obb_position.z;
+        var dx = p.x - nx, dy = p.y - ny, dz = p.z - nz;
+        
+        for (var i = 0; i < 3; i++) {
+            var axis = obb_orientation_array[i];
+            var dist = dot_product_3d(dx, dy, dz, axis.x, axis.y, axis.z);
+            dist = clamp(dist, -obb_size_array[i], obb_size_array[i]);
+            nx += axis.x * dist;
+            ny += axis.y * dist;
+            nz += axis.z * dist;
+        }
+        
+        if (point_distance_3d(nx, ny, nz, p.x, p.y, p.z) < r) return true;
+        
+        var edges = obb.property_edges;
+        
+        var i = 0;
+        repeat (12) {
+            var nearest_line_to_edge = edges[i++].NearestConnectionToLine(line);
+            var nearest_start = nearest_line_to_edge.start;
+            var nearest_self = line.NearestPoint(nearest_start);
+            
+            p = (nearest_self.x == nearest_start.x && nearest_self.y == nearest_start.y && nearest_self.z == nearest_start.z) ? nearest_line_to_edge.start : nearest_line_to_edge.finish;
+            
+            var nx = obb_position.x, ny = obb_position.y, nz = obb_position.z;
+            var dx = p.x - nx, dy = p.y - ny, dz = p.z - nz;
+            
+            for (var i = 0; i < 3; i++) {
+                var axis = obb_orientation_array[i];
+                var dist = dot_product_3d(dx, dy, dz, axis.x, axis.y, axis.z);
+                dist = clamp(dist, -obb_size_array[i], obb_size_array[i]);
+                nx += axis.x * dist;
+                ny += axis.y * dist;
+                nz += axis.z * dist;
             }
+            
+            if (point_distance_3d(nx, ny, nz, p.x, p.y, p.z) < r) return true;
         }
         
         return false;
@@ -80,19 +169,18 @@ function ColCapsule(start, finish, radius) constructor {
     
     static CheckCapsule = function(capsule) {
         var connecting_line = self.line.NearestConnectionToLine(capsule.line);
-        var dist = connecting_line.Length();
-        
-        return dist <= (self.radius + capsule.radius);
+        return connecting_line.property_length < (self.radius + capsule.radius);
     };
     
     static CheckTriangle = function(triangle) {
-        var nearest_point_start = triangle.NearestPoint(self.line.start);
-        var capsule_line_nearest_point_start = self.line.NearestPoint(nearest_point_start);
-        if (capsule_line_nearest_point_start.DistanceTo(nearest_point_start) <= self.radius) return true;
+        var line = self.line;
+        var target = triangle.NearestPoint(line.start);
+        var nearest = line.NearestPoint(target);
+        if (point_distance_3d(nearest.x, nearest.y, nearest.z, target.x, target.y, target.z) < self.radius) return true;
         
-        var nearest_point_finish = triangle.NearestPoint(self.line.finish);
-        var capsule_line_nearest_point_finish = self.line.NearestPoint(nearest_point_finish);
-        if (capsule_line_nearest_point_finish.DistanceTo(nearest_point_finish) <= self.radius) return true;
+        var target = triangle.NearestPoint(line.finish);
+        var nearest = line.NearestPoint(target);
+        if (point_distance_3d(nearest.x, nearest.y, nearest.z, target.x, target.y, target.z) < self.radius) return true;
         
         return false;
     };
@@ -106,14 +194,21 @@ function ColCapsule(start, finish, radius) constructor {
     };
     
     static CheckRay = function(ray, hit_info) {
-        var capsule_dir = self.line.finish.Sub(self.line.start);
-        var relative_ray_origin = ray.origin.Sub(self.line.start);
+        var c = self.property_center;
+        var nearest = ray.NearestPoint(c);
+        if (point_distance_3d(nearest.x, nearest.y, nearest.z, c.x, c.y, c.z) >= self.property_radius) return false;
         
-        var baba = capsule_dir.Dot(capsule_dir);
-        var bard = capsule_dir.Dot(ray.direction);
-        var baoa = capsule_dir.Dot(relative_ray_origin);
-        var rdoa = ray.direction.Dot(relative_ray_origin);
-        var oaoa = relative_ray_origin.Dot(relative_ray_origin);
+        var line = self.line;
+        var cd = line.property_ray.direction;
+        var rd = ray.direction;
+        var ro = ray.origin;
+        var relative_ray_origin = ro.Sub(line.start);
+        
+        var baba = dot_product_3d(cd.x, cd.x, cd.y, cd.y, cd.z, cd.z);
+        var bard = dot_product_3d(cd.x, cd.x, cd.y, rd.y, rd.z, rd.z);
+        var baoa = dot_product_3d(cd.x, cd.x, cd.y, relative_ray_origin.y, relative_ray_origin.z, relative_ray_origin.z);
+        var rdoa = dot_product_3d(rd.x, rd.x, rd.y, relative_ray_origin.y, relative_ray_origin.z, relative_ray_origin.z);
+        var oaoa = dot_product_3d(relative_ray_origin.x, relative_ray_origin.x, relative_ray_origin.y, relative_ray_origin.y, relative_ray_origin.z, relative_ray_origin.z);
         
         var a = baba - sqr(bard);
         var b = baba * rdoa - baoa * bard;
@@ -125,24 +220,28 @@ function ColCapsule(start, finish, radius) constructor {
             var why = baoa + t * bard;
             
             if (why > 0 && why < baba) {
-                var contact_point = ray.origin.Add(ray.direction.Mul(t));
-                var nearest_inner_point = self.line.NearestPoint(contact_point);
-                var contact_normal = contact_point.Sub(nearest_inner_point).Normalize();
-                hit_info.Update(t, self, contact_point, contact_normal);
+                if (hit_info) {
+                    var contact_point = ro.Add(rd.Mul(t));
+                    var nearest_inner_point = line.NearestPoint(contact_point);
+                    var contact_normal = contact_point.Sub(nearest_inner_point).Normalize();
+                    hit_info.Update(t, self, contact_point, contact_normal);
+                }
                 return true;
             }
             
-            var oc = (why <= 0) ? relative_ray_origin : ray.origin.Sub(self.line.finish);
-            b = ray.direction.Dot(oc);
-            c = oc.Dot(oc) - sqr(self.radius);
+            var oc = (why <= 0) ? relative_ray_origin : ro.Sub(line.finish);
+            b = dot_product_3d(rd.x, rd.y, rd.z, oc.x, oc.y, oc.z);
+            c = dot_product_3d(oc.x, oc.y, oc.z, oc.x, oc.y, oc.z) - sqr(self.radius);
             h = sqr(b) - c;
             
             if (h > 0) {
-                t = -b - sqrt(h);
-                var contact_point = ray.origin.Add(ray.direction.Mul(t));
-                var nearest_inner_point = self.line.NearestPoint(contact_point);
-                var contact_normal = contact_point.Sub(nearest_inner_point).Normalize();
-                hit_info.Update(t, self, contact_point, contact_normal);
+                if (hit_info) {
+                    t = -b - sqrt(h);
+                    var contact_point = ro.Add(rd.Mul(t));
+                    var nearest_inner_point = line.NearestPoint(contact_point);
+                    var contact_normal = contact_point.Sub(nearest_inner_point).Normalize();
+                    hit_info.Update(t, self, contact_point, contact_normal);
+                }
                 return true;
             }
         }
@@ -152,14 +251,28 @@ function ColCapsule(start, finish, radius) constructor {
     
     static CheckLine = function(line) {
         var closest_line = self.line.NearestConnectionToLine(line);
-        return closest_line.Length() <= self.radius;
+        return closest_line.property_length < self.radius;
+    };
+    
+    static DisplaceSphere = function(sphere) {
+        if (!self.CheckSphere(sphere)) return undefined;
+        
+        var ps = sphere.position;
+        var nearest = self.line.NearestPoint(ps);
+        
+        if (ps.x == nearest.x && ps.y == nearest.y && ps.z == nearest.z) return undefined;
+        
+        var dir = ps.Sub(nearest).Normalize();
+        var offset = dir.Mul(sphere.radius + self.radius);
+        
+        return nearest.Add(offset);
     };
     
     static GetMin = function() {
-        return self.line.GetMin().Sub(self.radius);
+        return self.property_min;
     };
     
     static GetMax = function() {
-        return self.line.GetMin().Add(self.radius);
+        return self.property_max;
     };
 }

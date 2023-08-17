@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Col_Octree",
+  "name": "Col_Camera_Frustum",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
