@@ -13,9 +13,7 @@ self.IsGrounded = function() {
 };
 
 self.CheckMovingObjects = function() {
-    self.cobject.shape.position.x = self.x;
-    self.cobject.shape.position.y = self.y + 16 - 1;
-    self.cobject.shape.position.z = self.z;
+    self.cobject.shape.Set(new Vector3(self.x, self.y + 16 - 1, self.z));
     
     var old_group = self.cobject.group;
     self.cobject.group = ECollisionMasks.MOVING;

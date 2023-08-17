@@ -124,9 +124,7 @@ self.cobject_grounded = new ColObject(new ColAABB(position, scale), self.id);
 self.IsGrounded = function() {
     if (self.y <= 0) return true;
     
-    self.cobject_grounded.shape.position.x = self.x;
-    self.cobject_grounded.shape.position.y = self.y;
-    self.cobject_grounded.shape.position.z = self.z;
+    self.cobject_grounded.shape.Set(new Vector3(self.x, self.y, self.z));
     return obj_game.collision.CheckObject(self.cobject_grounded);
 };
 
@@ -219,9 +217,7 @@ self.HandleClimbing = function() {
         var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
         var climb_target_transformed = matrix_transform_vertex(player_transform, climb_position.x, climb_position.y, climb_position.z);
         
-        self.cobject_climb.shape.position.x = climb_target_transformed[0];
-        self.cobject_climb.shape.position.y = climb_target_transformed[1];
-        self.cobject_climb.shape.position.z = climb_target_transformed[2];
+        self.cobject_climb.shape.Set(new Vector3(climb_target_transformed[0], climb_target_transformed[1], climb_target_transformed[2]));
         
         var climb_object = obj_game.collision.CheckObject(self.cobject_climb);
         if (climb_object != undefined) {

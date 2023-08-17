@@ -70,9 +70,7 @@ self.UpdateCollisionPositions = function() {
     for (var i = 0, n = array_length(self.cobjects); i < n; i++) {
         var object = self.cobjects[i];
         var shape = object.shape;
-        shape.position.x = self.x + shape.original_position.x;
-        shape.position.y = self.y + shape.original_position.y;
-        shape.position.z = self.z + shape.original_position.z;
+        shape.Set(shape.original_position.Add(new Vector3(self.x, self.y, self.z)));
         obj_game.collision.Remove(object);
         obj_game.collision.Add(object);
     }

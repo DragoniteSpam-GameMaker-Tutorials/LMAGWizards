@@ -3,7 +3,7 @@ var potential = new Vector3(self.xspeed + self.x, self.yspeed + self.y + 16, sel
 self.cobject.shape.Set(potential);
 var displaced_position = obj_game.collision.DisplaceSphere(self.cobject);
 
-if (displaced_position) {
+if (displaced_position == undefined) {
     self.cobject.shape.Set(potential);
 } else {
     self.cobject.shape.Set(displaced_position);

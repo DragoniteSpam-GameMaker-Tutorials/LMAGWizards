@@ -53,7 +53,8 @@ try {
 
 instance_create_depth(0, 0, 0, obj_player);
 
-self.collision = new ColWorldSpatialHash(100);
+var spatial_hash = new ColWorldSpatialHash(100);
+self.collision = new ColWorld(spatial_hash);
 
 var test_mover = instance_create_depth(100, 0, 100, obj_moving);
 test_mover.SetMesh(self.meshes.block_singular);
