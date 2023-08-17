@@ -13,6 +13,12 @@ self.x = self.cobject.shape.position.x;
 self.y = self.cobject.shape.position.y - 16;
 self.z = self.cobject.shape.position.z;
 
+// if you're going up and hit something, set yspeed to 0 so that you don't
+// get stuck momentarily to whatever you hit
+if (self.cobject.shape.position.y < potential.y && self.yspeed > 0) {
+    self.yspeed = 0;
+}
+
 if (self.y < 0) {
     self.y = 0;
 }

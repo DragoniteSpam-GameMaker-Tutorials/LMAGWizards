@@ -70,7 +70,7 @@ var test = instance_create_depth(400, 0, 400, obj_3d_object);
 test.SetMesh(self.meshes.slope);
 test.UpdateCollisionPositions();
 
-var test = instance_create_depth(480, -32, 400, obj_3d_object);
+var test = instance_create_depth(480, 0, 400, obj_3d_object);
 test.SetMesh(self.meshes.bridge);
 test.UpdateCollisionPositions();
 
