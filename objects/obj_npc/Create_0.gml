@@ -23,7 +23,7 @@ self.CheckMovingObjects = function() {
     self.cobject.group = old_group;
     
     if (below_me != undefined) {
-        return below_me.reference.motion;
+        return below_me.reference.motion.Mul(DT);
     }
     
     return new Vector3(0, 0, 0);

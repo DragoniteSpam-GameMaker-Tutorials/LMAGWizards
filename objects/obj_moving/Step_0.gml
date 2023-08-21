@@ -1,11 +1,13 @@
 if (((current_time / 1000) % 10) < 5) {
-    self.motion.y = 0.25;
+    self.motion.x = 15;
+    self.motion.y = 15;
 } else {
-    self.motion.y = -0.25;
+    self.motion.x = -15;
+    self.motion.y = -15;
 }
 
-self.x += self.motion.x;
-self.y += self.motion.y;
-self.z += self.motion.z;
+self.x += self.motion.x * DT;
+self.y += self.motion.y * DT;
+self.z += self.motion.z * DT;
 
 self.UpdateCollisionPositions();

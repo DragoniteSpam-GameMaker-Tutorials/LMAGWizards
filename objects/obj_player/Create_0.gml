@@ -32,8 +32,9 @@ self.state.add("default", {
     update: function() {
         self.HandleCamera();
         
-        static grav = 0.15;
-        self.yspeed -= grav;
+        // properly do this later
+        static grav = 9;
+        self.yspeed -= grav * DT;
         
         self.HandleMovement();
         self.HandleClimbing();
@@ -55,8 +56,8 @@ self.state.add("default", {
         self.xspeed = 0;
         self.zspeed = 0;
         
-        static climb_speed = 1;
-        self.y += climb_speed;
+        static climb_speed = 60;
+        self.y += climb_speed * DT;
         
         if (self.y > self.climbing_target.shape.position.y + self.climbing_target.shape.size.y) {
             self.climbing_target = undefined;
@@ -77,11 +78,11 @@ self.state.add("default", {
         self.yspeed = 0;
         self.zspeed = 0;
         
-        static advance_speed = 1;
-        self.advance_amount -= advance_speed;
+        static advance_speed = 60;
+        self.advance_amount -= advance_speed * DT;
         
-        self.x += dcos(self.direction) * advance_speed;
-        self.z += dsin(self.direction) * advance_speed;
+        self.x += dcos(self.direction) * advance_speed * DT;
+        self.z += dsin(self.direction) * advance_speed * DT;
         
         if (self.advance_amount <= 0) {
             self.state.change("default");
@@ -137,31 +138,31 @@ self.UpdateCamera = function() {
 
 self.HandleCamera = function() {
     obj_game.active_camera = self.camera;
-    var look_sensitivity = 1 / 3;
-    var max_pitch = 80;
+    static look_sensitivity = 1 / 3;
+    static max_pitch = 80;
     var mx = (input_cursor_x() - input_cursor_previous_x()) * look_sensitivity;
     var my = (input_cursor_y() - input_cursor_previous_y()) * look_sensitivity;
     self.camera.direction += mx;
     self.camera.pitch = clamp(self.camera.pitch + my, -max_pitch, max_pitch);
     
-    var camera_speed = 10;
-    var camera_min = 80;
-    var camera_max = 240;
+    static camera_speed = 600;
+    static camera_min = 80;
+    static camera_max = 240;
     
     if (input_check("camera_in")) {
-        self.camera.distance -= camera_speed;
+        self.camera.distance -= camera_speed * DT;
     }
     if (input_check("camera_out")) {
-        self.camera.distance += camera_speed;
+        self.camera.distance += camera_speed * DT;
     }
     
     self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
 };
 
 self.HandleJump = function() {
-    static jump_speed = 4;
+    static jump_speed = 240;
     if (input_check_pressed("jump")) {
-        self.yspeed = jump_speed;
+        self.yspeed = jump_speed * DT;
         self.state.change("airborne");
     }
 };
@@ -171,9 +172,9 @@ self.HandleMovement = function() {
     var dy = 0;
     var dz = 0;
     
-    var speed_run = 5;
-    var speed_walk = 3;
-    var spd = input_check("run") ? speed_run : speed_walk;
+    static speed_run = 300;
+    static speed_walk = 180;
+    var spd = input_check("run") ? speed_run : speed_walk * DT;
     
     if (input_check("up")) {
         dx += dcos(self.camera.direction);

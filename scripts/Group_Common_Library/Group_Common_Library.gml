@@ -8,3 +8,13 @@ function surface_validate(surface, w, h, format = surface_rgba8unorm) {
     
     return surface_create(w, h, format);
 }
+
+function array_search_with_name(array, name) {
+    var index = array_find_index(array, method({ name }, function(shape) {
+        return shape.name == self.name;
+    }));
+    
+    if (index == -1) return undefined;
+    
+    return array[index];
+}

@@ -155,7 +155,6 @@
     {"name":"input_player_get_gamepad","order":4,"path":"scripts/input_player_get_gamepad/input_player_get_gamepad.yy",},
     {"name":"input_player_connected_count","order":1,"path":"scripts/input_player_connected_count/input_player_connected_count.yy",},
     {"name":"Col_SAT_Stuff","order":6,"path":"scripts/Col_SAT_Stuff/Col_SAT_Stuff.yy",},
-    {"name":"helper_code","order":36,"path":"scripts/helper_code/helper_code.yy",},
     {"name":"input_player_get_invalid_gamepad_bindings","order":6,"path":"scripts/input_player_get_invalid_gamepad_bindings/input_player_get_invalid_gamepad_bindings.yy",},
     {"name":"input_keyboard_check_released","order":2,"path":"scripts/input_keyboard_check_released/input_keyboard_check_released.yy",},
     {"name":"input_binding_scan_start","order":5,"path":"scripts/input_binding_scan_start/input_binding_scan_start.yy",},

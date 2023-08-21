@@ -189,7 +189,6 @@
     {"id":{"name":"input_trigger_effect_feedback","path":"scripts/input_trigger_effect_feedback/input_trigger_effect_feedback.yy",},},
     {"id":{"name":"input_player_connected_count","path":"scripts/input_player_connected_count/input_player_connected_count.yy",},},
     {"id":{"name":"Col_SAT_Stuff","path":"scripts/Col_SAT_Stuff/Col_SAT_Stuff.yy",},},
-    {"id":{"name":"helper_code","path":"scripts/helper_code/helper_code.yy",},},
     {"id":{"name":"input_player_get_invalid_gamepad_bindings","path":"scripts/input_player_get_invalid_gamepad_bindings/input_player_get_invalid_gamepad_bindings.yy",},},
     {"id":{"name":"input_hotswap_params_get","path":"scripts/input_hotswap_params_get/input_hotswap_params_get.yy",},},
     {"id":{"name":"input_keyboard_check_released","path":"scripts/input_keyboard_check_released/input_keyboard_check_released.yy",},},

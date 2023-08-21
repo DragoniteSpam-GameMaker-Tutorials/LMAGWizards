@@ -4,3 +4,5 @@
 #macro SOUND_PRIORITY_DEFAULT       100
 #macro SOUND_PRIORITY_MUSIC         200
 #macro SOUND_PRIORITY_AMBIENT        50
+
+#macro DT                           (game_get_speed(gamespeed_microseconds) / 1_000_000)
