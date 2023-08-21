@@ -1,6 +1,8 @@
 event_inherited();
 
-self.cshape = new ColSphere(new Vector3(0, 16, 0), 16);
+self.radius = 16;
+
+self.cshape = new ColSphere(new Vector3(0, self.radius, 0), self.radius);
 self.cobject = new ColObject(self.cshape, self.id, 1, 1);
 
 self.IsGrounded = function() {
@@ -13,7 +15,7 @@ self.IsGrounded = function() {
 };
 
 self.CheckMovingObjects = function() {
-    self.cobject.shape.Set(new Vector3(self.x, self.y + 16 - 1, self.z));
+    self.cobject.shape.Set(new Vector3(self.x, self.y + self.radius - 1, self.z));
     
     var old_group = self.cobject.group;
     self.cobject.group = ECollisionMasks.MOVING;

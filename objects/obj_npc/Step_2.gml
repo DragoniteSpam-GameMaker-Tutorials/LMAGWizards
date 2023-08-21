@@ -1,4 +1,4 @@
-var potential = new Vector3(self.xspeed + self.x, self.yspeed + self.y + 16, self.zspeed + self.z);
+var potential = new Vector3(self.xspeed + self.x, self.yspeed + self.y + self.radius, self.zspeed + self.z);
 potential = potential.Add(self.CheckMovingObjects());
 self.cobject.shape.Set(potential);
 var displaced_position = obj_game.collision.DisplaceSphere(self.cobject);
@@ -10,7 +10,7 @@ if (displaced_position == undefined) {
 }
 
 self.x = self.cobject.shape.position.x;
-self.y = self.cobject.shape.position.y - 16;
+self.y = self.cobject.shape.position.y - self.radius;
 self.z = self.cobject.shape.position.z;
 
 // if you're going up and hit something, set yspeed to 0 so that you don't
