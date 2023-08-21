@@ -95,9 +95,7 @@ self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000
 
 #region Special collision object - climb detection
 var player_data = obj_game.meshes.player;
-var player_climb_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
-    return shape.name == "#ClimbDetection";
-})];
+var player_climb_collision = array_search_with_name(player_data.collision_shapes, "#ClimbDetection");
 
 var original_position = new Vector3(player_climb_collision.position.x, player_climb_collision.position.y, player_climb_collision.position.z);
 var climb_shape = new ColSphere(original_position, player_climb_collision.radius);
@@ -106,15 +104,11 @@ self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, E
 #endregion
 
 #region Special collision object - camera target
-self.camera_target = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
-    return shape.name == "#CameraTarget";
-})].position;
+self.camera_target = array_search_with_name(player_data.collision_shapes, "#CameraTarget").position;
 #endregion
 
 #region Special collision object - grounded platform
-var player_grounded_collision = player_data.collision_shapes[array_find_index(player_data.collision_shapes, function(shape) {
-    return shape.name == "#Grounded";
-})];
+var player_grounded_collision = array_search_with_name(player_data.collision_shapes, "#Grounded");
 var position = new Vector3(player_grounded_collision.position.x, player_grounded_collision.position.y, player_grounded_collision.position.z);
 var scale = new Vector3(player_grounded_collision.scale.x, player_grounded_collision.scale.y, player_grounded_collision.scale.z);
 self.cobject_grounded = new ColObject(new ColAABB(position, scale), self.id);
