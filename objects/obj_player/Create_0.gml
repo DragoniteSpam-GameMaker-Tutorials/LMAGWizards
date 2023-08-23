@@ -174,7 +174,7 @@ self.HandleMovement = function() {
     
     static speed_run = 300;
     static speed_walk = 180;
-    var spd = input_check("run") ? speed_run : speed_walk * DT;
+    var spd = (input_check("run") ? speed_run : speed_walk) * DT;
     
     if (input_check("up")) {
         dx += dcos(self.camera.direction);

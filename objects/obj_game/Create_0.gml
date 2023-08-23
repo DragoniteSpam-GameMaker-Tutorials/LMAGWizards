@@ -57,11 +57,11 @@ var spatial_hash = new ColWorldSpatialHash(100);
 self.collision = new ColWorld(spatial_hash);
 
 var test_mover = instance_create_depth(100, 0, 100, obj_moving);
-test_mover.SetMesh(self.meshes.block_singular);
+test_mover.SetMesh(self.meshes.block);
 test_mover.UpdateCollisionPositions();
 
 var test_block = instance_create_depth(300, 0, 100, obj_3d_object);
-test_block.SetMesh(self.meshes.block_singular);
+test_block.SetMesh(self.meshes.block);
 test_block.UpdateCollisionPositions();
 
 
