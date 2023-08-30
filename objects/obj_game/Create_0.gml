@@ -18,6 +18,13 @@ self.gbuff_material = -1;
 
 application_surface_draw_enable(false);
 
+var buffer = buffer_load("cube.vbuff");
+self.debug_cube = vertex_create_buffer_from_buffer(buffer, self.vertex_format);
+buffer_delete(buffer);
+var buffer = buffer_load("sphere.vbuff");
+self.debug_sphere = vertex_create_buffer_from_buffer(buffer, self.vertex_format);
+buffer_delete(buffer);
+
 try {
     var buffer = buffer_load(FILE_VIDEO_SETTINGS);
     var json = buffer_read(buffer, buffer_text);
@@ -56,24 +63,7 @@ instance_create_depth(0, 0, 0, obj_player);
 var spatial_hash = new ColWorldSpatialHash(100);
 self.collision = new ColWorld(spatial_hash);
 
-var test_mover = instance_create_depth(100, 0, 100, obj_moving);
-test_mover.SetMesh(self.meshes.block);
-test_mover.UpdateCollisionPositions();
-
-var test_block = instance_create_depth(300, 0, 100, obj_3d_object);
-test_block.SetMesh(self.meshes.block);
-test_block.UpdateCollisionPositions();
-
-
-
-var test = instance_create_depth(400, 0, 400, obj_3d_object);
-test.SetMesh(self.meshes.slope);
-test.UpdateCollisionPositions();
-
-var test = instance_create_depth(480, 0, 400, obj_3d_object);
-test.SetMesh(self.meshes.bridge);
-test.UpdateCollisionPositions();
-
+var map = new UnityMapImport("test.place", self.meshes)
 
 enum ECollisionMasks {
     NONE                    = 0b0000,

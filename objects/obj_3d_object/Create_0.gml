@@ -67,10 +67,29 @@ self.SetMesh = function(mesh, mask = self.default_collision_mask, group = EColli
 };
 
 self.UpdateCollisionPositions = function() {
+    var object_transform = new Matrix4(self.rotation_mat)
+        .Mul(new Vector3(self.x, self.y, self.z).GetTranslationMatrix());
+    
     for (var i = 0, n = array_length(self.cobjects); i < n; i++) {
         var object = self.cobjects[i];
         var shape = object.shape;
-        shape.Set(shape.original_position.Add(new Vector3(self.x, self.y, self.z)));
+        if (is_instanceof(shape, ColOBB)) {
+            var new_size = shape.original_size;
+            
+            var transform = shape.original_orientation.GetRotationMatrix()
+                .Mul(shape.original_position.GetTranslationMatrix())
+                .Mul(object_transform);
+            
+            var linear = transform.linear_array;
+            var new_position = new Vector3(linear[12], linear[13], linear[14]);
+            var new_orientation = transform.GetOrientationMatrix();
+            
+            shape.Set(new_position, new_size, new_orientation);
+        } else {
+            // sphere
+            var new_position = shape.original_position.Add(new Vector3(self.x, self.y, self.z));
+            shape.Set(new_position);
+        }
         obj_game.collision.Remove(object);
         obj_game.collision.Add(object);
     }

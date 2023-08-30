@@ -54,6 +54,7 @@ self.state.add("default", {
         self.HandleCamera();
         
         self.xspeed = 0;
+        self.yspeed = 0;
         self.zspeed = 0;
         
         static climb_speed = 60;
