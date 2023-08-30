@@ -227,12 +227,17 @@ self.HandleClimbing = function() {
 self.HandleCasting = function() {
     if (input_check_pressed("cast")) {
         static spell_velocity = 640;
+        
+        var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
+        var source = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
+        
         var dx = self.camera.xto - self.camera.x;
         var dy = self.camera.yto - self.camera.y;
         var dz = self.camera.zto - self.camera.z;
         var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
-        var spell = instance_create_depth(self.x, self.y, self.z, obj_spell, {
-            velocity: motion
+        var spell = instance_create_depth(source[0], source[1], source[2], obj_spell, {
+            velocity: motion,
+            caster: self.id
         });
     }
 };

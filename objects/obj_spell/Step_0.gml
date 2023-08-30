@@ -1,19 +1,25 @@
-var position = new Vector3(self.x, self.y, self.z);
-var ray = new ColRay(position, self.velocity.Normalize());
-
-var raycast_result = obj_game.collision.CheckRay(ray);
-if (raycast_result) {
-    if (raycast_result.distance <= self.velocity.Magnitude() * DT) {
-        instance_destroy();
-    }
-} else {
-    self.x += self.velocity.x * DT;
-    self.y += self.velocity.y * DT;
-    self.z += self.velocity.z * DT;
-}
-
 self.lifespan -= DT;
 
 if (self.lifespan <= 0) {
     instance_destroy();
+    return;
 }
+
+var position = new Vector3(self.x, self.y, self.z);
+var ray = new ColRay(position, self.velocity.Normalize());
+
+var caster_mask = self.caster.cobject.mask;
+self.caster.cobject.mask = 0;
+var raycast_result = obj_game.collision.CheckRay(ray);
+self.caster.cobject.mask = caster_mask;
+
+if (raycast_result) {
+    if (raycast_result.distance <= self.velocity.Magnitude() * DT) {
+        instance_destroy();
+        return;
+    }
+}
+
+self.x += self.velocity.x * DT;
+self.y += self.velocity.y * DT;
+self.z += self.velocity.z * DT;
