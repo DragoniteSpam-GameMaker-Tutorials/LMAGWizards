@@ -23,6 +23,8 @@ with (obj_entity) {
 }
 #endregion
 
+with (obj_spell) event_perform(ev_draw, 0);
+
 Particles.Render();
 
 gpu_set_ztestenable(false);

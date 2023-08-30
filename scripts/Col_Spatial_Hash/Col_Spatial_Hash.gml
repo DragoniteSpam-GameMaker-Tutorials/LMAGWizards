@@ -317,6 +317,7 @@ function ColSpatialHashNode(bounds) constructor {
             if (self.objects[i++].CheckRay(ray, hit_info, group))
                 hit_detected = true;
         }
+        
         return hit_detected;
     };
 }

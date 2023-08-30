@@ -61,7 +61,8 @@ try {
 instance_create_depth(0, 0, 0, obj_player);
 
 var spatial_hash = new ColWorldSpatialHash(100);
-self.collision = new ColWorld(spatial_hash);
+var octree = new ColWorldOctree(NewColAABBFromMinMax(new Vector3(-1000, -100, -1000), new Vector3(1000, 1000, 1000)), 3);
+self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes)
 

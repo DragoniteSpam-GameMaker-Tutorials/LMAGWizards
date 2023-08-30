@@ -17,6 +17,7 @@ self.state.add("default", {
         self.HandleJump();
         self.HandleMovement();
         self.HandleClimbing();
+        self.HandleCasting();
         
         if (!self.IsGrounded()) {
             self.state.change("airborne");
@@ -220,5 +221,18 @@ self.HandleClimbing = function() {
             self.climbing_target = climb_object;
             self.state.change("climbing");
         }
+    }
+};
+
+self.HandleCasting = function() {
+    if (input_check_pressed("cast")) {
+        static spell_velocity = 640;
+        var dx = self.camera.xto - self.camera.x;
+        var dy = self.camera.yto - self.camera.y;
+        var dz = self.camera.zto - self.camera.z;
+        var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
+        var spell = instance_create_depth(self.x, self.y, self.z, obj_spell, {
+            velocity: motion
+        });
     }
 };

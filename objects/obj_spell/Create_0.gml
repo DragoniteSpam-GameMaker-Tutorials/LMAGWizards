@@ -7,3 +7,8 @@ enum ESpellTypes {
     SLOW_TIME,
     ILLUMINATE
 }
+
+self.z = self.depth;
+self.depth = 0;
+
+self.lifespan = 10;
