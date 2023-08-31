@@ -226,7 +226,7 @@ self.HandleClimbing = function() {
 
 self.HandleCasting = function() {
     static spell_velocity = 640;
-    static max_spell_range = 2000;
+    static max_spell_range = 640;
     
     var potential_spell_target = undefined;
     
@@ -243,7 +243,7 @@ self.HandleCasting = function() {
     if (hit_info != undefined) {
         if (hit_info.distance <= max_spell_range) {
             var obj = hit_info.shape.object.reference;
-            if (obj.spell_response == obj_spell) {
+            if (array_get_index(GameState.known_spells, obj.spell_response) != -1) {
                 potential_spell_target = obj;
             }
         }
