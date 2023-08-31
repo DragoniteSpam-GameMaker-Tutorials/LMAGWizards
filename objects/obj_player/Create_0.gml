@@ -225,9 +225,35 @@ self.HandleClimbing = function() {
 };
 
 self.HandleCasting = function() {
-    if (input_check_pressed("cast")) {
-        static spell_velocity = 640;
-        
+    static spell_velocity = 640;
+    static max_spell_range = 2000;
+    
+    var potential_spell_target = undefined;
+    
+    var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
+    var source = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
+    
+    var dx = self.camera.xto - self.camera.x;
+    var dy = self.camera.yto - self.camera.y;
+    var dz = self.camera.zto - self.camera.z;
+    var motion = new Vector3(dx, dy, dz).Normalize();
+    var ray = new ColRay(new Vector3(source[0], source[1], source[2]), motion);
+    
+    var hit_info = obj_game.collision.CheckRay(ray);
+    if (hit_info != undefined) {
+        if (hit_info.distance <= max_spell_range) {
+            var obj = hit_info.shape.object.reference;
+            if (obj.spell_response == obj_spell) {
+                potential_spell_target = obj;
+            }
+        }
+    }
+    
+    if (input_check("cast")) {
+        // show the spell symbol or something
+    }
+    
+    if (potential_spell_target != undefined && input_check_released("cast")) {
         var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
         var source = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
         
@@ -235,7 +261,7 @@ self.HandleCasting = function() {
         var dy = self.camera.yto - self.camera.y;
         var dz = self.camera.zto - self.camera.z;
         var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
-        var spell = instance_create_depth(source[0], source[1], source[2], obj_spell, {
+        var spell = instance_create_depth(source[0], source[1], source[2], potential_spell_target.spell_response, {
             velocity: motion,
             caster: self.id
         });
