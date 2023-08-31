@@ -64,7 +64,11 @@ var spatial_hash = new ColWorldSpatialHash(100);
 var octree = new ColWorldOctree(NewColAABBFromMinMax(new Vector3(-1000, -100, -1000), new Vector3(1000, 1000, 1000)), 3);
 self.collision = new ColWorld(octree);
 
-var map = new UnityMapImport("test.place", self.meshes)
+var map = new UnityMapImport("test.place", self.meshes);
+
+var target = instance_create_depth(300, 0, 300, obj_3d_spell_block);
+target.SetMesh(self.meshes.block);
+target.UpdateCollisionPositions();
 
 enum ECollisionMasks {
     NONE                    = 0b0000,

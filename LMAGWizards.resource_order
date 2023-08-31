@@ -76,6 +76,7 @@
     {"name":"input_cursor_y","order":16,"path":"scripts/input_cursor_y/input_cursor_y.yy",},
     {"name":"Col_Shape_Triangle","order":9,"path":"scripts/Col_Shape_Triangle/Col_Shape_Triangle.yy",},
     {"name":"input_binding_gamepad_button","order":2,"path":"scripts/input_binding_gamepad_button/input_binding_gamepad_button.yy",},
+    {"name":"obj_3d_spell_block","order":2,"path":"objects/obj_3d_spell_block/obj_3d_spell_block.yy",},
     {"name":"__input_config_multiplayer","order":8,"path":"scripts/__input_config_multiplayer/__input_config_multiplayer.yy",},
     {"name":"input_gamepad_get_description","order":5,"path":"scripts/input_gamepad_get_description/input_gamepad_get_description.yy",},
     {"name":"Col_Matrix","order":5,"path":"scripts/Col_Matrix/Col_Matrix.yy",},
