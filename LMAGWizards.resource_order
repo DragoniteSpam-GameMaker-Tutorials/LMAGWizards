@@ -176,6 +176,7 @@
     {"name":"__input_gamepad_set_type","order":6,"path":"scripts/__input_gamepad_set_type/__input_gamepad_set_type.yy",},
     {"name":"Col_Vector","order":8,"path":"scripts/Col_Vector/Col_Vector.yy",},
     {"name":"input_source_using","order":8,"path":"scripts/input_source_using/input_source_using.yy",},
+    {"name":"Game_State","order":38,"path":"scripts/Game_State/Game_State.yy",},
     {"name":"input_vibrate_get_pause","order":3,"path":"scripts/input_vibrate_get_pause/input_vibrate_get_pause.yy",},
     {"name":"__input_class_vibration_constant","order":16,"path":"scripts/__input_class_vibration_constant/__input_class_vibration_constant.yy",},
     {"name":"input_profile_copy","order":5,"path":"scripts/input_profile_copy/input_profile_copy.yy",},

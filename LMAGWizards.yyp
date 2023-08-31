@@ -215,6 +215,7 @@
     {"id":{"name":"__input_gamepad_set_type","path":"scripts/__input_gamepad_set_type/__input_gamepad_set_type.yy",},},
     {"id":{"name":"Col_Vector","path":"scripts/Col_Vector/Col_Vector.yy",},},
     {"id":{"name":"input_source_using","path":"scripts/input_source_using/input_source_using.yy",},},
+    {"id":{"name":"Game_State","path":"scripts/Game_State/Game_State.yy",},},
     {"id":{"name":"input_vibrate_get_pause","path":"scripts/input_vibrate_get_pause/input_vibrate_get_pause.yy",},},
     {"id":{"name":"__input_class_vibration_constant","path":"scripts/__input_class_vibration_constant/__input_class_vibration_constant.yy",},},
     {"id":{"name":"input_profile_copy","path":"scripts/input_profile_copy/input_profile_copy.yy",},},
