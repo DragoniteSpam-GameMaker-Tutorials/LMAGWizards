@@ -14,7 +14,7 @@ uniform vec2 u_Time;
 
 void main() {
     vec4 displace = texture2D(samp_DisplacementMap, v_vTexcoord + u_Time);
-    vec2 offset = (displace.rg - 0.5) / 25.0;
+    vec2 offset = (displace.rg - 0.5) / 10.0;
     
     gl_FragData[GBUFF_DIFFUSE] = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord + offset);
     gl_FragData[GBUFF_VS_POSITION] = vec4(v_vVSPosition, 1);

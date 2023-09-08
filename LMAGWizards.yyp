@@ -157,6 +157,7 @@
     {"id":{"name":"input_gyro_params_get","path":"scripts/input_gyro_params_get/input_gyro_params_get.yy",},},
     {"id":{"name":"input_axis_threshold_get","path":"scripts/input_axis_threshold_get/input_axis_threshold_get.yy",},},
     {"id":{"name":"spr_noise","path":"sprites/spr_noise/spr_noise.yy",},},
+    {"id":{"name":"spr_spell_symbol","path":"sprites/spr_spell_symbol/spr_spell_symbol.yy",},},
     {"id":{"name":"input_system_verify","path":"scripts/input_system_verify/input_system_verify.yy",},},
     {"id":{"name":"input_source_clear","path":"scripts/input_source_clear/input_source_clear.yy",},},
     {"id":{"name":"__input_class_gamepad_mapping","path":"scripts/__input_class_gamepad_mapping/__input_class_gamepad_mapping.yy",},},
@@ -456,5 +457,6 @@
   "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"SpellSymbols","autocrop":false,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],
 }

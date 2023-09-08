@@ -123,6 +123,7 @@
     {"name":"__input_class_gamepad_motion","order":6,"path":"scripts/__input_class_gamepad_motion/__input_class_gamepad_motion.yy",},
     {"name":"input_gyro_params_get","order":2,"path":"scripts/input_gyro_params_get/input_gyro_params_get.yy",},
     {"name":"spr_noise","order":1,"path":"sprites/spr_noise/spr_noise.yy",},
+    {"name":"spr_spell_symbol","order":40,"path":"sprites/spr_spell_symbol/spr_spell_symbol.yy",},
     {"name":"input_system_verify","order":12,"path":"scripts/input_system_verify/input_system_verify.yy",},
     {"name":"input_source_clear","order":1,"path":"scripts/input_source_clear/input_source_clear.yy",},
     {"name":"__input_class_gamepad_mapping","order":5,"path":"scripts/__input_class_gamepad_mapping/__input_class_gamepad_mapping.yy",},

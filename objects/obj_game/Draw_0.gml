@@ -27,6 +27,8 @@ with (obj_spell) event_perform(ev_draw, 0);
 
 Particles.Render();
 
+obj_player.DrawSpellSymbol();
+
 gpu_set_ztestenable(false);
 gpu_set_zwriteenable(false);
 gpu_set_cullmode(cull_noculling);

@@ -123,12 +123,26 @@ var scale = new Vector3(player_grounded_collision.scale.x, player_grounded_colli
 self.cobject_grounded = new ColObject(new ColAABB(position, scale), self.id);
 #endregion
 
+self.spell_symbol = undefined;
+
 // overrides obj_npc::IsGrounded
 self.IsGrounded = function() {
     if (self.y <= 0) return true;
     
     self.cobject_grounded.shape.Set(new Vector3(self.x, self.y, self.z));
     return obj_game.collision.CheckObject(self.cobject_grounded);
+};
+
+self.DrawSpellSymbol = function() {
+	if (self.spell_symbol != undefined) {
+		gpu_set_ztestenable(false);
+		gpu_set_zwriteenable(false);
+		var info = self.spell_symbol;
+		draw_sprite_billboard(spr_spell_symbol/*info.obj.spell_response*/, 0, info.position.x, info.position.y, info.position.z, shd_gbuff_billboard_ripple);
+		self.spell_symbol = undefined;
+		gpu_set_ztestenable(true);
+		gpu_set_zwriteenable(true);
+	}
 };
 
 self.UpdateCamera = function() {
@@ -252,9 +266,14 @@ self.HandleCasting = function() {
             }
         }
     }
-    
+	
     if (input_check("cast")) {
-        // show the spell symbol or something
+		if (potential_spell_target != undefined) {
+			self.spell_symbol = {
+				obj: potential_spell_target,
+				position: hit_info.point
+			};
+		}
     }
     
     if (potential_spell_target != undefined && input_check_released("cast")) {
