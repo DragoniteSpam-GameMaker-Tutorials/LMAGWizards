@@ -94,6 +94,12 @@ function Vector3(x, y, z) constructor {
     static Round = function() {
         return new Vector3(round(self.x), round(self.y), round(self.z));
     };
+	
+	static Approach = function(target, amount) {
+		var dist = self.DistanceTo(target);
+		var f = min(amount, dist) / dist;
+		return new Vector3(lerp(self.x, target.x, f), lerp(self.y, target.y, f), lerp(self.z, target.z, f));
+	};
 }
 
 function Vector4(x, y, z, w) constructor {
