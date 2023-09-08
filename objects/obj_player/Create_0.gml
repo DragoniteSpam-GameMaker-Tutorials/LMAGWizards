@@ -108,6 +108,12 @@ self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, E
 
 #region Special collision object - camera target
 self.camera_target = array_search_with_name(player_data.collision_shapes, "#CameraTarget").position;
+
+self.GetCameraTarget = function() {
+	var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
+    var camera_target_transformed = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
+	return new Vector3(camera_target_transformed[0], camera_target_transformed[1], camera_target_transformed[2]);
+};
 #endregion
 
 #region Special collision object - grounded platform
@@ -126,12 +132,11 @@ self.IsGrounded = function() {
 };
 
 self.UpdateCamera = function() {
-    var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
-    var camera_target_transformed = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
+	var camera_target = self.GetCameraTarget();
     
-    self.camera.xto = camera_target_transformed[0];
-    self.camera.yto = camera_target_transformed[1];
-    self.camera.zto = camera_target_transformed[2];
+    self.camera.xto = camera_target.x;
+    self.camera.yto = camera_target.y;
+    self.camera.zto = camera_target.z;
     
     self.camera.x = self.camera.xto - self.camera.distance * dcos(self.camera.direction) * dcos(self.camera.pitch);
     self.camera.y = self.camera.yto + self.camera.distance * dsin(self.camera.pitch);
@@ -230,14 +235,13 @@ self.HandleCasting = function() {
     
     var potential_spell_target = undefined;
     
-    var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
-    var source = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
+	var wand_target = self.GetCameraTarget();
     
     var dx = self.camera.xto - self.camera.x;
     var dy = self.camera.yto - self.camera.y;
     var dz = self.camera.zto - self.camera.z;
     var motion = new Vector3(dx, dy, dz).Normalize();
-    var ray = new ColRay(new Vector3(source[0], source[1], source[2]), motion);
+    var ray = new ColRay(wand_target, motion);
     
     var hit_info = obj_game.collision.CheckRay(ray);
     if (hit_info != undefined) {
@@ -254,14 +258,11 @@ self.HandleCasting = function() {
     }
     
     if (potential_spell_target != undefined && input_check_released("cast")) {
-        var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
-        var source = matrix_transform_vertex(player_transform, self.camera_target.x, self.camera_target.y, self.camera_target.z);
-        
         var dx = self.camera.xto - self.camera.x;
         var dy = self.camera.yto - self.camera.y;
         var dz = self.camera.zto - self.camera.z;
         var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
-        var spell = instance_create_depth(source[0], source[1], source[2], potential_spell_target.spell_response, {
+        var spell = instance_create_depth(wand_target.x, wand_target.y, wand_target.z, potential_spell_target.spell_response, {
             velocity: motion,
             caster: self.id
         });
