@@ -7,7 +7,7 @@
   ],
   "managed": true,
   "overriddenProperties": [
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"obj_spell",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"obj_spell_push",},
   ],
   "parent": {
     "name": "3D objects",
