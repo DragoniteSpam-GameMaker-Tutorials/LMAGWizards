@@ -257,7 +257,7 @@ self.HandleCasting = function() {
     var motion = new Vector3(dx, dy, dz).Normalize();
     var ray = new ColRay(wand_target, motion);
     
-    var hit_info = obj_game.collision.CheckRay(ray);
+    var hit_info = obj_game.collision.CheckRay(ray, ECollisionMasks.DEFAULT | ECollisionMasks.SPELL_TARGET);
     if (hit_info != undefined) {
         if (hit_info.distance <= max_spell_range) {
             var obj = hit_info.shape.object.reference;

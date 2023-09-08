@@ -31,6 +31,10 @@ self.SetMesh = function(mesh, mask = self.default_collision_mask, group = EColli
                     shape_mask = ECollisionMasks.NONE;
                     shape_group = ECollisionMasks.NONE;
                     break;
+                case "#SpellTarget":
+                    shape_mask = ECollisionMasks.SPELL_TARGET;
+                    shape_group = ECollisionMasks.NONE;
+                    break;
             }
         }
         

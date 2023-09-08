@@ -74,5 +74,6 @@ enum ECollisionMasks {
     NONE                    = 0b0000,
     DEFAULT                 = 0b0001,
     CLIMBABLE               = 0b0010,
-    MOVING                  = 0b0100
+    MOVING                  = 0b0100,
+	SPELL_TARGET			= 0b1000
 }
