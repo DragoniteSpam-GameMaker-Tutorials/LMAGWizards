@@ -1,11 +1,11 @@
 function ColMesh(triangle_array) constructor {
     self.triangles = triangle_array;
     
-    self.bounds_min = new Vector3(infinity, infinity, infinity);
-    self.bounds_max = new Vector3(-infinity, -infinity, -infinity);
+    self.property_min = new Vector3(infinity, infinity, infinity);
+    self.property_max = new Vector3(-infinity, -infinity, -infinity);
     
-    var bmn = self.bounds_min;
-    var bmx = self.bounds_max;
+    var bmn = self.property_min;
+    var bmx = self.property_max;
     
     var i = 0;
     repeat (array_length(triangle_array)) {
@@ -22,7 +22,9 @@ function ColMesh(triangle_array) constructor {
     
     self.accelerator = new self.octree(self.bounds, self.octree);
     self.accelerator.triangles = triangle_array;
+    var t = get_timer();
     self.accelerator.Split(3);
+    show_debug_message($"hierarching the tree took {(get_timer() - t) / 1000} ms")
     
     static octree = function(bounds, octree) constructor {
         self.bounds = bounds;
@@ -33,7 +35,7 @@ function ColMesh(triangle_array) constructor {
         
         static Split = function(depth) {
             if (depth == 0) return;
-            if (array_length(self.triangles) == 0) return;
+            if (array_length(self.triangles) < COL_MIN_TREE_DENSITY) return;
             if (self.children != undefined) return;
             
             var center = self.bounds.position;
@@ -130,10 +132,10 @@ function ColMesh(triangle_array) constructor {
         return self.CheckGeneral(capsule);
     };
     
-    static CheckRay = function(ray, hit_info) {
+    static CheckRay = function(ray, hit_info = undefined) {
         var process_these = [self.accelerator];
         static dummy_hit_info = new RaycastHitInformation();
-        dummy_hit_info.distance = infinity;
+        dummy_hit_info.Clear();
         
         var hit_detected = false;
         
@@ -161,7 +163,7 @@ function ColMesh(triangle_array) constructor {
     
     static CheckLine = function(line) {
         static hit_info = new RaycastHitInformation();
-        hit_info.distance = infinity;
+        hit_info.Clear();
         
         if (self.CheckRay(line.property_ray, hit_info)) {
             return (hit_info.distance <= line.property_length);
@@ -174,10 +176,10 @@ function ColMesh(triangle_array) constructor {
     };
     
     static GetMin = function() {
-        return self.bounds_min;
+        return self.property_min;
     };
     
     static GetMax = function() {
-        return self.bounds_max;
+        return self.property_max;
     };
 }

@@ -38,22 +38,26 @@ self.SetMesh = function(mesh, mask = self.default_collision_mask, group = EColli
         if (is_instanceof(shape_data, PenguinCollisionShapeSphere)) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
             var original_radius = shape_data.radius;
-            shape = new ColSphere(original_position, original_radius);
-            shape.original_position = original_position.Mul(1);
+            shape = new ColSphere(original_position.Mul(1), original_radius);
+            shape.original_position = original_position;
             shape.original_radius = original_radius;
         }
         if (is_instanceof(shape_data, PenguinCollisionShapeBox)) {
             var original_position = new Vector3(shape_data.position.x, shape_data.position.y, shape_data.position.z);
             var original_size = new Vector3(shape_data.scale.x, shape_data.scale.y, shape_data.scale.z);
-            var original_orientation = new Matrix3(
-                shape_data.orientation.x.x, shape_data.orientation.x.y, shape_data.orientation.x.z,
-                shape_data.orientation.y.x, shape_data.orientation.y.y, shape_data.orientation.y.z,
-                shape_data.orientation.z.x, shape_data.orientation.z.y, shape_data.orientation.z.z
-            );
-            shape = new ColOBB(original_position, original_size, original_orientation);
-            shape.original_position = original_position.Mul(1);
-            shape.original_size = original_size.Mul(1);
-            shape.original_orientation = new Matrix3(original_orientation.AsLinearArray());
+            var original_orientation = [
+                /*shape_data.orientation.x.x, shape_data.orientation.x.y, shape_data.orientation.x.z, 0,
+                shape_data.orientation.y.x, shape_data.orientation.y.y, shape_data.orientation.y.z, 0,
+                shape_data.orientation.z.x, shape_data.orientation.z.y, shape_data.orientation.z.z, 0,*/
+				shape_data.orientation.x.x, shape_data.orientation.y.x, shape_data.orientation.z.x, 0,
+                shape_data.orientation.x.y, shape_data.orientation.y.y, shape_data.orientation.z.y, 0,
+                shape_data.orientation.x.z, shape_data.orientation.y.z, shape_data.orientation.z.z, 0,
+				0, 0, 0, 1
+            ];
+            shape = new ColOBB(original_position.Mul(1), original_size.Mul(1), variable_clone(original_orientation));
+            shape.original_position = original_position;
+            shape.original_size = original_size;
+            shape.original_orientation = original_orientation;
         }
         // if you want to add capsules you can, but it'll probably be a pain
         
@@ -67,24 +71,23 @@ self.SetMesh = function(mesh, mask = self.default_collision_mask, group = EColli
 };
 
 self.UpdateCollisionPositions = function() {
-    var object_transform = new Matrix4(self.rotation_mat)
-        .Mul(new Vector3(self.x, self.y, self.z).GetTranslationMatrix());
+    var object_transform = matrix_multiply(self.rotation_mat, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
     
     for (var i = 0, n = array_length(self.cobjects); i < n; i++) {
         var object = self.cobjects[i];
         var shape = object.shape;
         if (is_instanceof(shape, ColOBB)) {
             var new_size = shape.original_size;
+			var op = shape.original_position;
             
-            var transform = shape.original_orientation.GetRotationMatrix()
-                .Mul(shape.original_position.GetTranslationMatrix())
-                .Mul(object_transform);
+            var transform = matrix_multiply(shape.original_orientation, matrix_build(op.x, op.y, op.z, 0, 0, 0, 1, 1, 1));
+            transform = matrix_multiply(transform, object_transform);
             
-            var linear = transform.linear_array;
-            var new_position = new Vector3(linear[12], linear[13], linear[14]);
-            var new_orientation = transform.GetOrientationMatrix();
-            
-            shape.Set(new_position, new_size, new_orientation);
+            var new_position = new Vector3(transform[12], transform[13], transform[14]);
+			transform[12] = 0;
+			transform[13] = 0;
+			transform[14] = 0;
+            shape.Set(new_position, new_size, transform);
         } else {
             // sphere
             var new_position = shape.original_position.Add(new Vector3(self.x, self.y, self.z));

@@ -3,7 +3,7 @@ function ColObject(shape, reference, mask = 1, group = 1) constructor {
     self.reference = reference;
     self.mask = mask;                                   // what other objects can collide with me
     self.group = group;                                 // what masks i can detect collisions with
-    shape.object = self;
+	shape.object = self;
     
     static CheckObject = function(object) {
         if (object == self) return false;
@@ -59,11 +59,11 @@ function ColWorld(accelerator) constructor {
         return undefined;
     };
     
-    static DisplaceSphere = function(sphere_object, attempts = 5) {
+    static DisplaceSphere = function(sphere_object, attempts = COL_DEFAULT_SPHERE_DISPLACEMENT_ATTEMPTS) {
         var current_position = sphere_object.shape.position;
         
         repeat (attempts) {
-            var collided_with = self.CheckObject(sphere_object);
+            var collided_with = self.accelerator.CheckObject(sphere_object);
             if (collided_with == undefined) break;
             
             var displaced_position = collided_with.DisplaceSphere(sphere_object.shape);
@@ -96,47 +96,50 @@ function ColWorldOctree(bounds, depth) constructor {
     self.children = undefined;
     
     static Split = function() {
-        if (array_length(self.contents) == 0) return;
-        if (self.children != undefined) return;
-        
         var center = self.bounds.position;
         var sides = self.bounds.half_extents.Mul(0.5);
+        var sx = sides.x;
+        var sy = sides.y;
+        var sz = sides.z;
+        var d = self.depth - 1;
+        
+        var cx = center.x;
+        var cy = center.y;
+        var cz = center.z;
         
         self.children = [
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3(-sides.x,  sides.y, -sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3( sides.x,  sides.y, -sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3(-sides.x,  sides.y,  sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3( sides.x,  sides.y,  sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3(-sides.x, -sides.y, -sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3( sides.x, -sides.y, -sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3(-sides.x, -sides.y,  sides.z)), sides), self.depth - 1),
-            new ColWorldOctree(new ColAABB(center.Add(new Vector3( sides.x, -sides.y,  sides.z)), sides), self.depth - 1),
+            new ColWorldOctree(new ColAABB(new Vector3(cx - sx, cy + sy, cz - sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx + sx, cy + sy, cz - sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx - sx, cy + sy, cz + sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx + sx, cy + sy, cz + sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx - sx, cy - sy, cz - sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx + sx, cy - sy, cz - sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx - sx, cy - sy, cz + sz), sides), d),
+            new ColWorldOctree(new ColAABB(new Vector3(cx + sx, cy - sy, cz + sz), sides), d),
         ];
         
-        var i = 0;
-        repeat (array_length(self.children)) {
-            var j = 0;
-            var tree = self.children[i++];
-            repeat (array_length(self.contents)) {
-                tree.Add(self.contents[j++]);
-            }
-        }
+        array_foreach(self.children, method({ contents: self.contents }, function(node) {
+            array_foreach (self.contents, method({ node: node }, function(item) {
+                self.node.Add(item);
+            }));
+        }));
     };
     
     static Add = function(object) {
         if (!object.shape.CheckAABB(self.bounds)) return;
-        for (var i = 0; i < array_length(self.contents); i++) {
-            if (self.contents[i] == object) return;
-        }
+        if (array_contains(self.contents, object)) return;
         
         array_push(self.contents, object);
         
         if (self.depth > 0) {
-            self.Split();
+            if (self.children == undefined && array_length(self.contents) >= COL_MIN_TREE_DENSITY) {
+                self.Split();
+            }
             
-            var i = 0;
-            repeat (array_length(self.children)) {
-                self.children[i++].Add(object);
+            if (self.children != undefined) {
+                array_foreach(self.children, method({ object: object }, function(node) {
+                    node.Add(self.object);
+                }));
             }
         }
     };
@@ -145,11 +148,11 @@ function ColWorldOctree(bounds, depth) constructor {
         var index = array_get_index(self.contents, object);
         if (index != -1) {
             array_delete(self.contents, index, 1);
-            if (self.children != undefined) {
-                array_foreach(self.children, method({ object: object }, function(subdivision) {
-                    subdivision.Remove(self.object);
-                }));
-            }
+			if (self.children != undefined) {
+	            array_foreach(self.children, method({ object: object }, function(subdivision) {
+	                subdivision.Remove(self.object);
+	            }));
+			}
         }
     };
     
@@ -212,35 +215,37 @@ function ColWorldOctree(bounds, depth) constructor {
             return;
         }
         
-        var i = 0;
-        repeat (array_length(self.children)) {
-            self.children[i++].GetObjectsInFrustum(frustum, output);
-        }
+        array_foreach(self.children, method({ frustum: frustum, output: output }, function(node) {
+            node.GetObjectsInFrustum(self.frustum, self.output);
+        }));
     };
 }
 
 function ColWorldQuadtree(bounds, depth) : ColWorldOctree(bounds, depth) constructor {
     static Split = function() {
-        if (array_length(self.contents) == 0) return;
-        if (self.children != undefined) return;
+        static factor = new Vector3(0.5, 0.5, 1);
         
         var center = self.bounds.position;
-        var sides = self.bounds.half_extents.Mul(new Vector3(0.5, 0.5, 1));
+        var sides = self.bounds.half_extents.Mul(factor);
+        var sx = sides.x;
+        var sy = sides.y;
+        var d = self.depth - 1;
+        
+        var cx = center.x;
+        var cy = center.y;
+        var cz = center.z;
         
         self.children = [
-            new ColWorldQuadtree(new ColAABB(center.Add(new Vector3(-sides.x,  sides.y, 0)), sides), self.depth - 1),
-            new ColWorldQuadtree(new ColAABB(center.Add(new Vector3( sides.x,  sides.y, 0)), sides), self.depth - 1),
-            new ColWorldQuadtree(new ColAABB(center.Add(new Vector3( sides.x, -sides.y, 0)), sides), self.depth - 1),
-            new ColWorldQuadtree(new ColAABB(center.Add(new Vector3(-sides.x, -sides.y, 0)), sides), self.depth - 1),
+            new ColWorldQuadtree(new ColAABB(new Vector3(cx - sx, cy + sy, cz), sides), d),
+            new ColWorldQuadtree(new ColAABB(new Vector3(cx + sx, cy + sy, cz), sides), d),
+            new ColWorldQuadtree(new ColAABB(new Vector3(cx + sx, cy - sy, cz), sides), d),
+            new ColWorldQuadtree(new ColAABB(new Vector3(cx - sx, cy - sy, cz), sides), d),
         ];
         
-        var i = 0;
-        repeat (array_length(self.children)) {
-            var j = 0;
-            var tree = self.children[i++];
-            repeat (array_length(self.contents)) {
-                tree.Add(self.contents[j++]);
-            }
-        }
+        array_foreach(self.children, method({ contents: self.contents }, function(node) {
+            array_foreach (self.contents, method({ node: node }, function(item) {
+                self.node.Add(item);
+            }));
+        }));
     };
 }
