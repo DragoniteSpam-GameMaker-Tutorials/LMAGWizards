@@ -4,6 +4,24 @@ GameState = new GameStateClass();
 
 function GameStateClass() constructor {
     self.known_spells = [
-        obj_spell
+        
     ];
+	
+	static KnowsSpell = function(spell) {
+		return array_contains(self.known_spells, spell);
+	};
+	
+	static AddSpell = function(spell) {
+		if (!self.KnowsSpell(spell)) {
+			array_push(self.known_spells, spell);
+		}
+	};
+	
+	static RemoveSpell = function(spell) {
+		if (self.KnowsSpell(spell)) {
+			array_delete(self.known_spells, array_get_index(self.known_spells, spell), 1);
+		}
+	};
 };
+
+GameState.AddSpell(obj_spell);

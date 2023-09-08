@@ -247,7 +247,7 @@ self.HandleCasting = function() {
     if (hit_info != undefined) {
         if (hit_info.distance <= max_spell_range) {
             var obj = hit_info.shape.object.reference;
-            if (array_get_index(GameState.known_spells, obj.spell_response) != -1) {
+            if (GameState.KnowsSpell(obj.spell_response)) {
                 potential_spell_target = obj;
             }
         }
