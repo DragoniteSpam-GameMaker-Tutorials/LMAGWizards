@@ -18,3 +18,7 @@ function array_search_with_name(array, name) {
     
     return array[index];
 }
+
+function approach(source, dest, amount) {
+    return (source < dest) ? min(source + amount, dest) : max(source - amount, dest);
+}
