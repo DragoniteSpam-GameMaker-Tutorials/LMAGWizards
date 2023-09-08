@@ -24,4 +24,4 @@ function GameStateClass() constructor {
 	};
 };
 
-GameState.AddSpell(obj_spell);
+GameState.AddSpell(obj_spell_push);

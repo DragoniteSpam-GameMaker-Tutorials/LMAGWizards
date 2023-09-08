@@ -135,10 +135,22 @@ self.IsGrounded = function() {
 
 self.DrawSpellSymbol = function() {
 	if (self.spell_symbol != undefined) {
+		var info = self.spell_symbol;
+		
+		static cache = { };
+		
+		if (cache[$ string(info.obj.spell_response)] == undefined) {
+			var inst = instance_create_depth(0, 0, 0, info.obj.spell_response);
+			inst.lifespan = 0;
+			cache[$ string(info.obj.spell_response)] = inst.symbol;
+			instance_destroy(inst);
+		}
+		
+		var symbol = cache[$ string(info.obj.spell_response)];
+		
 		gpu_set_ztestenable(false);
 		gpu_set_zwriteenable(false);
-		var info = self.spell_symbol;
-		draw_sprite_billboard(spr_spell_symbol/*info.obj.spell_response*/, 0, info.position.x, info.position.y, info.position.z, shd_gbuff_billboard_ripple);
+		draw_sprite_billboard(symbol, 0, info.position.x, info.position.y, info.position.z, shd_gbuff_billboard_ripple);
 		self.spell_symbol = undefined;
 		gpu_set_ztestenable(true);
 		gpu_set_zwriteenable(true);
