@@ -198,4 +198,13 @@ function Vector4(x, y, z, w) constructor {
     static Round = function() {
         return new Vector4(round(self.x), round(self.y), round(self.z), round(self.w));
     };
+	
+	static Approach = function(target, amount) {
+        return new Vector4(
+            (self.x < target.x) ? min(self.x + amount, target.x) : max(self.x - amount, target.x),
+            (self.y < target.y) ? min(self.y + amount, target.y) : max(self.y - amount, target.y),
+            (self.z < target.z) ? min(self.z + amount, target.z) : max(self.z - amount, target.z),
+            (self.w < target.w) ? min(self.w + amount, target.w) : max(self.w - amount, target.w)
+        );
+	};
 }
