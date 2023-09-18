@@ -29,7 +29,9 @@
   "physicsShape": 1,
   "physicsShapePoints": [],
   "physicsStartAwake": true,
-  "properties": [],
+  "properties": [
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"offset_mat","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"matrix_build_identity()","varType":4,},
+  ],
   "solid": false,
   "spriteId": null,
   "spriteMaskId": null,
