@@ -75,7 +75,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.8.1.102",
   },
   "resources": [
     {"id":{"name":"input_vibrate_get_strength","path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},},
@@ -86,6 +86,7 @@
     {"id":{"name":"input_profile_create","path":"scripts/input_profile_create/input_profile_create.yy",},},
     {"id":{"name":"__input_key_is_ignored","path":"scripts/__input_key_is_ignored/__input_key_is_ignored.yy",},},
     {"id":{"name":"input_binding_swap","path":"scripts/input_binding_swap/input_binding_swap.yy",},},
+    {"id":{"name":"obj_3d_spell_barrel","path":"objects/obj_3d_spell_barrel/obj_3d_spell_barrel.yy",},},
     {"id":{"name":"__input_config_verb_groups","path":"scripts/__input_config_verb_groups/__input_config_verb_groups.yy",},},
     {"id":{"name":"__input_exception_handler","path":"scripts/__input_exception_handler/__input_exception_handler.yy",},},
     {"id":{"name":"__input_validate_macros","path":"scripts/__input_validate_macros/__input_validate_macros.yy",},},

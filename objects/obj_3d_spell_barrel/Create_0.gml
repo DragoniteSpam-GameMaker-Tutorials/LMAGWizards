@@ -25,7 +25,7 @@ self.state = new SnowState("idle")
 			}
 			
 			if (point_distance_3d(self.x, self.y, self.z, self.target.x, self.target.y, self.target.z) == 0) {
-				self.state.change("idle");
+				self.target = self.CalculateMovementTarget();
 			}
 		}
 	});
@@ -36,8 +36,22 @@ self.OnSpellHit = function(spell) {
 	static dist = 64;
 	
 	var dir = point_direction(0, 0, spell.velocity.x, spell.velocity.z);
+    dir -= self.direction;
+    dir = (dir + 360) % 360;
 	dir = round(dir / 90) * 90;
+    
+    if (dir % 180 == 0) return;
+    
+    dir += self.direction;
+    
+    self.movement_direction = new Vector3(dist * dcos(dir), 0, -dist * dsin(dir));
 	
-    self.target = new Vector3(self.x + dist * dcos(dir), self.y, self.z - dist * dsin(dir));
+    self.target = self.CalculateMovementTarget();
 	self.state.change("moving");
+};
+
+self.movement_direction = undefined;
+self.CalculateMovementTarget = function() {
+    if (self.movement_direction == undefined) return new Vector3(self.x, self.y, self.z);
+    return new Vector3(self.x, self.y, self.z).Add(self.movement_direction);
 };

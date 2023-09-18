@@ -96,9 +96,11 @@ function Vector3(x, y, z) constructor {
     };
 	
 	static Approach = function(target, amount) {
-		var dist = self.DistanceTo(target);
-		var f = min(amount, dist) / dist;
-		return new Vector3(lerp(self.x, target.x, f), lerp(self.y, target.y, f), lerp(self.z, target.z, f));
+        return new Vector3(
+            (self.x < target.x) ? min(self.x + amount, target.x) : max(self.x - amount, target.x),
+            (self.y < target.y) ? min(self.y + amount, target.y) : max(self.y - amount, target.y),
+            (self.z < target.z) ? min(self.z + amount, target.z) : max(self.z - amount, target.z)
+        );
 	};
 }
 

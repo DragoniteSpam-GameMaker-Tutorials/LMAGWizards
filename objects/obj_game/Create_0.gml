@@ -66,8 +66,10 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-var target = instance_create_depth(300, 0, 300, obj_3d_spell_block);
-target.SetMesh(self.meshes.block);
+var target = instance_create_depth(300, 0, 300, obj_3d_spell_barrel);
+target.direction = 90;
+target.rotation_mat = matrix_build(0, 0, 0, 0, 90, 0, 1, 1, 1);
+target.SetMesh(self.meshes.barrel);
 target.UpdateCollisionPositions();
 
 enum ECollisionMasks {

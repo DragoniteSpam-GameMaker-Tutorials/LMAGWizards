@@ -52,8 +52,9 @@ function UnityMapImport(filename, meshes) constructor {
         }
         
         var inst = instance_create_depth(xx, yy, zz, obj_3d_object, {
-            rotation_mat: matrix_build(0, 0, 0, rx, ry, rz, 1, 1, 1)
-        })
+            rotation_mat: matrix_build(0, 0, 0, rx, ry, rz, 1, 1, 1),
+            direction: ry
+        });
         
         inst.SetMesh(mesh_lookup[mesh_index]);
         inst.UpdateCollisionPositions();
