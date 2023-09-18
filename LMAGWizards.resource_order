@@ -266,6 +266,7 @@
     {"name":"input_ignore_key_remove","order":11,"path":"scripts/input_ignore_key_remove/input_ignore_key_remove.yy",},
     {"name":"__input_snap_to_json","order":10,"path":"scripts/__input_snap_to_json/__input_snap_to_json.yy",},
     {"name":"input_gamepad_get_type","order":7,"path":"scripts/input_gamepad_get_type/input_gamepad_get_type.yy",},
+    {"name":"obj_3d_spell_boulder","order":4,"path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},
     {"name":"input_cursor_x","order":15,"path":"scripts/input_cursor_x/input_cursor_x.yy",},
     {"name":"__input_load_sdl2_from_string","order":8,"path":"scripts/__input_load_sdl2_from_string/__input_load_sdl2_from_string.yy",},
     {"name":"input_binding_get_icon","order":3,"path":"scripts/input_binding_get_icon/input_binding_get_icon.yy",},

@@ -314,6 +314,7 @@
     {"id":{"name":"__input_snap_to_json","path":"scripts/__input_snap_to_json/__input_snap_to_json.yy",},},
     {"id":{"name":"input_gamepad_get_type","path":"scripts/input_gamepad_get_type/input_gamepad_get_type.yy",},},
     {"id":{"name":"input_binding_gamepad_get","path":"scripts/input_binding_gamepad_get/input_binding_gamepad_get.yy",},},
+    {"id":{"name":"obj_3d_spell_boulder","path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},},
     {"id":{"name":"input_cursor_x","path":"scripts/input_cursor_x/input_cursor_x.yy",},},
     {"id":{"name":"__input_load_sdl2_from_string","path":"scripts/__input_load_sdl2_from_string/__input_load_sdl2_from_string.yy",},},
     {"id":{"name":"input_binding_get_icon","path":"scripts/input_binding_get_icon/input_binding_get_icon.yy",},},

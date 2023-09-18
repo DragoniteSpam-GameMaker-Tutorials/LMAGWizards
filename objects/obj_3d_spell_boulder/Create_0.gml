@@ -42,7 +42,10 @@ self.OnSpellHit = function(spell) {
     dir = (dir + 360) % 360;
 	dir = round(dir / 90) * 90;
     
-    if (dir % 180 == 0) return;
+    if (!self.roll_in_all_directions) {
+        if (dir % 180 == 0) return;
+    }
+    
     dir += self.direction;
     
     self.movement_roll = dir;
