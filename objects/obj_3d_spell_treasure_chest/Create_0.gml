@@ -1,49 +1,39 @@
 event_inherited();
 
-self.switch_angle = 0;
+self.chest_angle = 0;
 
-self.OnActivation = function() {
+self.ExpelContents = function() {
     
 };
 
-self.OnDeactivation = function() {
-    
-};
-
-self.state = new SnowState("inactive", false)
-	.add("inactive", {
-        enter: function() {
-            self.OnDeactivation();
-        },
+self.state = new SnowState("closed", false)
+	.add("closed", {
         onspell: function() {
-            self.state.change("activating");
+            self.state.change("opening");
         }
 	})
-	.add("activating", {
+	.add("opening", {
         update: function() {
-            static target_angle = 60;
+            static target_angle = 120;
             static movement_speed = 90;
-            self.switch_angle = approach(self.switch_angle, target_angle, movement_speed * DT);
-            if (self.switch_angle == target_angle) {
-                self.state.change("active");
+            self.chest_angle = approach(self.chest_angle, target_angle, movement_speed * DT);
+            if (self.chest_angle == target_angle) {
+                self.state.change("open");
             }
         }
 	})
-	.add("active", {
+	.add("open", {
         enter: function() {
-            self.OnActivation();
-        },
-        onspell: function() {
-            self.state.change("deactivating");
+            self.ExpelContents();
         }
 	})
-	.add("deactivating", {
+	.add("closing", {
         update: function() {
             static target_angle = 0;
             static movement_speed = 90;
-            self.switch_angle = approach(self.switch_angle, target_angle, movement_speed * DT);
-            if (self.switch_angle == target_angle) {
-                self.state.change("inactive");
+            self.chest_angle = approach(self.chest_angle, target_angle, movement_speed * DT);
+            if (self.chest_angle == target_angle) {
+                self.state.change("closed");
             }
         }
 	});
