@@ -72,8 +72,8 @@ target.rotation_mat = matrix_build(0, 0, 0, 0, 90, 0, 1, 1, 1);
 target.SetMesh(self.meshes.barrel);
 target.UpdateCollisionPositions();
 
-var target = instance_create_depth(300, 16, 200, obj_3d_spell_boulder);
-target.SetMesh(self.meshes.boulder);
+var target = instance_create_depth(300, 0, 200, obj_3d_spell_toggle_switch);
+target.SetMesh(self.meshes.toggle_switch);
 target.UpdateCollisionPositions();
 
 enum ECollisionMasks {
