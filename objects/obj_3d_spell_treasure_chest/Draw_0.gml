@@ -13,7 +13,7 @@ var transform_mat = matrix_multiply(self.rotation_mat, position_mat);
 matrix_set(matrix_world, transform_mat);
 self.mesh.Render(1);
 
-if (self.state.get_current_state() == "closed") {
+if (self.can_be_unlocked && self.state.get_current_state() == "closed") {
     // draw the lock
     var lock_position = array_search_with_name(self.mesh.collision_shapes, "#Lock").position;
     var lock_position_matrix = matrix_build(lock_position.x, lock_position.y, lock_position.z, 0, 0, 0, 1, 1, 1);

@@ -69,6 +69,11 @@ var map = new UnityMapImport("test.place", self.meshes);
 var target = instance_create_depth(360, 0, 360, obj_3d_spell_treasure_chest);
 target.SetMesh(self.meshes.chest);
 target.UpdateCollisionPositions();
+var target = instance_create_depth(460, 0, 360, obj_3d_spell_treasure_chest, {
+    can_be_unlocked: false
+});
+target.SetMesh(self.meshes.chest);
+target.UpdateCollisionPositions();
 
 var target = instance_create_depth(300, 0, 200, obj_3d_spell_toggle_switch);
 target.SetMesh(self.meshes.toggle_switch);

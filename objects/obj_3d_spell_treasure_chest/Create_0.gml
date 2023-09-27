@@ -2,6 +2,10 @@ event_inherited();
 
 self.chest_angle = 0;
 
+if (!self.can_be_unlocked) {
+    self.spell_response = undefined;
+}
+
 self.ExpelContents = function() {
     
 };
@@ -9,7 +13,8 @@ self.ExpelContents = function() {
 self.state = new SnowState("closed", false)
 	.add("closed", {
         onspell: function() {
-            self.state.change("opening");
+            if (self.can_be_unlocked)
+                self.state.change("opening");
         }
 	})
 	.add("opening", {
