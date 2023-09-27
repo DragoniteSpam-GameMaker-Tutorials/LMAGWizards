@@ -8,7 +8,6 @@
   "managed": true,
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"obj_spell_push",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_3d_object","path":"objects/obj_3d_object/obj_3d_object.yy",},"propertyId":{"name":"offset_mat","path":"objects/obj_3d_object/obj_3d_object.yy",},"value":"matrix_build(0, 16, 0, 0, 0, 0, 1, 1, 1)",},
   ],
   "parent": {
     "name": "3D objects",

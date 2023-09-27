@@ -66,13 +66,13 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-var target = instance_create_depth(300, 0, 300, obj_3d_spell_barrel);
+var target = instance_create_depth(300, 16, 300, obj_3d_spell_barrel);
 target.direction = 90;
 target.rotation_mat = matrix_build(0, 0, 0, 0, 90, 0, 1, 1, 1);
 target.SetMesh(self.meshes.barrel);
 target.UpdateCollisionPositions();
 
-var target = instance_create_depth(300, 0, 200, obj_3d_spell_boulder);
+var target = instance_create_depth(300, 16, 200, obj_3d_spell_boulder);
 target.SetMesh(self.meshes.boulder);
 target.UpdateCollisionPositions();
 
