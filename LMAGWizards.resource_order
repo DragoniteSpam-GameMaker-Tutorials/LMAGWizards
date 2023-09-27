@@ -60,6 +60,7 @@
     {"name":"__input_key_is_ignored","order":1,"path":"scripts/__input_key_is_ignored/__input_key_is_ignored.yy",},
     {"name":"input_binding_swap","order":11,"path":"scripts/input_binding_swap/input_binding_swap.yy",},
     {"name":"obj_3d_spell_barrel","order":3,"path":"objects/obj_3d_spell_barrel/obj_3d_spell_barrel.yy",},
+    {"name":"obj_3d_spell_door","order":8,"path":"objects/obj_3d_spell_door/obj_3d_spell_door.yy",},
     {"name":"__input_config_verb_groups","order":12,"path":"scripts/__input_config_verb_groups/__input_config_verb_groups.yy",},
     {"name":"__input_exception_handler","order":11,"path":"scripts/__input_exception_handler/__input_exception_handler.yy",},
     {"name":"__input_validate_macros","order":21,"path":"scripts/__input_validate_macros/__input_validate_macros.yy",},
