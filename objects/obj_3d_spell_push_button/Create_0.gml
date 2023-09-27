@@ -6,15 +6,8 @@ self.OnActivation = function() {
     
 };
 
-self.OnDeactivation = function() {
-    
-};
-
 self.state = new SnowState("primed", false)
 	.add("primed", {
-        enter: function() {
-            self.OnDeactivation();
-        },
         onspell: function() {
             self.state.change("activating");
         }
@@ -22,7 +15,7 @@ self.state = new SnowState("primed", false)
 	.add("activating", {
         update: function() {
             static target_offset = -6;
-            static movement_speed = 8;
+            static movement_speed = 12;
             self.button_offset = approach(self.button_offset, target_offset, movement_speed * DT);
             if (self.button_offset == target_offset) {
                 self.state.change("active");
@@ -32,6 +25,9 @@ self.state = new SnowState("primed", false)
 	.add("active", {
         enter: function() {
             self.OnActivation();
+            if (self.infinite_use) {
+                self.state.change("deactivating");
+            }
         }
 	})
 	.add("deactivating", {
