@@ -283,6 +283,7 @@
     {"name":"input_cursor_translate","order":14,"path":"scripts/input_cursor_translate/input_cursor_translate.yy",},
     {"name":"__input_global","order":14,"path":"scripts/__input_global/__input_global.yy",},
     {"name":"Group_Material_Settings","order":6,"path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},
+    {"name":"obj_3d_spell_push_button","order":6,"path":"objects/obj_3d_spell_push_button/obj_3d_spell_push_button.yy",},
     {"name":"input_gamepad_value","order":10,"path":"scripts/input_gamepad_value/input_gamepad_value.yy",},
     {"name":"input_trigger_effect_set_strength","order":6,"path":"scripts/input_trigger_effect_set_strength/input_trigger_effect_set_strength.yy",},
     {"name":"input_mouse_enabled_set","order":10,"path":"scripts/input_mouse_enabled_set/input_mouse_enabled_set.yy",},

@@ -335,6 +335,7 @@
     {"id":{"name":"input_cursor_translate","path":"scripts/input_cursor_translate/input_cursor_translate.yy",},},
     {"id":{"name":"__input_global","path":"scripts/__input_global/__input_global.yy",},},
     {"id":{"name":"Group_Material_Settings","path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},},
+    {"id":{"name":"obj_3d_spell_push_button","path":"objects/obj_3d_spell_push_button/obj_3d_spell_push_button.yy",},},
     {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},},
     {"id":{"name":"input_gamepad_value","path":"scripts/input_gamepad_value/input_gamepad_value.yy",},},
     {"id":{"name":"input_trigger_effect_set_strength","path":"scripts/input_trigger_effect_set_strength/input_trigger_effect_set_strength.yy",},},
