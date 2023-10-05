@@ -4,6 +4,14 @@ self.door_angle = 0;
 
 self.state = new SnowState("closed", false)
 	.add("closed", {
+        enter: function() {
+            if (!self.can_be_unlocked) {
+                self.spell_response = obj_spell_unlock;
+            }
+        },
+        leave: function() {
+            self.spell_response = undefined;
+        },
         onspell: function() {
             if (self.can_be_unlocked)
                 self.state.change("opening");

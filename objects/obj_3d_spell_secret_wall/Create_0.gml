@@ -4,6 +4,9 @@ self.distance_to_go = 32;
 
 self.state = new SnowState("closed", false)
 	.add("closed", {
+        leave: function() {
+            self.spell_response = undefined;
+        },
         onspell: function() {
             self.state.change("opening");
         }
