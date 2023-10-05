@@ -12,6 +12,7 @@ gpu_set_tex_filter(true);
 
 texture_set_stage(shader_get_sampler_index(shd_deferred, "samp_Position"), surface_get_texture(self.gbuff_position));
 texture_set_stage(shader_get_sampler_index(shd_deferred, "samp_Material"), surface_get_texture(self.gbuff_material));
+texture_set_stage(shader_get_sampler_index(shd_deferred, "samp_Normal"), surface_get_texture(self.gbuff_normal));
 draw_surface_stretched(application_surface, 0, 0, window_get_width(), window_get_height());
 
 gpu_set_tex_filter(false);
@@ -22,4 +23,5 @@ if (keyboard_check(vk_tab)) {
     draw_surface_ext(application_surface, 0, 0, 0.25, 0.25, 0, c_white, 1);
     draw_surface_ext(self.gbuff_position, 0, 216, 0.25, 0.25, 0, c_white, 1);
     draw_surface_ext(self.gbuff_material, 0, 432, 0.25, 0.25, 0, c_white, 1);
+    draw_surface_ext(self.gbuff_normal, 0, 648, 0.25, 0.25, 0, c_white, 1);
 }

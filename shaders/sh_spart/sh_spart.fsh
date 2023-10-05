@@ -20,4 +20,5 @@ void main()
     gl_FragData[0] = v_vColour * baseCol;
     gl_FragData[1] = vec4(v_vVSPosition, 1);
     gl_FragData[2] = vec4(u_MaterialType, 0, 0, 1);
+    gl_FragData[2] = vec4(0, 0, 0, 1);
 }

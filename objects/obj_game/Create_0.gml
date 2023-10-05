@@ -15,6 +15,7 @@ input_mouse_capture_set(true);
 
 self.gbuff_position = -1;
 self.gbuff_material = -1;
+self.gbuff_normal = -1;
 
 application_surface_draw_enable(false);
 

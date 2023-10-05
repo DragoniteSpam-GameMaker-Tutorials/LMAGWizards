@@ -6,6 +6,7 @@ self.active_camera.Apply();
 shader_set(shd_gbuff_main);
 surface_set_target_ext(1, self.gbuff_position);
 surface_set_target_ext(2, self.gbuff_material);
+surface_set_target_ext(3, self.gbuff_normal);
 
 draw_clear(c_black);
 
