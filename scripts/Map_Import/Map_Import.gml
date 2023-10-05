@@ -41,6 +41,8 @@ function UnityMapImport(filename, meshes) constructor {
         var mesh_index = buffer_read(buffer, buffer_s32);
         var texture_index = buffer_read(buffer, buffer_s32);
         
+        var special_index = buffer_read(buffer, buffer_s32);
+        
         if (mesh_index == -1) {
             // some special objects, deal with later
             continue;
@@ -51,14 +53,72 @@ function UnityMapImport(filename, meshes) constructor {
             continue;
         }
         
-        var inst = instance_create_depth(xx, yy, zz, obj_3d_object, {
+        var type = obj_3d_object;
+        var params = {
             rotation_mat: matrix_build(0, 0, 0, rx, ry, rz, 1, 1, 1),
             direction: ry
-        });
+        };
+        show_debug_message(special_index)
+        switch (special_index) {
+            case EWizardSchoolObjects.BLOCK:
+                type = obj_3d_spell_block;
+                break;
+            case EWizardSchoolObjects.BOULDER:
+                type = obj_3d_spell_boulder;
+                break;
+            case EWizardSchoolObjects.BARREL:
+                type = obj_3d_spell_barrel;
+                break;
+            case EWizardSchoolObjects.BUTTON:
+                type = obj_3d_spell_push_button;
+                params.on_activation = buffer_read(buffer, buffer_string);
+                break;
+            case EWizardSchoolObjects.SWITCH:
+                type = obj_3d_spell_toggle_switch;
+                params.on_activation = buffer_read(buffer, buffer_string);
+                params.on_deactivation = buffer_read(buffer, buffer_string);
+                params.start_active = buffer_read(buffer, buffer_bool);
+                break;
+            
+            case EWizardSchoolObjects.CHEST:
+                type = obj_3d_spell_treasure_chest;
+                params.can_be_unlocked = buffer_read(buffer, buffer_bool);
+                params.contents = array_create(buffer_read(buffer, buffer_s32));
+                
+                repeat (array_length(params.contents)) {
+                    // tba
+                    buffer_read(buffer, buffer_string);
+                }
+                break;
+            case EWizardSchoolObjects.DOOR:
+                type = obj_3d_spell_door;
+                params.can_be_unlocked = buffer_read(buffer, buffer_bool);
+                break;
+            case EWizardSchoolObjects.SECRET_WALL:
+                
+                break;
+                
+        }
+        
+        var inst = instance_create_depth(xx, yy, zz, type, params);
         
         inst.SetMesh(mesh_lookup[mesh_index]);
         inst.UpdateCollisionPositions();
     }
     
     buffer_delete(buffer);
+}
+
+enum EWizardSchoolObjects {
+    NONE,
+
+    BLOCK,
+    BOULDER,
+    BARREL,
+    BUTTON,
+    SWITCH,
+
+    CHEST,
+    DOOR,
+    SECRET_WALL,
 }

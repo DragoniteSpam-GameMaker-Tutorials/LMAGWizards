@@ -15,6 +15,8 @@ self.active_camera.DrawSkybox(self.meshes.skybox);
 #region All of the stuff in the 3D world
 material_set_material_type(EMaterialTypes.NORMAL);
 
+matrix_set(matrix_world, matrix_build(-512, 0, 0, 0, 0, 0, 1, 1, 1));
+self.meshes.ground.Render();
 matrix_set(matrix_world, matrix_build_identity());
 self.meshes.ground.Render();
 

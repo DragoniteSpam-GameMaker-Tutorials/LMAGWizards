@@ -303,6 +303,7 @@
     {"name":"input_gamepad_is_connected","order":9,"path":"scripts/input_gamepad_is_connected/input_gamepad_is_connected.yy",},
     {"name":"input_verb_group_is_active","order":5,"path":"scripts/input_verb_group_is_active/input_verb_group_is_active.yy",},
     {"name":"input_cursor_coord_space_set","order":1,"path":"scripts/input_cursor_coord_space_set/input_cursor_coord_space_set.yy",},
+    {"name":"tex_wall","order":6,"path":"sprites/tex_wall/tex_wall.yy",},
     {"name":"input_source_get_array","order":4,"path":"scripts/input_source_get_array/input_source_get_array.yy",},
     {"name":"input_color_reset","order":4,"path":"scripts/input_color_reset/input_color_reset.yy",},
     {"name":"Col_SAT_Stuff","order":8,"path":"scripts/Col_SAT_Stuff/Col_SAT_Stuff.yy",},

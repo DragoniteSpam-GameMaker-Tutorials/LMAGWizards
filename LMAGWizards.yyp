@@ -71,11 +71,12 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"sphere.vbuff","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test_load_mapping.json","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test.place","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test.place_meshes.txt","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.1.102",
+    "IDEVersion": "2023.8.2.105",
   },
   "resources": [
     {"id":{"name":"input_vibrate_get_strength","path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},},
@@ -358,6 +359,7 @@
     {"id":{"name":"input_verb_group_is_active","path":"scripts/input_verb_group_is_active/input_verb_group_is_active.yy",},},
     {"id":{"name":"input_cursor_coord_space_set","path":"scripts/input_cursor_coord_space_set/input_cursor_coord_space_set.yy",},},
     {"id":{"name":"__input_key_get_name","path":"scripts/__input_key_get_name/__input_key_get_name.yy",},},
+    {"id":{"name":"tex_wall","path":"sprites/tex_wall/tex_wall.yy",},},
     {"id":{"name":"input_source_get_array","path":"scripts/input_source_get_array/input_source_get_array.yy",},},
     {"id":{"name":"input_color_reset","path":"scripts/input_color_reset/input_color_reset.yy",},},
     {"id":{"name":"Col_SAT_Stuff","path":"scripts/Col_SAT_Stuff/Col_SAT_Stuff.yy",},},

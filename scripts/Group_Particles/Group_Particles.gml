@@ -1,13 +1,10 @@
 #macro Particles global.__particles 
 
 Particles = new (function() constructor {
-    //Create the particle system
     self.systems = {
         test_unlit_effects: new spart_system([256, 600]),
     };
     
-    //Create a particle type
-    //Note: All time values are in seconds, not in steps!
     self.types = {
         fire: new spart_type(),
     };
@@ -23,9 +20,8 @@ Particles = new (function() constructor {
         setBlend(true, true);
     }
     
-    //Create a particle emitter
     self.emitters = {
-        test_effects: new spart_emitter(self.systems.test_unlit_effects),
+        
     };
     
     static BurstFromEmitter = function(emitter, type, x, y, z, amount) {
