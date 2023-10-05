@@ -74,8 +74,8 @@ var target = instance_create_depth(460, 0, 360, obj_3d_spell_treasure_chest);
 target.SetMesh(self.meshes.chest);
 target.UpdateCollisionPositions();
 
-var target = instance_create_depth(300, 0, 200, obj_3d_spell_toggle_switch);
-target.SetMesh(self.meshes.toggle_switch);
+var target = instance_create_depth(300, 0, 200, obj_3d_spell_secret_wall);
+target.SetMesh(self.meshes.block);
 target.UpdateCollisionPositions();
 
 enum ECollisionMasks {
