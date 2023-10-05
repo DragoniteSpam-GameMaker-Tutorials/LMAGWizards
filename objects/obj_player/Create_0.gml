@@ -142,7 +142,7 @@ self.DrawSpellSymbol = function() {
 		if (cache[$ string(info.obj.spell_response)] == undefined) {
 			var inst = instance_create_depth(0, 0, 0, info.obj.spell_response);
 			inst.lifespan = 0;
-			cache[$ string(info.obj.spell_response)] = inst.symbol;
+			cache[$ string(info.obj.spell_response)] = inst.sprite_index;
 			instance_destroy(inst);
 		}
 		

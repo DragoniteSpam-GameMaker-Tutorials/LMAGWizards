@@ -6,11 +6,10 @@
   "managed": true,
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"type","path":"objects/obj_spell/obj_spell.yy",},"value":"ESpellTypes.PUSH",},
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"symbol","path":"objects/obj_spell/obj_spell.yy",},"value":"spr_spell_symbol_push",},
   ],
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Spells",
+    "path": "folders/Gameplay/Spells.yy",
   },
   "parentObjectId": {
     "name": "obj_spell",
@@ -31,7 +30,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_spell_symbol_push",
+    "path": "sprites/spr_spell_symbol_push/spr_spell_symbol_push.yy",
+  },
   "spriteMaskId": null,
   "visible": false,
 }

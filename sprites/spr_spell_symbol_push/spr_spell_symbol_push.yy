@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Spells",
+    "path": "folders/Gameplay/Spells.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
