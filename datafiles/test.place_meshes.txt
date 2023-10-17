@@ -1,3 +1,4 @@
+bouncepad
+chest
 barrel
 block
-chest

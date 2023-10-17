@@ -25,4 +25,5 @@ function GameStateClass() constructor {
 };
 
 GameState.AddSpell(obj_spell_push);
+GameState.AddSpell(obj_spell_bounce);
 GameState.AddSpell(obj_spell_unlock);

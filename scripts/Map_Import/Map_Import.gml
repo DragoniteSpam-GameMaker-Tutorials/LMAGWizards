@@ -58,7 +58,7 @@ function UnityMapImport(filename, meshes) constructor {
             rotation_mat: matrix_build(0, 0, 0, rx, ry, rz, 1, 1, 1),
             direction: ry
         };
-        show_debug_message(special_index)
+        
         switch (special_index) {
             case EWizardSchoolObjects.BLOCK:
                 type = obj_3d_spell_block;
@@ -95,9 +95,19 @@ function UnityMapImport(filename, meshes) constructor {
                 params.can_be_unlocked = buffer_read(buffer, buffer_bool);
                 break;
             case EWizardSchoolObjects.SECRET_WALL:
-                
+                type = obj_3d_spell_secret_wall;
                 break;
-                
+            case EWizardSchoolObjects.BOUNCE_PAD:
+                type = obj_3d_spell_bounce_pad;
+                var tx = buffer_read(buffer, buffer_f32);
+                var ty = buffer_read(buffer, buffer_f32);
+                var tz = buffer_read(buffer, buffer_f32);
+                var ax = buffer_read(buffer, buffer_f32);
+                var ay = buffer_read(buffer, buffer_f32);
+                var az = buffer_read(buffer, buffer_f32);
+                params.target = new Vector3(tx, ty, tz);
+                params.apex = new Vector3(ax, ay, az);
+                break;
         }
         
         var inst = instance_create_depth(xx, yy, zz, type, params);
@@ -121,4 +131,6 @@ enum EWizardSchoolObjects {
     CHEST,
     DOOR,
     SECRET_WALL,
+    
+    BOUNCE_PAD
 }

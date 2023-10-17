@@ -5,7 +5,8 @@ enum ESpellTypes {
     MIND_READ,
     BLOOM,
     SLOW_TIME,
-    ILLUMINATE
+    ILLUMINATE,
+    BOUNCE
 }
 
 self.z = self.depth;
