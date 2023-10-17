@@ -10,7 +10,7 @@ var ray = new ColRay(position, self.velocity.Normalize());
 
 var caster_mask = self.caster.cobject.mask;
 self.caster.cobject.mask = 0;
-var raycast_result = obj_game.collision.CheckRay(ray);
+var raycast_result = obj_game.collision.CheckRay(ray, ECollisionMasks.DEFAULT | ECollisionMasks.SPELL_TARGET);
 self.caster.cobject.mask = caster_mask;
 
 if (raycast_result) {
