@@ -2,6 +2,12 @@ event_inherited();
 
 self.state = new SnowState("default", false);
 
+self.bounce = {
+    start: undefined,
+    apex: undefined,
+    target: undefined
+};
+
 self.state.add("default", {
     enter: function() {
         show_debug_message("enter the default state");
@@ -39,6 +45,41 @@ self.state.add("default", {
         
         self.HandleMovement();
         self.HandleClimbing();
+        
+        if (self.IsGrounded()) {
+            self.state.change("default");
+        }
+    }
+}).add("bounce", {
+    enter: function() {
+        show_debug_message("enter the bounce state");
+    },
+    leave: function() {
+        show_debug_message("leave the bounce state");
+    },
+    update: function() {
+        self.HandleCamera();
+        self.HandleCasting();
+        
+        var bounce_speed = 250;
+        
+        var start = new Vector3(self.bounce.start.x, 0, self.bounce.start.z);
+        var current = new Vector3(self.x, 0, self.z);
+        var target = new Vector3(self.bounce.target.x, 0, self.target.start.z);
+        
+        var new_position = current.Approach(target, bounce_speed * DT);
+        var diff = new_position.Sub(current);
+        self.xspeed = diff.x;
+        //self.yspeed = diff.y;
+        self.zspeed = diff.z;
+        
+        var f = start.DistanceTo(new_position) / start.DistanceTo(target) * 2;
+        
+        if (f < 1) {
+            self.y = lerp(self.bounce.start.y, self.bounce.apex.y, f);
+        } else {
+            self.y = lerp(self.bounce.apex.y, self.bounce.target.y, f - 1);
+        }
         
         if (self.IsGrounded()) {
             self.state.change("default");

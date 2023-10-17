@@ -96,10 +96,14 @@ function Vector3(x, y, z) constructor {
     };
 	
 	static Approach = function(target, amount) {
+        var total_dist = point_distance_3d(target.x, target.y, target.z, self.x, self.y, self.z);
+        var dist = max(total_dist - amount, 0);
+        var f = dist / total_dist;
+        
         return new Vector3(
-            (self.x < target.x) ? min(self.x + amount, target.x) : max(self.x - amount, target.x),
-            (self.y < target.y) ? min(self.y + amount, target.y) : max(self.y - amount, target.y),
-            (self.z < target.z) ? min(self.z + amount, target.z) : max(self.z - amount, target.z)
+            lerp(target.x, self.x, f),
+            lerp(target.y, self.y, f),
+            lerp(target.z, self.z, f)
         );
 	};
 }
@@ -200,11 +204,15 @@ function Vector4(x, y, z, w) constructor {
     };
 	
 	static Approach = function(target, amount) {
+        var total_dist = sqrt(sqr(self.x - target.x) + sqr(self.y - target.y) + sqrt(self.z - target.z) + sqr(self.w - target.w));
+        var dist = max(total_dist - amount, 0);
+        var f = dist / total_dist;
+        
         return new Vector4(
-            (self.x < target.x) ? min(self.x + amount, target.x) : max(self.x - amount, target.x),
-            (self.y < target.y) ? min(self.y + amount, target.y) : max(self.y - amount, target.y),
-            (self.z < target.z) ? min(self.z + amount, target.z) : max(self.z - amount, target.z),
-            (self.w < target.w) ? min(self.w + amount, target.w) : max(self.w - amount, target.w)
+            lerp(target.x, self.x, f),
+            lerp(target.y, self.y, f),
+            lerp(target.z, self.z, f),
+            lerp(target.w, self.w, f)
         );
 	};
 }
