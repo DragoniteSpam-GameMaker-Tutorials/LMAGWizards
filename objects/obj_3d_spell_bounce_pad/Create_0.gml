@@ -22,14 +22,7 @@ self.state = new SnowState("inactive")
                 self.state.change("deactivating");
             }
             if (obj_player.cobject.shape.CheckObject(self.cobjects[0])) {
-                static speed_threshold = -2;
-                if (obj_player.yspeed < speed_threshold) {
-                    obj_player.yspeed = 0;
-                    obj_player.bounce.start = new Vector3(obj_player.x, obj_player.y, obj_player.z);
-                    obj_player.bounce.apex = self.apex;
-                    obj_player.bounce.target = self.target;
-                    obj_player.state.change("bounce");
-                }
+                obj_player.HandleBounce(self.apex, self.target);
             }
 		},
         draw_extras: function() {

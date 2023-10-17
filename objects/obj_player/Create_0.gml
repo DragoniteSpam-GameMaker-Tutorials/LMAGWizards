@@ -65,7 +65,7 @@ self.state.add("default", {
         
         var start = new Vector3(self.bounce.start.x, 0, self.bounce.start.z);
         var current = new Vector3(self.x, 0, self.z);
-        var target = new Vector3(self.bounce.target.x, 0, self.target.start.z);
+        var target = new Vector3(self.bounce.target.x, 0, self.bounce.target.z);
         
         var new_position = current.Approach(target, bounce_speed * DT);
         var diff = new_position.Sub(current);
@@ -338,5 +338,16 @@ self.HandleCasting = function() {
             velocity: motion,
             caster: self.id
         });
+    }
+};
+
+self.HandleBounce = function(apex, target) {
+    static speed_threshold = -2;
+    if (self.yspeed < speed_threshold) {
+        self.yspeed = 0;
+        self.bounce.start = new Vector3(self.x, self.y, self.z);
+        self.bounce.apex = apex;
+        self.bounce.target = target;
+        self.state.change("bounce");
     }
 };
