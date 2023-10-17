@@ -21,9 +21,21 @@ self.state = new SnowState("inactive")
             if (self.event_timer <= 0) {
                 self.state.change("deactivating");
             }
-		}
+            if (obj_player.cobject.shape.CheckObject(self.cobjects[0])) {
+                static speed_threshold = -2;
+                if (obj_player.yspeed < speed_threshold) {
+                    obj_player.yspeed = 1000 * DT;
+                    obj_player.state.change("airborne");
+                }
+            }
+		},
+        draw_extras: function() {
+            matrix_set(matrix_world, matrix_build(self.x, self.y, self.z, 0, 0, 0, 8, 8, 8));
+            vertex_submit(obj_game.debug_sphere, pr_trianglelist, -1);
+            matrix_set(matrix_world, matrix_build_identity());
+        }
 	})
-    .add("deactivating" {
+    .add("deactivating", {
         enter: function() {
             self.state.change("inactive");
         }
@@ -32,5 +44,5 @@ self.state = new SnowState("inactive")
 self.OnSpellHit = function(spell) {
     if (spell.object_index != self.spell_response) return;
     
-    //self.state.onspell();
+    self.state.onspell();
 };
