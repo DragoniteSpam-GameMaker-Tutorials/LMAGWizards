@@ -77,7 +77,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.2.108",
+    "IDEVersion": "2023.1100.0.410",
   },
   "resources": [
     {"id":{"name":"input_vibrate_get_strength","path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},},
@@ -337,6 +337,7 @@
     {"id":{"name":"Group_Particles","path":"scripts/Group_Particles/Group_Particles.yy",},},
     {"id":{"name":"input_player_verify","path":"scripts/input_player_verify/input_player_verify.yy",},},
     {"id":{"name":"sh_spart_mesh","path":"shaders/sh_spart_mesh/sh_spart_mesh.yy",},},
+    {"id":{"name":"ac_parabola","path":"animcurves/ac_parabola/ac_parabola.yy",},},
     {"id":{"name":"input_swap_gamepad_ab","path":"scripts/input_swap_gamepad_ab/input_swap_gamepad_ab.yy",},},
     {"id":{"name":"input_binding_get_name","path":"scripts/input_binding_get_name/input_binding_get_name.yy",},},
     {"id":{"name":"input_trigger_effect_weapon","path":"scripts/input_trigger_effect_weapon/input_trigger_effect_weapon.yy",},},
@@ -449,6 +450,7 @@
     {"id":{"name":"__input_class_vibration_pulse","path":"scripts/__input_class_vibration_pulse/__input_class_vibration_pulse.yy",},},
     {"id":{"name":"__input_gamepad_reset_color","path":"scripts/__input_gamepad_reset_color/__input_gamepad_reset_color.yy",},},
     {"id":{"name":"input_binding_set_safe","path":"scripts/input_binding_set_safe/input_binding_set_safe.yy",},},
+    {"id":{"name":"Group_Parabolic_Easing","path":"scripts/Group_Parabolic_Easing/Group_Parabolic_Easing.yy",},},
     {"id":{"name":"input_binding_set","path":"scripts/input_binding_set/input_binding_set.yy",},},
     {"id":{"name":"__input_class_trigger_effect_weapon","path":"scripts/__input_class_trigger_effect_weapon/__input_class_trigger_effect_weapon.yy",},},
     {"id":{"name":"input_binding_scan_params_get","path":"scripts/input_binding_scan_params_get/input_binding_scan_params_get.yy",},},

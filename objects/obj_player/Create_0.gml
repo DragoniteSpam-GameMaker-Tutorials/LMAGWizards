@@ -76,9 +76,9 @@ self.state.add("default", {
         var f = start.DistanceTo(new_position) / start.DistanceTo(target) * 2;
         
         if (f < 1) {
-            self.y = lerp(self.bounce.start.y, self.bounce.apex.y, f);
+            self.y = ease_parabolic(self.bounce.start.y, self.bounce.apex.y, f, "start");
         } else {
-            self.y = lerp(self.bounce.apex.y, self.bounce.target.y, f - 1);
+			self.y = ease_parabolic(self.bounce.target.y, self.bounce.apex.y, f - 1, "finish");
         }
         
         if (self.IsGrounded()) {
