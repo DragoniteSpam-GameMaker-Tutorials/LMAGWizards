@@ -6,6 +6,7 @@ var displaced_position = obj_game.collision.DisplaceSphere(self.cobject);
 if (displaced_position == undefined) {
     self.cobject.shape.Set(potential);
 } else {
+	self.OnCollision(displaced_position.Sub(self.cobject.shape.position));
     self.cobject.shape.Set(displaced_position);
 }
 

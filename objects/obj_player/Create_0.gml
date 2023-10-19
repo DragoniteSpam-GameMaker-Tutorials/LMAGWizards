@@ -80,11 +80,14 @@ self.state.add("default", {
         } else {
 			self.y = ease_parabolic(self.bounce.target.y, self.bounce.apex.y, f - 1, "finish");
         }
-        
+		
         if (self.IsGrounded()) {
             self.state.change("default");
         }
-    }
+    },
+	oncollision: function(displacement_vector) {
+			self.state.change("airborne");
+	}
 }).add("climbing", {
     enter: function() {
         show_debug_message("enter the climbing state");
@@ -350,4 +353,8 @@ self.HandleBounce = function(apex, target) {
         self.bounce.target = target;
         self.state.change("bounce");
     }
+};
+
+self.OnCollision = function(displacement_vector) {
+	self.state.oncollision(displacement_vector);
 };

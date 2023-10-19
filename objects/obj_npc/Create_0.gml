@@ -28,3 +28,6 @@ self.CheckMovingObjects = function() {
     
     return new Vector3(0, 0, 0);
 };
+
+self.OnCollision = function(displacement_vector) {
+};
