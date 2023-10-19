@@ -1,5 +1,5 @@
+block
 wall
 bouncepad
 chest
 barrel
-block

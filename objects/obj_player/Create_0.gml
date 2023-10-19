@@ -81,6 +81,8 @@ self.state.add("default", {
 			self.y = ease_parabolic(self.bounce.target.y, self.bounce.apex.y, f - 1, "finish");
         }
 		
+		self.HandleClimbing();
+		
         if (self.IsGrounded()) {
             self.state.change("default");
         }
