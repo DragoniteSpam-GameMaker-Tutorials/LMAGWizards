@@ -38,6 +38,7 @@ self.state.add("default", {
     },
     update: function() {
         self.HandleCamera();
+		self.direction = 360 - self.camera.direction;
         
         // properly do this later
         static grav = 9;
@@ -60,6 +61,7 @@ self.state.add("default", {
     update: function() {
         self.HandleCamera();
         self.HandleCasting();
+		self.direction = 360 - self.camera.direction;
         
         var bounce_speed = 250;
         
