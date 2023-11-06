@@ -16,9 +16,13 @@ self.state = new SnowState("inactive")
 		enter: function() {
 			self.SetMesh(obj_game.meshes.hourglass_active);
 			self.UpdateCollisionPositions();
+			obj_game.ActivateTimer(self);
 			
 			static time_duration = 10;	// seconds
 			self.time_timer = time_duration;
+		},
+		leave: function() {
+			obj_game.DeactivateTimer(self);
 		},
 		update: function() {
 			self.time_timer -= DT;

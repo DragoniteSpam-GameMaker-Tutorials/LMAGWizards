@@ -17,6 +17,24 @@ self.gbuff_position = -1;
 self.gbuff_material = -1;
 self.gbuff_normal = -1;
 
+self.time_scale = 1;
+self.active_timer_objects = [];
+
+self.ActivateTimer = function(timer) {
+	array_push(self.active_timer_objects, timer);
+	self.time_scale = 0.25;
+};
+
+self.DeactivateTimer = function(timer) {
+	var index = array_get_index(self.active_timer_objects, timer);
+	if (index != -1) {
+		array_delete(self.active_timer_objects, index, 1);
+	}
+	if (array_length(self.active_timer_objects) == 0) {
+		self.time_scale = 1;
+	}
+};
+
 application_surface_draw_enable(false);
 
 var buffer = buffer_load("cube.vbuff");
