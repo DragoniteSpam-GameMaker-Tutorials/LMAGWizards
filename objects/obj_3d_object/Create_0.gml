@@ -10,6 +10,11 @@ self.state = undefined;
 
 self.SetMesh = function(mesh, mask = self.default_collision_mask, group = ECollisionMasks.DEFAULT) {
     self.mesh = mesh;
+	
+	array_foreach(self.cobjects, function(obj) {
+		obj_game.collision.Remove(obj);
+	});
+	
     self.cshapes = [];
     self.cobjects = [];
     for (var i = 0, n = array_length(mesh.collision_shapes); i < n; i++) {
