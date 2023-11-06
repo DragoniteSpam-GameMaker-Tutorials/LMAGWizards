@@ -1,5 +1,6 @@
-block
-wall
-bouncepad
+flower
 chest
 barrel
+wall
+block
+bouncepad

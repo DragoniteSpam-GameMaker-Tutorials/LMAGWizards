@@ -6,6 +6,7 @@
   "option_tvos_cocoapods_checkbox": true,
   "option_tvos_display_cursor": false,
   "option_tvos_display_name": "Made in GameMaker",
+  "option_tvos_enable_broadcast": false,
   "option_tvos_icon_1280": "${base_options_dir}/tvos/icons/1280.png",
   "option_tvos_icon_400": "${base_options_dir}/tvos/icons/400.png",
   "option_tvos_icon_400_2x": "${base_options_dir}/tvos/icons/400_2x.png",

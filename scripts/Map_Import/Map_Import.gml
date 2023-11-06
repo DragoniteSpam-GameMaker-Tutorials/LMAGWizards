@@ -108,6 +108,9 @@ function UnityMapImport(filename, meshes) constructor {
                 params.target = new Vector3(tx, ty, tz);
                 params.apex = new Vector3(ax, ay, az);
                 break;
+            case EWizardSchoolObjects.FLOWER:
+                type = obj_3d_spell_flower;
+                break;
         }
         
         var inst = instance_create_depth(xx, yy, zz, type, params);
@@ -132,5 +135,6 @@ enum EWizardSchoolObjects {
     DOOR,
     SECRET_WALL,
     
-    BOUNCE_PAD
+    BOUNCE_PAD,
+	FLOWER
 }
