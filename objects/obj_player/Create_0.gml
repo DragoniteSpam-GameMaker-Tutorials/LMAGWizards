@@ -42,7 +42,7 @@ self.state.add("default", {
         
         // properly do this later
         static grav = 9;
-        self.yspeed -= grav * DT;
+        self.yspeed -= grav * PDT;
         
         self.HandleMovement();
         self.HandleClimbing();
@@ -69,7 +69,7 @@ self.state.add("default", {
         var current = new Vector3(self.x, 0, self.z);
         var target = new Vector3(self.bounce.target.x, 0, self.bounce.target.z);
         
-        var new_position = current.Approach(target, bounce_speed * DT);
+        var new_position = current.Approach(target, bounce_speed * PDT);
         var diff = new_position.Sub(current);
         self.xspeed = diff.x;
         //self.yspeed = diff.y;
@@ -107,7 +107,7 @@ self.state.add("default", {
         self.zspeed = 0;
         
         static climb_speed = 60;
-        self.y += climb_speed * DT;
+        self.y += climb_speed * PDT;
         
         if (self.y > self.climbing_target.shape.position.y + self.climbing_target.shape.size.y) {
             self.climbing_target = undefined;
@@ -129,10 +129,10 @@ self.state.add("default", {
         self.zspeed = 0;
         
         static advance_speed = 60;
-        self.advance_amount -= advance_speed * DT;
+        self.advance_amount -= advance_speed * PDT;
         
-        self.x += dcos(self.direction) * advance_speed * DT;
-        self.z += dsin(self.direction) * advance_speed * DT;
+        self.x += dcos(self.direction) * advance_speed * PDT;
+        self.z += dsin(self.direction) * advance_speed * PDT;
         
         if (self.advance_amount <= 0) {
             self.state.change("default");
@@ -231,10 +231,10 @@ self.HandleCamera = function() {
     static camera_max = 240;
     
     if (input_check("camera_in")) {
-        self.camera.distance -= camera_speed * DT;
+        self.camera.distance -= camera_speed * PDT;
     }
     if (input_check("camera_out")) {
-        self.camera.distance += camera_speed * DT;
+        self.camera.distance += camera_speed * PDT;
     }
     
     self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
@@ -243,7 +243,7 @@ self.HandleCamera = function() {
 self.HandleJump = function() {
     static jump_speed = 240;
     if (input_check_pressed("jump")) {
-        self.yspeed = jump_speed * DT;
+        self.yspeed = jump_speed * PDT;
         self.state.change("airborne");
     }
 };
@@ -255,7 +255,7 @@ self.HandleMovement = function() {
     
     static speed_run = 300;
     static speed_walk = 180;
-    var spd = (input_check("run") ? speed_run : speed_walk) * DT;
+    var spd = (input_check("run") ? speed_run : speed_walk) * PDT;
     
     if (input_check("up")) {
         dx += dcos(self.camera.direction);

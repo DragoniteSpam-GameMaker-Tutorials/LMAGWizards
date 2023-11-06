@@ -85,15 +85,7 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-var target = instance_create_depth(360, 0, 360, obj_3d_spell_door);
-target.SetMesh(self.meshes.bridge);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(460, 0, 360, obj_3d_spell_treasure_chest);
-target.SetMesh(self.meshes.chest);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(300, 0, 200, obj_3d_spell_secret_wall);
+var target = instance_create_depth(100, 0, 100, obj_moving);
 target.SetMesh(self.meshes.block);
 target.UpdateCollisionPositions();
 
