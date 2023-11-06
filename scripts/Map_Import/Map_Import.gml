@@ -111,6 +111,9 @@ function UnityMapImport(filename, meshes) constructor {
             case EWizardSchoolObjects.FLOWER:
                 type = obj_3d_spell_flower;
                 break;
+            case EWizardSchoolObjects.HOURGLASS:
+                type = obj_3d_spell_hourglass;
+                break;
         }
         
         var inst = instance_create_depth(xx, yy, zz, type, params);
@@ -136,5 +139,6 @@ enum EWizardSchoolObjects {
     SECRET_WALL,
     
     BOUNCE_PAD,
-	FLOWER
+	FLOWER,
+	HOURGLASS
 }
