@@ -2,8 +2,12 @@ event_inherited();
 
 self.target = undefined;
 
-self.state = new SnowState("idle")
-	.add("idle", {
+self.state = new SnowState("inactive")
+	.add("inactive", {
+		enter: function() {
+			self.SetMesh(obj_game.meshes.flower);
+			self.UpdateCollisionPositions();
+		},
 		onhit: function() {
 			self.state.change("active");
 		}
@@ -12,9 +16,15 @@ self.state = new SnowState("idle")
 		enter: function() {
 			self.SetMesh(obj_game.meshes.flower_open);
 			self.UpdateCollisionPositions();
+			
+			static unbloom_duration = 30;	// seconds
+			self.unbloom_timer = unbloom_duration;
 		},
 		update: function() {
-			
+			self.unbloom_timer -= DT;
+			if (self.unbloom_timer <= 0) {
+				self.state.change("inactive");
+			}
 		}
 	});
 
