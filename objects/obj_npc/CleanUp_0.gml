@@ -1,0 +1,1 @@
+obj_game.collision.Remove(self.cobject);
