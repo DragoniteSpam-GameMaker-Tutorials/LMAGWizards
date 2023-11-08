@@ -3,6 +3,8 @@
 GameState = new GameStateClass();
 
 function GameStateClass() constructor {
+	self.currency = 0;
+	
     self.known_spells = [
         
     ];
@@ -21,6 +23,10 @@ function GameStateClass() constructor {
 		if (self.KnowsSpell(spell)) {
 			array_delete(self.known_spells, array_get_index(self.known_spells, spell), 1);
 		}
+	};
+	
+	static AddCurrency = function(amount) {
+		self.currency = max(0, self.currency + amount);
 	};
 };
 
