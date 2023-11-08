@@ -368,6 +368,7 @@
     {"name":"__input_source_relinquish","order":16,"path":"scripts/__input_source_relinquish/__input_source_relinquish.yy",},
     {"name":"__input_load_sdl2_from_buffer","order":6,"path":"scripts/__input_load_sdl2_from_buffer/__input_load_sdl2_from_buffer.yy",},
     {"name":"input_clear_momentary","order":2,"path":"scripts/input_clear_momentary/input_clear_momentary.yy",},
+    {"name":"obj_3d_pickup","order":13,"path":"objects/obj_3d_pickup/obj_3d_pickup.yy",},
     {"name":"input_mouse_dy","order":8,"path":"scripts/input_mouse_dy/input_mouse_dy.yy",},
     {"name":"input_color_get","order":3,"path":"scripts/input_color_get/input_color_get.yy",},
     {"name":"__input_class_source","order":9,"path":"scripts/__input_class_source/__input_class_source.yy",},

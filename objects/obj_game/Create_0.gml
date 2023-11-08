@@ -85,14 +85,15 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-var target = instance_create_depth(100, 0, 100, obj_moving);
-target.SetMesh(self.meshes.block);
+var target = instance_create_depth(100, 8, 100, obj_3d_pickup);
+target.SetMesh(self.meshes.currency);
 target.UpdateCollisionPositions();
 
 enum ECollisionMasks {
-    NONE                    = 0b0000,
-    DEFAULT                 = 0b0001,
-    CLIMBABLE               = 0b0010,
-    MOVING                  = 0b0100,
-	SPELL_TARGET			= 0b1000
+    NONE                    = 0b00000,
+    DEFAULT                 = 0b00001,
+    CLIMBABLE               = 0b00010,
+    MOVING                  = 0b00100,
+	SPELL_TARGET			= 0b01000,
+	PICKUP					= 0b10000,
 }

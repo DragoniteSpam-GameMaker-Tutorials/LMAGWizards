@@ -437,6 +437,7 @@
     {"id":{"name":"input_clear_momentary","path":"scripts/input_clear_momentary/input_clear_momentary.yy",},},
     {"id":{"name":"__input_hotswap_tick","path":"scripts/__input_hotswap_tick/__input_hotswap_tick.yy",},},
     {"id":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},},
+    {"id":{"name":"obj_3d_pickup","path":"objects/obj_3d_pickup/obj_3d_pickup.yy",},},
     {"id":{"name":"input_mouse_dy","path":"scripts/input_mouse_dy/input_mouse_dy.yy",},},
     {"id":{"name":"draw_sprite_billboard","path":"scripts/draw_sprite_billboard/draw_sprite_billboard.yy",},},
     {"id":{"name":"input_color_get","path":"scripts/input_color_get/input_color_get.yy",},},
