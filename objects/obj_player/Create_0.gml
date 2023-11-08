@@ -364,8 +364,8 @@ self.HandleCollectables = function() {
 	self.cobject.group = ECollisionMasks.PICKUP;
 	var collectable = obj_game.collision.CheckObject(self.cobject);
 	if (collectable != undefined) {
-		show_debug_message("found something!");
-		with collectable.reference instance_destroy();
+		collectable.reference.OnCollection();
+		with (collectable.reference) instance_destroy();
 	}
 	self.cobject.group = original_group;
 };

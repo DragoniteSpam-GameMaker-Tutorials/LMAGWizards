@@ -106,3 +106,8 @@ self.UpdateCollisionPositions = function() {
         obj_game.collision.Add(object);
     }
 };
+
+self.OnCollection = function() {
+	GameState.AddCurrency(1);
+	show_debug_message($"You have {GameState.currency} money");
+};
