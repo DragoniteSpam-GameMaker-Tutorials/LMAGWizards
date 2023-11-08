@@ -14,7 +14,7 @@
   ],
   "function": 2,
   "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+    "name": "Animation Stuff",
+    "path": "folders/Animation Stuff.yy",
   },
 }
