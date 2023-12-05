@@ -85,29 +85,8 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-var target = instance_create_depth(100, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(140, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(160, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(180, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(200, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
-
-var target = instance_create_depth(220, 8, 100, obj_3d_pickup);
-target.SetMesh(self.meshes.currency);
-target.UpdateCollisionPositions();
+instance_create_depth(100, 8, 100, obj_3d_pickup_card)
+    .UpdateCollisionPositions();
 
 enum ECollisionMasks {
     NONE                    = 0b00000,

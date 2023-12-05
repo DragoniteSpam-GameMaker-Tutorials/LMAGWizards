@@ -62,6 +62,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Pickups","folderPath":"folders/Gameplay/3D objects/Pickups.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},
@@ -318,6 +319,7 @@
     {"id":{"name":"spart_debug_vbuffers","path":"scripts/spart_debug_vbuffers/spart_debug_vbuffers.yy",},},
     {"id":{"name":"__input_class_verb_state","path":"scripts/__input_class_verb_state/__input_class_verb_state.yy",},},
     {"id":{"name":"input_mouse_in_bounds","path":"scripts/input_mouse_in_bounds/input_mouse_in_bounds.yy",},},
+    {"id":{"name":"obj_3d_pickup_card","path":"objects/obj_3d_pickup_card/obj_3d_pickup_card.yy",},},
     {"id":{"name":"input_virtual_debug_draw","path":"scripts/input_virtual_debug_draw/input_virtual_debug_draw.yy",},},
     {"id":{"name":"__input_config_hotswap","path":"scripts/__input_config_hotswap/__input_config_hotswap.yy",},},
     {"id":{"name":"__input_mouse_button","path":"scripts/__input_mouse_button/__input_mouse_button.yy",},},

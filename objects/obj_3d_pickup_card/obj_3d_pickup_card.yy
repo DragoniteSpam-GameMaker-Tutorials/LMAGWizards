@@ -1,21 +1,21 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_3d_pickup",
+  "name": "obj_3d_pickup_card",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [
-    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"obj_spell_push",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"noone",},
   ],
   "parent": {
     "name": "Pickups",
     "path": "folders/Gameplay/3D objects/Pickups.yy",
   },
   "parentObjectId": {
-    "name": "obj_3d_object",
-    "path": "objects/obj_3d_object/obj_3d_object.yy",
+    "name": "obj_3d_pickup",
+    "path": "objects/obj_3d_pickup/obj_3d_pickup.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -31,7 +31,7 @@
   "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"roll_in_all_directions","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"True","varType":3,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"card_id","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"daisy","varType":2,},
   ],
   "solid": false,
   "spriteId": null,

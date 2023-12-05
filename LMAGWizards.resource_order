@@ -51,6 +51,7 @@
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
+    {"name":"Pickups","order":14,"path":"folders/Gameplay/3D objects/Pickups.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
@@ -269,6 +270,7 @@
     {"name":"__input_finalize_default_profiles","order":2,"path":"scripts/__input_finalize_default_profiles/__input_finalize_default_profiles.yy",},
     {"name":"__input_class_verb_state","order":14,"path":"scripts/__input_class_verb_state/__input_class_verb_state.yy",},
     {"name":"input_mouse_in_bounds","order":11,"path":"scripts/input_mouse_in_bounds/input_mouse_in_bounds.yy",},
+    {"name":"obj_3d_pickup_card","order":1,"path":"objects/obj_3d_pickup_card/obj_3d_pickup_card.yy",},
     {"name":"input_virtual_debug_draw","order":2,"path":"scripts/input_virtual_debug_draw/input_virtual_debug_draw.yy",},
     {"name":"__input_config_hotswap","order":4,"path":"scripts/__input_config_hotswap/__input_config_hotswap.yy",},
     {"name":"__input_mouse_button","order":4,"path":"scripts/__input_mouse_button/__input_mouse_button.yy",},
@@ -369,7 +371,6 @@
     {"name":"__input_source_relinquish","order":16,"path":"scripts/__input_source_relinquish/__input_source_relinquish.yy",},
     {"name":"__input_load_sdl2_from_buffer","order":6,"path":"scripts/__input_load_sdl2_from_buffer/__input_load_sdl2_from_buffer.yy",},
     {"name":"input_clear_momentary","order":2,"path":"scripts/input_clear_momentary/input_clear_momentary.yy",},
-    {"name":"obj_3d_pickup","order":13,"path":"objects/obj_3d_pickup/obj_3d_pickup.yy",},
     {"name":"input_mouse_dy","order":8,"path":"scripts/input_mouse_dy/input_mouse_dy.yy",},
     {"name":"input_color_get","order":3,"path":"scripts/input_color_get/input_color_get.yy",},
     {"name":"__input_class_source","order":9,"path":"scripts/__input_class_source/__input_class_source.yy",},
