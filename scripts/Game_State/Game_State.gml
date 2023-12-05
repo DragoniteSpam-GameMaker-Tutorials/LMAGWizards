@@ -8,6 +8,10 @@ function GameStateClass() constructor {
     self.known_spells = [
         
     ];
+    
+    self.cards = {
+        
+    };
 	
 	static KnowsSpell = function(spell) {
 		return array_contains(self.known_spells, spell);
@@ -28,6 +32,19 @@ function GameStateClass() constructor {
 	static AddCurrency = function(amount) {
 		self.currency = max(0, self.currency + amount);
 	};
+    
+    static AddCard = function(card) {
+        self.cards[$ card.ID] = true;
+    };
+    
+    static RemoveCard = function(card) {
+        if (variable_struct_exists(self.cards, card.ID))
+            variable_struct_remove(self.cards, card.ID);
+    };
+    
+    static HasCard = function(card) {
+        return variable_struct_exists(self.cards, card.ID);
+    };
 };
 
 GameState.AddSpell(obj_spell_push);
