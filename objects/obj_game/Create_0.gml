@@ -88,6 +88,12 @@ var map = new UnityMapImport("test.place", self.meshes);
 instance_create_depth(100, 8, 100, obj_3d_pickup_card)
     .UpdateCollisionPositions();
 
+instance_create_depth(100, 8, 200, obj_3d_pickup_card, { card_id: "coneflower" })
+    .UpdateCollisionPositions();
+
+instance_create_depth(100, 8, 300, obj_3d_pickup_card, { card_id: "snapdragon" })
+    .UpdateCollisionPositions();
+
 enum ECollisionMasks {
     NONE                    = 0b00000,
     DEFAULT                 = 0b00001,
