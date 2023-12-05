@@ -1,5 +1,6 @@
 {
   "FolderOrderSettings": [
+    {"name":"Animation Stuff","order":42,"path":"folders/Animation Stuff.yy",},
     {"name":"Audio","order":30,"path":"folders/Audio.yy",},
     {"name":"Collision Stuff","order":39,"path":"folders/Collision Stuff.yy",},
     {"name":"Shapes","order":1,"path":"folders/Collision Stuff/Shapes.yy",},
@@ -50,7 +51,6 @@
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
-    {"name":"Animation Stuff","order":42,"path":"folders/Animation Stuff.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
@@ -201,6 +201,7 @@
     {"name":"__input_player_apply_trigger_effects","order":9,"path":"scripts/__input_player_apply_trigger_effects/__input_player_apply_trigger_effects.yy",},
     {"name":"__input_system_tick","order":3,"path":"scripts/__input_system_tick/__input_system_tick.yy",},
     {"name":"input_cursor_elastic_get","order":2,"path":"scripts/input_cursor_elastic_get/input_cursor_elastic_get.yy",},
+    {"name":"Group_Collectable_Cards","order":43,"path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},
     {"name":"Col_World","order":11,"path":"scripts/Col_World/Col_World.yy",},
     {"name":"__input_transform_coordinate","order":20,"path":"scripts/__input_transform_coordinate/__input_transform_coordinate.yy",},
     {"name":"__input_class_player","order":8,"path":"scripts/__input_class_player/__input_class_player.yy",},

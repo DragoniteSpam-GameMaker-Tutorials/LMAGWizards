@@ -11,6 +11,7 @@
   },
   "defaultScriptType": 1,
   "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Stuff","folderPath":"folders/Animation Stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Audio","folderPath":"folders/Audio.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Collision Stuff","folderPath":"folders/Collision Stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Shapes","folderPath":"folders/Collision Stuff/Shapes.yy",},
@@ -61,7 +62,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Stuff","folderPath":"folders/Animation Stuff.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},
@@ -79,7 +79,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.1100.0.435",
+    "IDEVersion": "2023.11.0.120",
   },
   "resources": [
     {"id":{"name":"input_vibrate_get_strength","path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},},
@@ -243,6 +243,7 @@
     {"id":{"name":"__input_player_apply_trigger_effects","path":"scripts/__input_player_apply_trigger_effects/__input_player_apply_trigger_effects.yy",},},
     {"id":{"name":"__input_system_tick","path":"scripts/__input_system_tick/__input_system_tick.yy",},},
     {"id":{"name":"input_cursor_elastic_get","path":"scripts/input_cursor_elastic_get/input_cursor_elastic_get.yy",},},
+    {"id":{"name":"Group_Collectable_Cards","path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},},
     {"id":{"name":"Col_World","path":"scripts/Col_World/Col_World.yy",},},
     {"id":{"name":"__input_transform_coordinate","path":"scripts/__input_transform_coordinate/__input_transform_coordinate.yy",},},
     {"id":{"name":"__input_class_player","path":"scripts/__input_class_player/__input_class_player.yy",},},
