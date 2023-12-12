@@ -19,6 +19,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Deferred Rendering","folderPath":"folders/Deferred Rendering.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Gameplay","folderPath":"folders/Gameplay.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"3D objects","folderPath":"folders/Gameplay/3D objects.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Pickups","folderPath":"folders/Gameplay/3D objects/Pickups.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Spells","folderPath":"folders/Gameplay/Spells.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Input","folderPath":"folders/Input.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"(System)","folderPath":"folders/Input/(System).yy",},
@@ -62,7 +63,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"System stuff","folderPath":"folders/System stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Test stuff","folderPath":"folders/Test stuff.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Textures","folderPath":"folders/Textures.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Pickups","folderPath":"folders/Gameplay/3D objects/Pickups.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"controllerblacklist.csv","CopyToMask":-1,"filePath":"datafiles",},
@@ -80,7 +80,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.11.0.120",
+    "IDEVersion": "2023.11.0.121",
   },
   "resources": [
     {"id":{"name":"input_vibrate_get_strength","path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},},
@@ -117,6 +117,7 @@
     {"id":{"name":"input_vibrate_adsr","path":"scripts/input_vibrate_adsr/input_vibrate_adsr.yy",},},
     {"id":{"name":"Col_Heightmap","path":"scripts/Col_Heightmap/Col_Heightmap.yy",},},
     {"id":{"name":"obj_3d_object","path":"objects/obj_3d_object/obj_3d_object.yy",},},
+    {"id":{"name":"Group_Quest","path":"scripts/Group_Quest/Group_Quest.yy",},},
     {"id":{"name":"__input_gamepad_set_vid_pid","path":"scripts/__input_gamepad_set_vid_pid/__input_gamepad_set_vid_pid.yy",},},
     {"id":{"name":"input_mouse_x","path":"scripts/input_mouse_x/input_mouse_x.yy",},},
     {"id":{"name":"Col_Camera_Frustum","path":"scripts/Col_Camera_Frustum/Col_Camera_Frustum.yy",},},

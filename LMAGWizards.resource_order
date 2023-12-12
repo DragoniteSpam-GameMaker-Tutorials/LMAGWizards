@@ -8,6 +8,7 @@
     {"name":"Deferred Rendering","order":24,"path":"folders/Deferred Rendering.yy",},
     {"name":"Gameplay","order":32,"path":"folders/Gameplay.yy",},
     {"name":"3D objects","order":3,"path":"folders/Gameplay/3D objects.yy",},
+    {"name":"Pickups","order":14,"path":"folders/Gameplay/3D objects/Pickups.yy",},
     {"name":"Spells","order":4,"path":"folders/Gameplay/Spells.yy",},
     {"name":"Input","order":31,"path":"folders/Input.yy",},
     {"name":"(System)","order":1,"path":"folders/Input/(System).yy",},
@@ -51,7 +52,6 @@
     {"name":"System stuff","order":27,"path":"folders/System stuff.yy",},
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
-    {"name":"Pickups","order":14,"path":"folders/Gameplay/3D objects/Pickups.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
@@ -86,6 +86,7 @@
     {"name":"Group_Common_Library","order":2,"path":"scripts/Group_Common_Library/Group_Common_Library.yy",},
     {"name":"input_y","order":6,"path":"scripts/input_y/input_y.yy",},
     {"name":"Col_Heightmap","order":5,"path":"scripts/Col_Heightmap/Col_Heightmap.yy",},
+    {"name":"Group_Quest","order":44,"path":"scripts/Group_Quest/Group_Quest.yy",},
     {"name":"__input_gamepad_set_vid_pid","order":7,"path":"scripts/__input_gamepad_set_vid_pid/__input_gamepad_set_vid_pid.yy",},
     {"name":"input_mouse_x","order":13,"path":"scripts/input_mouse_x/input_mouse_x.yy",},
     {"name":"Col_Camera_Frustum","order":2,"path":"scripts/Col_Camera_Frustum/Col_Camera_Frustum.yy",},
