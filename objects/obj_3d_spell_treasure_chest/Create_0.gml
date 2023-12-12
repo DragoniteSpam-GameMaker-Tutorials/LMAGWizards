@@ -7,7 +7,11 @@ if (!self.can_be_unlocked) {
 }
 
 self.ExpelContents = function() {
-    
+    var spawn = array_search_with_name(self.mesh.collision_shapes, "#SpawnOrigin").position;
+    for (var i = 0, n = array_length(self.contents); i < n; i++) {
+        var content = self.contents[i];
+        var spawned = instance_create_depth(self.x + spawn.x, self.y + spawn.y, self.z + spawn.z, content.type, content.data);
+    }
 };
 
 self.state = new SnowState("closed", false)
