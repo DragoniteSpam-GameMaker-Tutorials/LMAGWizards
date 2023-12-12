@@ -13,6 +13,10 @@ function GameStateClass() constructor {
         
     };
 	
+    self.quests = {
+        
+    };
+	
 	static KnowsSpell = function(spell) {
 		return array_contains(self.known_spells, spell);
 	};
@@ -44,6 +48,29 @@ function GameStateClass() constructor {
     
     static HasCard = function(card) {
         return variable_struct_exists(self.cards, card.ID);
+    };
+    
+    static StartQuest = function(quests) {
+        if (variable_struct_exists(self.quests, quests.ID))
+            self.quests[$ quests.ID] = EQuestStates.STARTED;
+    };
+    
+    static CompleteQuest = function(quests) {
+        if (variable_struct_exists(self.quests, quests.ID))
+            self.quests[$ quests.ID] = EQuestStates.COMPLETED;
+    };
+    
+    static RemoveQuest = function(quests) {
+        if (variable_struct_exists(self.quests, quests.ID))
+            variable_struct_remove(self.quests, quests.ID);
+    };
+    
+    static HasStartedQuest = function(quests) {
+        return self.quests[$ quests.ID] == EQuestStates.STARTED;
+    };
+    
+    static HasCompletedQuest = function(quests) {
+        return self.quests[$ quests.ID] == EQuestStates.COMPLETED;
     };
 };
 
