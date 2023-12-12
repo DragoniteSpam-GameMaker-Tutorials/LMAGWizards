@@ -11,6 +11,14 @@ self.ExpelContents = function() {
     for (var i = 0, n = array_length(self.contents); i < n; i++) {
         var content = self.contents[i];
         var spawned = instance_create_depth(self.x + spawn.x, self.y + spawn.y, self.z + spawn.z, content.type, content.data);
+        var hsp = random_range(56, 68);
+        var vsp = random_range(100, 128);
+        var dir = random_range(-30, 30) + self.direction - 270;
+        spawned.xspeed = hsp * dcos(dir);
+        spawned.yspeed = vsp;
+        spawned.zspeed = -hsp * dsin(dir);
+        spawned.is_moving = true;
+        spawned.parent = self;
     }
 };
 

@@ -1,3 +1,5 @@
+event_inherited();
+
 var t = current_time / 1000;
 var bounce = 1.5 * sin(t * 3);
 

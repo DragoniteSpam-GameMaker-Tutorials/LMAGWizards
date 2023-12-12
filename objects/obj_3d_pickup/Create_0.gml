@@ -6,3 +6,6 @@ self.SetMesh = function(mesh) {
 };
 
 self.UpdateCollisionPositions();
+
+self.is_moving = false;
+self.parent = undefined;
