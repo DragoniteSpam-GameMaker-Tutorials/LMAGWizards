@@ -51,7 +51,7 @@ function GameStateClass() constructor {
     };
     
     static StartQuest = function(quests) {
-        if (variable_struct_exists(self.quests, quests.ID))
+        if (!variable_struct_exists(self.quests, quests.ID))
             self.quests[$ quests.ID] = EQuestStates.STARTED;
     };
     
