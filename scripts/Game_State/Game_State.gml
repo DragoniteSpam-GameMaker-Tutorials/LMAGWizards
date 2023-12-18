@@ -121,7 +121,23 @@ function GameStateClass() constructor {
     };
     
     static Load = function(json) {
+        self.currency = json.currency;
+        self.health_max = json.health_max;
+        self.health = json.health;
         
+        self.cards = json.cards;
+        self.quests = json.quests;
+        
+        self.known_spells = array_create(array_length(json.spells));
+        for (var i = 0, n = array_length(self.known_spells); i < n; i++) {
+            switch (json.spells[i]) {
+                case ESpellTypes.BOUNCE: self.known_spells[i] = obj_spell_bounce; break;
+                case ESpellTypes.BLOOM: self.known_spells[i] = obj_spell_flower; break;
+                case ESpellTypes.PUSH: self.known_spells[i] = obj_spell_push; break;
+                case ESpellTypes.SLOW_TIME: self.known_spells[i] = obj_spell_time; break;
+                case ESpellTypes.UNLOCK: self.known_spells[i] = obj_spell_unlock; break;
+            }
+        }
     };
     #endregion
 };
