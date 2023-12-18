@@ -4,9 +4,8 @@ GameState = new GameStateClass();
 
 function GameStateClass() constructor {
 	self.currency = 0;
-    
     self.health_max = 10;
-    self.health = self.health_max - 2;
+    self.health = self.health_max;
 	
     self.known_spells = [
         
@@ -94,6 +93,37 @@ function GameStateClass() constructor {
     static GetHealthPercent = function() {
         return self.health / self.health_max;
     };
+    
+    #region save and load
+    static Save = function() {
+        var json = {
+            currency: self.currency,
+            health_max: self.health_max,
+            health: self.health,
+            
+            cards: self.cards,
+            quests: self.quests,
+            
+            spells: array_create(array_length(self.known_spells))
+        };
+        
+        for (var i = 0, n = array_length(self.known_spells); i < n; i++) {
+            switch (self.known_spells[i]) {
+                case obj_spell_bounce: json.spells[i] = ESpellTypes.BOUNCE; break;
+                case obj_spell_flower: json.spells[i] = ESpellTypes.BLOOM; break;
+                case obj_spell_push: json.spells[i] = ESpellTypes.PUSH; break;
+                case obj_spell_time: json.spells[i] = ESpellTypes.SLOW_TIME; break;
+                case obj_spell_unlock: json.spells[i] = ESpellTypes.UNLOCK; break;
+            }
+        }
+        
+        return json;
+    };
+    
+    static Load = function(json) {
+        
+    };
+    #endregion
 };
 
 GameState.AddSpell(obj_spell_push);
