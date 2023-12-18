@@ -151,6 +151,7 @@
     {"id":{"name":"input_cursor_limit_circle","path":"scripts/input_cursor_limit_circle/input_cursor_limit_circle.yy",},},
     {"id":{"name":"input_binding_gamepad_set","path":"scripts/input_binding_gamepad_set/input_binding_gamepad_set.yy",},},
     {"id":{"name":"__input_gamepad_guid_parse","path":"scripts/__input_gamepad_guid_parse/__input_gamepad_guid_parse.yy",},},
+    {"id":{"name":"obj_3d_pickup_health","path":"objects/obj_3d_pickup_health/obj_3d_pickup_health.yy",},},
     {"id":{"name":"Col_Helper_Functions","path":"scripts/Col_Helper_Functions/Col_Helper_Functions.yy",},},
     {"id":{"name":"__input_define_gamepad_types","path":"scripts/__input_define_gamepad_types/__input_define_gamepad_types.yy",},},
     {"id":{"name":"input_accessibility_verb_toggle_set","path":"scripts/input_accessibility_verb_toggle_set/input_accessibility_verb_toggle_set.yy",},},

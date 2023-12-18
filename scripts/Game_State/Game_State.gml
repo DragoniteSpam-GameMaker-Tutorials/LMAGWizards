@@ -6,7 +6,7 @@ function GameStateClass() constructor {
 	self.currency = 0;
     
     self.health_max = 10;
-    self.health = self.health_max;
+    self.health = self.health_max - 2;
 	
     self.known_spells = [
         

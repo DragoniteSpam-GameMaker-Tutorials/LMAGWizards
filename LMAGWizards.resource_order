@@ -118,6 +118,7 @@
     {"name":"input_cursor_limit_circle","order":6,"path":"scripts/input_cursor_limit_circle/input_cursor_limit_circle.yy",},
     {"name":"input_binding_gamepad_set","order":1,"path":"scripts/input_binding_gamepad_set/input_binding_gamepad_set.yy",},
     {"name":"__input_gamepad_guid_parse","order":1,"path":"scripts/__input_gamepad_guid_parse/__input_gamepad_guid_parse.yy",},
+    {"name":"obj_3d_pickup_health","order":2,"path":"objects/obj_3d_pickup_health/obj_3d_pickup_health.yy",},
     {"name":"Col_Helper_Functions","order":6,"path":"scripts/Col_Helper_Functions/Col_Helper_Functions.yy",},
     {"name":"__input_define_gamepad_types","order":1,"path":"scripts/__input_define_gamepad_types/__input_define_gamepad_types.yy",},
     {"name":"input_accessibility_verb_toggle_set","order":7,"path":"scripts/input_accessibility_verb_toggle_set/input_accessibility_verb_toggle_set.yy",},
