@@ -4,6 +4,9 @@ GameState = new GameStateClass();
 
 function GameStateClass() constructor {
 	self.currency = 0;
+    
+    self.health_max = 10;
+    self.health = self.health_max;
 	
     self.known_spells = [
         
@@ -71,6 +74,25 @@ function GameStateClass() constructor {
     
     static HasCompletedQuest = function(quests) {
         return self.quests[$ quests.ID] == EQuestStates.COMPLETED;
+    };
+    
+    static AddHealth = function(amount) {
+        self.health = min(self.health_max, self.health + amount);
+    };
+    
+    static RemoveHealth = function(amount) {
+        self.health = max(0, self.health - amount);
+        if (self.health == 0) {
+            // die
+        }
+    };
+    
+    static GetHealth = function() {
+        return self.health;
+    };
+    
+    static GetHealthPercent = function() {
+        return self.health / self.health_max;
     };
 };
 
