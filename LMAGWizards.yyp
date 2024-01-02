@@ -246,6 +246,7 @@
     {"id":{"name":"__input_player_apply_trigger_effects","path":"scripts/__input_player_apply_trigger_effects/__input_player_apply_trigger_effects.yy",},},
     {"id":{"name":"__input_system_tick","path":"scripts/__input_system_tick/__input_system_tick.yy",},},
     {"id":{"name":"input_cursor_elastic_get","path":"scripts/input_cursor_elastic_get/input_cursor_elastic_get.yy",},},
+    {"id":{"name":"obj_3d_pressure_plate","path":"objects/obj_3d_pressure_plate/obj_3d_pressure_plate.yy",},},
     {"id":{"name":"Group_Collectable_Cards","path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},},
     {"id":{"name":"Col_World","path":"scripts/Col_World/Col_World.yy",},},
     {"id":{"name":"__input_transform_coordinate","path":"scripts/__input_transform_coordinate/__input_transform_coordinate.yy",},},

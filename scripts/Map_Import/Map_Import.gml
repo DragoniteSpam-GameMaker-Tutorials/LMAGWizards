@@ -83,9 +83,11 @@ function UnityMapImport(filename, meshes) constructor {
             case EWizardSchoolObjects.CHEST:
                 type = obj_3d_spell_treasure_chest;
                 params.can_be_unlocked = buffer_read(buffer, buffer_bool);
-                params.contents = array_create(buffer_read(buffer, buffer_s32));
+                //params.contents = array_create(buffer_read(buffer, buffer_s32));
+                var contents = array_create(buffer_read(buffer, buffer_s32));
                 
-                repeat (array_length(params.contents)) {
+                //repeat (array_length(params.contents)) {
+                repeat (array_length(contents)) {
                     // tba
                     buffer_read(buffer, buffer_string);
                 }
