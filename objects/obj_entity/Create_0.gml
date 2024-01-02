@@ -10,3 +10,5 @@ self.OnSpellHit = function(spell) {
     
     // implementation pending...
 };
+
+self.motion = undefined;

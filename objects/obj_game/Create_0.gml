@@ -91,14 +91,15 @@ instance_create_depth(100, 8, 100, obj_3d_pickup_card)
 instance_create_depth(100, 8, 200, obj_3d_pickup_health, { card_id: "coneflower" })
     .UpdateCollisionPositions();
 
-instance_create_depth(100, 8, 300, obj_3d_pressure_plate)
-    .UpdateCollisionPositions();
+var plate = instance_create_depth(100, 0, 300, obj_3d_pressure_plate);
+plate.SetMesh(self.meshes.pressure_plate);
+plate.UpdateCollisionPositions();
 
 enum ECollisionMasks {
-    NONE                    = 0b00000,
-    DEFAULT                 = 0b00001,
-    CLIMBABLE               = 0b00010,
-    MOVING                  = 0b00100,
-	SPELL_TARGET			= 0b01000,
-	PICKUP					= 0b10000,
+    NONE                    = 0b_0000_0000,
+    DEFAULT                 = 0b_0000_0001,
+    CLIMBABLE               = 0b_0000_0010,
+    MOVING                  = 0b_0000_0100,
+	SPELL_TARGET			= 0b_0000_1000,
+	PICKUP					= 0b_0001_0000
 }

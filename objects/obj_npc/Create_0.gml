@@ -22,7 +22,7 @@ self.CheckMovingObjects = function() {
     var below_me = obj_game.collision.CheckObject(self.cobject);
     self.cobject.group = old_group;
     
-    if (below_me != undefined) {
+    if (below_me != undefined && below_me.reference.motion != undefined) {
         return below_me.reference.motion.Mul(DT);
     }
     

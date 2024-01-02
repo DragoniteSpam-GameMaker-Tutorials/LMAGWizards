@@ -1,40 +1,43 @@
 event_inherited();
 
-self.mesh = obj_game.meshes.button;
+self.mesh = obj_game.meshes.pressure_plate;
+
+self.Activate = function() {
+};
+
+self.Deactivate = function() {
+};
+
+self.GetActivationZone = function() {
+    var index = array_find_index(self.mesh.collision_shapes, function(item) {
+        return item.name == "#Activation";
+    });
+    return self.cobjects[index];
+};
 
 self.state = new SnowState("unpressed", false)
 	.add("unpressed", {
-        onspell: function() {
-            self.state.change("pressed");
+        leave: function() {
+            self.Activate();
         },
         update: function() {
-        }
-	})/*
-	.add("activating", {
-        update: function() {
-            static target_offset = -6;
-            static movement_speed = 12;
-            self.button_offset = approach(self.button_offset, target_offset, movement_speed * DT);
-            if (self.button_offset == target_offset) {
-                self.state.change("active");
+            var activation_object = self.GetActivationZone();
+            activation_object.mask = ECollisionMasks.DEFAULT;
+            activation_object.group = ECollisionMasks.DEFAULT;
+            if (obj_game.collision.CheckObject(activation_object) || obj_player.cobject.shape.CheckObject(activation_object)) {
+                self.state.change("pressed");
             }
+            activation_object.mask = ECollisionMasks.NONE;
         }
-	})*/
+	})
 	.add("pressed", {
-        enter: function() {
-            self.OnActivation();
-            if (self.infinite_use) {
+        leave: function() {
+            self.Deactivate();
+        },
+        update: function() {
+            var activation_object = self.GetActivationZone();
+            if (!(obj_game.collision.CheckObject(activation_object) || obj_player.cobject.shape.CheckObject(activation_object))) {
                 self.state.change("unpressed");
             }
         }
-	})/*
-	.add("deactivating", {
-        update: function() {
-            static target_offset = 0;
-            static movement_speed = 4;
-            self.button_offset = approach(self.button_offset, target_offset, movement_speed * DT);
-            if (self.button_offset == target_offset) {
-                self.state.change("primed");
-            }
-        }
-	})*/;
+	});
