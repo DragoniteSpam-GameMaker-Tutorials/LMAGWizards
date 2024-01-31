@@ -355,6 +355,7 @@
     {"id":{"name":"input_trigger_effect_weapon","path":"scripts/input_trigger_effect_weapon/input_trigger_effect_weapon.yy",},},
     {"id":{"name":"input_verb_consume","path":"scripts/input_verb_consume/input_verb_consume.yy",},},
     {"id":{"name":"input_cursor_translate","path":"scripts/input_cursor_translate/input_cursor_translate.yy",},},
+    {"id":{"name":"obj_3d_seesaw","path":"objects/obj_3d_seesaw/obj_3d_seesaw.yy",},},
     {"id":{"name":"__input_global","path":"scripts/__input_global/__input_global.yy",},},
     {"id":{"name":"Group_Material_Settings","path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},},
     {"id":{"name":"obj_3d_spell_push_button","path":"objects/obj_3d_spell_push_button/obj_3d_spell_push_button.yy",},},

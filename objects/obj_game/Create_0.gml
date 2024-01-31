@@ -85,15 +85,8 @@ self.collision = new ColWorld(octree);
 
 var map = new UnityMapImport("test.place", self.meshes);
 
-instance_create_depth(100, 8, 100, obj_3d_pickup_card)
-    .UpdateCollisionPositions();
-
-instance_create_depth(100, 8, 200, obj_3d_pickup_health, { card_id: "coneflower" })
-    .UpdateCollisionPositions();
-
-var plate = instance_create_depth(100, 0, 300, obj_3d_pressure_plate);
-plate.SetMesh(self.meshes.pressure_plate);
-plate.UpdateCollisionPositions();
+var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
+seesaw.UpdateCollisionPositions();
 
 enum ECollisionMasks {
     NONE                    = 0b_0000_0000,

@@ -300,6 +300,7 @@
     {"name":"input_binding_get_name","order":4,"path":"scripts/input_binding_get_name/input_binding_get_name.yy",},
     {"name":"input_trigger_effect_weapon","order":8,"path":"scripts/input_trigger_effect_weapon/input_trigger_effect_weapon.yy",},
     {"name":"input_cursor_translate","order":14,"path":"scripts/input_cursor_translate/input_cursor_translate.yy",},
+    {"name":"obj_3d_seesaw","order":16,"path":"objects/obj_3d_seesaw/obj_3d_seesaw.yy",},
     {"name":"__input_global","order":14,"path":"scripts/__input_global/__input_global.yy",},
     {"name":"Group_Material_Settings","order":6,"path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},
     {"name":"obj_3d_spell_push_button","order":6,"path":"objects/obj_3d_spell_push_button/obj_3d_spell_push_button.yy",},
