@@ -3,7 +3,7 @@ event_inherited();
 self.radius = 16;
 
 self.cshape = new ColSphere(new Vector3(0, self.radius, 0), self.radius);
-self.cobject = new ColObject(self.cshape, self.id, 1, 1);
+self.cobject = new ColObject(self.cshape, self.id, ECollisionMasks.DEFAULT, ECollisionMasks.DEFAULT);
 
 self.IsGrounded = function() {
     if (self.y <= 0) return true;

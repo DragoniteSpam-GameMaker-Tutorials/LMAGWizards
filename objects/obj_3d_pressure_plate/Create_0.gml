@@ -9,9 +9,7 @@ self.Deactivate = function() {
 };
 
 self.GetActivationZone = function() {
-    var index = array_find_index(self.mesh.collision_shapes, function(item) {
-        return item.name == "#Activation";
-    });
+    var index = array_search_with_name(self.mesh.collision_shapes, "#Activation");
     return self.cobjects[index];
 };
 

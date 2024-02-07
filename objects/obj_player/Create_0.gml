@@ -28,6 +28,8 @@ self.state.add("default", {
         if (!self.IsGrounded()) {
             self.state.change("airborne");
         }
+        
+        self.UpdateActivatorPosition();
     }
 }).add("airborne", {
     enter: function() {
@@ -152,6 +154,15 @@ var original_position = new Vector3(player_climb_collision.position.x, player_cl
 var climb_shape = new ColSphere(original_position, player_climb_collision.radius);
 climb_shape.original_position = original_position.Mul(1);
 self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, ECollisionMasks.CLIMBABLE);
+#endregion
+
+#region special collision object - pressure plate activator
+var player_activator_collision = array_search_with_name(player_data.collision_shapes, "#Activator");
+
+original_position = new Vector3(player_activator_collision.position.x, player_activator_collision.position.y, player_activator_collision.position.z);
+var activator_shape = new ColSphere(original_position, player_climb_collision.radius);
+activator_shape.original_position = original_position.Mul(1);
+self.cobject_activator = new ColObject(activator_shape, self.id, ECollisionMasks.ACTIVATOR, ECollisionMasks.NONE);
 #endregion
 
 #region Special collision object - camera target
@@ -301,6 +312,16 @@ self.HandleClimbing = function() {
             self.state.change("climbing");
         }
     }
+};
+
+self.UpdateActivatorPosition = function() {
+    var activator_position = self.cobject_activator.shape.original_position;
+    var player_transform = matrix_build(self.x, self.y, self.z, 0, self.direction, 0, 1, 1, 1);
+    var climb_target_transformed = matrix_transform_vertex(player_transform, activator_position.x, activator_position.y, activator_position.z);
+    self.cobject_activator.shape.Set(new Vector3(climb_target_transformed[0], climb_target_transformed[1], climb_target_transformed[2]));
+    
+    obj_game.collision.Remove(self.cobject_activator);
+    obj_game.collision.Add(self.cobject_activator);
 };
 
 self.HandleCasting = function() {

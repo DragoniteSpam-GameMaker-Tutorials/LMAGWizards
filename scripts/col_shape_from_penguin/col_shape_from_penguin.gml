@@ -1,4 +1,4 @@
-function col_shape_from_penguin(shape_data, mask, group) {
+function col_shape_from_penguin(shape_data, mask = ECollisionMasks.DEFAULT, group = ECollisionMasks.DEFAULT) {
     var shape_mask = mask;
     var shape_group = group;
     
@@ -22,7 +22,11 @@ function col_shape_from_penguin(shape_data, mask, group) {
                 break;
             case "#Activation":
                 shape_mask = ECollisionMasks.NONE;
-                shape_group = ECollisionMasks.DEFAULT;
+                shape_group = ECollisionMasks.ACTIVATOR;
+                break;
+            case "#Activator":
+                shape_mask = ECollisionMasks.ACTIVATOR;
+                shape_group = ECollisionMasks.NONE;
                 break;
         }
     }

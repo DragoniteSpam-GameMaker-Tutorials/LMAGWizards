@@ -88,11 +88,17 @@ var map = new UnityMapImport("test.place", self.meshes);
 var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
 seesaw.UpdateCollisionPositions();
 
+var block = instance_create_depth(228, 100, -300, obj_3d_spell_block);
+block.SetMesh(self.meshes.block);
+block.UpdateCollisionPositions();
+
 enum ECollisionMasks {
     NONE                    = 0b_0000_0000,
     DEFAULT                 = 0b_0000_0001,
     CLIMBABLE               = 0b_0000_0010,
     MOVING                  = 0b_0000_0100,
 	SPELL_TARGET			= 0b_0000_1000,
-	PICKUP					= 0b_0001_0000
+	PICKUP					= 0b_0001_0000,
+    
+    ACTIVATOR               = 0b_0010_0000
 }
