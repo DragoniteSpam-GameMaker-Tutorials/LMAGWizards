@@ -61,7 +61,7 @@ function col_shape_from_penguin(shape_data, mask, group) {
     };
 }
 
-function col_shape_update_position(object, transform_matrix) {
+function col_object_update_position(object, transform_matrix) {
     var shape = object.shape;
     if (is_instanceof(shape, ColOBB)) {
         var new_size = shape.original_size;

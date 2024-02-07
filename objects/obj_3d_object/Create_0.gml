@@ -35,7 +35,7 @@ self.UpdateCollisionPositions = function() {
     var object_transform = matrix_multiply(self.rotation_mat, matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1));
     
     for (var i = 0, n = array_length(self.cobjects); i < n; i++) {
-        col_shape_update_position(self.cobjects[i], object_transform);
+        col_object_update_position(self.cobjects[i], object_transform);
     }
 };
 
