@@ -11,10 +11,10 @@ var shape_seesaw = col_shape_from_penguin(self.mesh_seesaw.collision_shapes[0], 
 self.cobject_seesaw = new ColObject(shape_seesaw.shape, self, shape_seesaw.shape_mask, shape_seesaw.shape_group);
 
 var shape_block_left = col_shape_from_penguin(self.mesh_block_left.collision_shapes[0], ECollisionMasks.DEFAULT, ECollisionMasks.DEFAULT);
-self.cobject_block_left = new ColObject(shape_seesaw.shape, self, shape_seesaw.shape_mask, shape_seesaw.shape_group);
+self.cobject_block_left = new ColObject(shape_block_left.shape, self, shape_block_left.shape_mask, shape_block_left.shape_group);
 
 var shape_block_right = col_shape_from_penguin(self.mesh_block_right.collision_shapes[0], ECollisionMasks.DEFAULT, ECollisionMasks.DEFAULT);
-self.cobject_block_right = new ColObject(shape_seesaw.shape, self, shape_seesaw.shape_mask, shape_seesaw.shape_group);
+self.cobject_block_right = new ColObject(shape_block_right.shape, self, shape_block_right.shape_mask, shape_block_right.shape_group);
 
 self.seesaw_angle = 0;
 
@@ -24,14 +24,6 @@ self.matrix_block_left = undefined;
 self.matrix_block_right = undefined;
 
 self.CalculateAllPositions = function() {
-    if (keyboard_check(vk_pageup)) {
-        self.state.change("tilt_left");
-    }
-
-    if (keyboard_check(vk_pagedown)) {
-        self.state.change("tilt_right");
-    }
-    
     var base_position_matrix = matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1);
     self.matrix_base = matrix_multiply(self.rotation_mat, base_position_matrix);
     
