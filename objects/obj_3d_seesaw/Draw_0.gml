@@ -1,10 +1,10 @@
 var base_position_matrix = matrix_build(self.x, self.y, self.z, 0, 0, 0, 1, 1, 1);
 var base_transform_matrix = matrix_multiply(self.rotation_mat, base_position_matrix);
 matrix_set(matrix_world, base_transform_matrix);
-self.mesh_pivot.Render();
+self.mesh.Render();
 
 // draw the seesaw
-var seesaw_position = array_search_with_name(self.mesh_pivot.collision_shapes, "#AnchorSeesaw").position;
+var seesaw_position = array_search_with_name(self.mesh.collision_shapes, "#AnchorSeesaw").position;
 var seesaw_rotation_matrix = matrix_build(0, 0, 0, 0, 0, self.seesaw_angle, 1, 1, 1);
 
 if (keyboard_check(vk_pageup)) {

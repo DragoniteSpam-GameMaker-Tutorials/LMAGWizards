@@ -190,6 +190,7 @@
     {"name":"input_hotswap_params_set","order":1,"path":"scripts/input_hotswap_params_set/input_hotswap_params_set.yy",},
     {"name":"input_gamepad_is_axis","order":8,"path":"scripts/input_gamepad_is_axis/input_gamepad_is_axis.yy",},
     {"name":"input_cursor_limit_aabb","order":5,"path":"scripts/input_cursor_limit_aabb/input_cursor_limit_aabb.yy",},
+    {"name":"col_shape_from_penguin","order":45,"path":"scripts/col_shape_from_penguin/col_shape_from_penguin.yy",},
     {"name":"__input_gamepad_set_type","order":6,"path":"scripts/__input_gamepad_set_type/__input_gamepad_set_type.yy",},
     {"name":"input_source_using","order":8,"path":"scripts/input_source_using/input_source_using.yy",},
     {"name":"Game_State","order":3,"path":"scripts/Game_State/Game_State.yy",},

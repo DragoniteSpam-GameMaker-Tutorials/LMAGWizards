@@ -231,6 +231,7 @@
     {"id":{"name":"input_hotswap_params_set","path":"scripts/input_hotswap_params_set/input_hotswap_params_set.yy",},},
     {"id":{"name":"input_gamepad_is_axis","path":"scripts/input_gamepad_is_axis/input_gamepad_is_axis.yy",},},
     {"id":{"name":"input_cursor_limit_aabb","path":"scripts/input_cursor_limit_aabb/input_cursor_limit_aabb.yy",},},
+    {"id":{"name":"col_shape_from_penguin","path":"scripts/col_shape_from_penguin/col_shape_from_penguin.yy",},},
     {"id":{"name":"__input_gamepad_set_type","path":"scripts/__input_gamepad_set_type/__input_gamepad_set_type.yy",},},
     {"id":{"name":"input_source_using","path":"scripts/input_source_using/input_source_using.yy",},},
     {"id":{"name":"Game_State","path":"scripts/Game_State/Game_State.yy",},},
