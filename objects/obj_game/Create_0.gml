@@ -95,6 +95,10 @@ var block = instance_create_depth(228, 100, -300, obj_3d_spell_block);
 block.SetMesh(self.meshes.block);
 block.UpdateCollisionPositions();
 
+var block = instance_create_depth(100 - 128, 100, -300, obj_3d_spell_block);
+block.SetMesh(self.meshes.block);
+block.UpdateCollisionPositions();
+
 enum ECollisionMasks {
     NONE                    = 0b_0000_0000,
     DEFAULT                 = 0b_0000_0001,

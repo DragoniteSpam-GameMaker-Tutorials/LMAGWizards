@@ -8,6 +8,7 @@
   "managed": true,
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"value":"obj_spell_push",},
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"seesaw_mass","path":"objects/obj_entity/obj_entity.yy",},"value":"2",},
   ],
   "parent": {
     "name": "3D objects",

@@ -96,9 +96,15 @@ self.HandleActivation = function() {
     if (is_left && !is_right) {
         self.state.change("tilt_left");
     } else if (is_right && !is_left) {
-        self.state.change("tilt_right")
+        self.state.change("tilt_right");
     } else if (is_left && is_right) {
-        self.state.change("balanced")
+        if (is_left.reference.seesaw_mass > is_right.reference.seesaw_mass) {
+            self.state.change("tilt_left");
+        } else if (is_left.reference.seesaw_mass < is_right.reference.seesaw_mass) {
+            self.state.change("tilt_right");
+        } else {
+            self.state.change("balanced");
+        }
     }
 };
 
