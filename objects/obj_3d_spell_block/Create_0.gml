@@ -4,6 +4,59 @@ self.target = undefined;
 
 self.state = new SnowState("idle")
 	.add("idle", {
+        update: function() {
+            if (!self.IsGrounded()) {
+                self.state.change("falling");
+            }
+        }
+	})
+	.add("falling", {
+        enter: function() {
+            show_debug_message("block is now falling")
+        },
+        leave: function() {
+            show_debug_message("block has landed")
+        },
+        update: function() {
+            // properly do this later
+            static grav = 9;
+            static block_size = 32;
+            self.yspeed -= grav * PDT;
+            
+            var step = abs(self.yspeed);
+            var dir = sign(self.yspeed);
+            repeat (step div block_size) {
+                self.y += dir * block_size;
+                self.cshapes[0].position.y += dir * block_size;
+                
+                if (obj_game.collision.CheckObject(self.cobjects[0])) {
+                    self.y -= dir * block_size;
+                    self.cshapes[0].position.y -= dir * block_size;
+                    break;
+                }
+                
+                step -= block_size;
+            }
+            
+            repeat (step) {
+                self.y += dir;
+                self.cshapes[0].position.y += dir;
+                
+                if (obj_game.collision.CheckObject(self.cobjects[0])) {
+                    self.y -= dir;
+                    self.cshapes[0].position.y -= dir;
+                    break;
+                }
+                
+                //step -= 1;
+            }
+            
+            if (self.IsGrounded()) {
+                self.state.change("idle");
+            }
+            
+            self.UpdateCollisionPositions();
+        }
 	})
 	.add("moving", {
 		update: function() {
@@ -40,4 +93,13 @@ self.OnSpellHit = function(spell) {
 	
     self.target = new Vector3(self.x + dist * dcos(dir), self.y, self.z - dist * dsin(dir));
 	self.state.change("moving");
+};
+
+self.IsGrounded = function() {
+    if (self.y <= 0) return true;
+    
+    self.cshapes[0].position.y -= 1;
+    var grounded = obj_game.collision.CheckObject(self.cobjects[0]);
+    self.cshapes[0].position.y += 1;
+    return grounded;
 };
