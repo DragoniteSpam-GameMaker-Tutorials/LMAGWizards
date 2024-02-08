@@ -160,7 +160,7 @@ self.cobject_climb = new ColObject(climb_shape, self.id, ECollisionMasks.NONE, E
 var player_activator_collision = array_search_with_name(player_data.collision_shapes, "#Activator");
 
 original_position = new Vector3(player_activator_collision.position.x, player_activator_collision.position.y, player_activator_collision.position.z);
-var activator_shape = new ColSphere(original_position, player_climb_collision.radius);
+var activator_shape = new ColAABB(original_position, player_activator_collision.scale);
 activator_shape.original_position = original_position.Mul(1);
 self.cobject_activator = new ColObject(activator_shape, self.id, ECollisionMasks.ACTIVATOR, ECollisionMasks.NONE);
 #endregion

@@ -88,6 +88,9 @@ var map = new UnityMapImport("test.place", self.meshes);
 var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
 seesaw.UpdateCollisionPositions();
 
+var seesaw = instance_create_depth(100, 0, -450, obj_3d_seesaw);
+seesaw.UpdateCollisionPositions();
+
 var block = instance_create_depth(228, 100, -300, obj_3d_spell_block);
 block.SetMesh(self.meshes.block);
 block.UpdateCollisionPositions();

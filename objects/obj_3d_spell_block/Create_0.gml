@@ -11,12 +11,6 @@ self.state = new SnowState("idle")
         }
 	})
 	.add("falling", {
-        enter: function() {
-            show_debug_message("block is now falling")
-        },
-        leave: function() {
-            show_debug_message("block has landed")
-        },
         update: function() {
             // properly do this later
             static grav = 9;
