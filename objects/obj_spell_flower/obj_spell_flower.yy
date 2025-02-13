@@ -5,7 +5,7 @@
   "managed":true,
   "name":"obj_spell_flower",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"type","path":"objects/obj_spell/obj_spell.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ESpellTypes.BLOOM",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"type","path":"objects/obj_spell/obj_spell.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ESpellTypes.BLOOM",},
   ],
   "parent":{
     "name":"Spells",
