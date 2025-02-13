@@ -1,10 +1,12 @@
 {
-  "resourceType": "GMShader",
-  "resourceVersion": "1.0",
-  "name": "shd_deferred",
-  "parent": {
-    "name": "Deferred Rendering",
-    "path": "folders/Deferred Rendering.yy",
+  "$GMShader":"",
+  "%Name":"shd_deferred",
+  "name":"shd_deferred",
+  "parent":{
+    "name":"Deferred Rendering",
+    "path":"folders/Deferred Rendering.yy",
   },
-  "type": 1,
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
 }

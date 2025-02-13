@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Group_Quest",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+  "$GMScript":"v1",
+  "%Name":"Group_Quest",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Quest",
+  "parent":{
+    "name":"LMAGWizards",
+    "path":"LMAGWizards.yyp",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

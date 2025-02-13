@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "col_shape_from_penguin",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "LMAGWizards",
-    "path": "LMAGWizards.yyp",
+  "$GMScript":"v1",
+  "%Name":"col_shape_from_penguin",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"col_shape_from_penguin",
+  "parent":{
+    "name":"LMAGWizards",
+    "path":"LMAGWizards.yyp",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

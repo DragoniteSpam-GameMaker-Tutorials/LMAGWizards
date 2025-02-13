@@ -1,5 +1,5 @@
 {
-  "FolderOrderSettings": [
+  "FolderOrderSettings":[
     {"name":"Animation Stuff","order":42,"path":"folders/Animation Stuff.yy",},
     {"name":"Audio","order":30,"path":"folders/Audio.yy",},
     {"name":"Collision Stuff","order":39,"path":"folders/Collision Stuff.yy",},
@@ -53,7 +53,7 @@
     {"name":"Test stuff","order":25,"path":"folders/Test stuff.yy",},
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
   ],
-  "ResourceOrderSettings": [
+  "ResourceOrderSettings":[
     {"name":"input_vibrate_get_strength","order":4,"path":"scripts/input_vibrate_get_strength/input_vibrate_get_strength.yy",},
     {"name":"input_binding_is_valid","order":7,"path":"scripts/input_binding_is_valid/input_binding_is_valid.yy",},
     {"name":"input_join_params_get","order":3,"path":"scripts/input_join_params_get/input_join_params_get.yy",},

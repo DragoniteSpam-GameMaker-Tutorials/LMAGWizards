@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "spart_system",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "sPart",
-    "path": "folders/sPart/Scripts/sPart.yy",
+  "$GMScript":"v1",
+  "%Name":"spart_system",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"spart_system",
+  "parent":{
+    "name":"sPart",
+    "path":"folders/sPart/Scripts/sPart.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

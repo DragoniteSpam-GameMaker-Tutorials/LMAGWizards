@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "cluck_set_fog",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Scripts",
-    "path": "folders/Luminous Chickens/Scripts.yy",
+  "$GMScript":"v1",
+  "%Name":"cluck_set_fog",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cluck_set_fog",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Luminous Chickens/Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
