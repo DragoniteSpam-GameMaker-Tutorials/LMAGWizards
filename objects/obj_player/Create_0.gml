@@ -43,8 +43,14 @@ self.state.add("default", {
 		self.direction = 360 - self.camera.direction;
         
         // properly do this later
-        static grav = 9;
-        self.yspeed -= grav * PDT;
+        static grav_up = 12;
+        static grav_down = grav_up * 1.8;
+        
+        if (self.yspeed > 0) {
+            self.yspeed -= grav_up * PDT;
+        } else {
+            self.yspeed -= grav_down * PDT;
+        }
         
         self.HandleMovement();
         self.HandleClimbing();
