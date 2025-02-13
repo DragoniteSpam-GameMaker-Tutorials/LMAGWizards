@@ -1,6 +1,6 @@
 #macro Particles global.__particles 
 
-Particles = new (function() constructor {
+function SparticleSystem() constructor {
     self.systems = {
         test_unlit_effects: new spart_system([256, 600]),
     };
@@ -53,4 +53,4 @@ Particles = new (function() constructor {
         shader_set_uniform_f(shader_get_uniform(sh_spart, "u_MaterialType"), 0);
         self.systems.test_unlit_effects.draw(game_get_speed(gamespeed_microseconds) / 1000000);
     };
-})();
+};

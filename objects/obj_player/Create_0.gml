@@ -259,6 +259,9 @@ self.HandleJump = function() {
     }
 };
 
+self.speed_current = 0;
+self.direction_of_motion = 0;
+
 self.HandleMovement = function() {
     var dx = 0;
     var dy = 0;
@@ -266,35 +269,55 @@ self.HandleMovement = function() {
     
     static speed_run = 300;
     static speed_walk = 180;
-    var spd = (input_check("run") ? speed_run : speed_walk) * PDT;
+    var speed_target = 0;
+    var is_running = input_check("run");
     
     if (input_check("up")) {
         dx += dcos(self.camera.direction);
         dz -= dsin(self.camera.direction);
+        self.direction_of_motion = point_direction(0, 0, dx, dz);
         self.direction = 360 - self.camera.direction;
+        speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("down")) {
         dx -= dcos(self.camera.direction);
         dz += dsin(self.camera.direction);
+        self.direction_of_motion = point_direction(0, 0, dx, dz);
         self.direction = 360 - self.camera.direction;
+        speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("right")) {
         dx -= dsin(self.camera.direction);
         dz -= dcos(self.camera.direction);
+        self.direction_of_motion = point_direction(0, 0, dx, dz);
         self.direction = 360 - self.camera.direction;
+        speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("left")) {
         dx += dsin(self.camera.direction);
         dz += dcos(self.camera.direction);
+        self.direction_of_motion = point_direction(0, 0, dx, dz);
         self.direction = 360 - self.camera.direction;
+        speed_target = (is_running ? speed_run : speed_walk);
     }
     
-    self.xspeed = dx * spd;
-    //self.yspeed *= spd;
-    self.zspeed = dz * spd;
+    dx =  dcos(self.direction_of_motion);
+    dz = -dsin(self.direction_of_motion);
+    
+    static acceleration = 2000;
+    static deceleration = 3000;
+    if (speed_target == 0) {
+        self.speed_current = approach(self.speed_current, speed_target, deceleration * PDT);
+    } else {
+        self.speed_current = approach(self.speed_current, speed_target, acceleration * PDT);
+    }
+    
+    self.xspeed = dx * self.speed_current * PDT;
+    //self.yspeed *= self.speed_current * PDT;
+    self.zspeed = dz * self.speed_current * PDT;
 };
 
 self.HandleClimbing = function() {
