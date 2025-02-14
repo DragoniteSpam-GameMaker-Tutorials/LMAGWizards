@@ -5,8 +5,8 @@
   "managed":true,
   "name":"obj_3d_spell_barrel",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_push",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_3d_spell_boulder","path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},"propertyId":{"name":"roll_in_all_directions","path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":{"name":"obj_spell_push","path":"objects/obj_spell_push/obj_spell_push.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_push",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_3d_spell_boulder","path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},"propertyId":{"name":"roll_in_all_directions","path":"objects/obj_3d_spell_boulder/obj_3d_spell_boulder.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"False",},
   ],
   "parent":{
     "name":"3D objects",

@@ -8,7 +8,7 @@
   "managed":true,
   "name":"obj_3d_spell_secret_wall",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_unlock",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":{"name":"obj_spell_unlock","path":"objects/obj_spell_unlock/obj_spell_unlock.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_unlock",},
   ],
   "parent":{
     "name":"3D objects",

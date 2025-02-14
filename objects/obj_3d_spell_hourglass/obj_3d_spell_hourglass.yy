@@ -7,7 +7,7 @@
   "managed":true,
   "name":"obj_3d_spell_hourglass",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_time",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},"propertyId":{"name":"spell_response","path":"objects/obj_entity/obj_entity.yy",},"resource":{"name":"obj_spell_time","path":"objects/obj_spell_time/obj_spell_time.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_spell_time",},
   ],
   "parent":{
     "name":"3D objects",
