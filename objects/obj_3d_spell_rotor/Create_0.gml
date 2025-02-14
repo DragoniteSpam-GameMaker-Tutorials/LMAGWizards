@@ -10,8 +10,17 @@ self.state = new SnowState("still", false)
         leave: function() {
             self.spell_response = undefined;
         },
-        onspell: function() {
-            self.target_direction = self.rotor_direction + 90;
+        onspell: function(hit_info) {
+            var vector_to_hit = hit_info.point.Sub(hit_info.shape.position);
+            var direction_to_hit = point_direction(0, 0, vector_to_hit.x, vector_to_hit.z);
+            var vector_to_rotor = hit_info.shape.position.Sub(new Vector3(self.x, self.y, self.z));
+            var direction_to_rotor = point_direction(0, 0, vector_to_rotor.x, vector_to_rotor.z);
+            
+            if (angle_difference(direction_to_hit, direction_to_rotor) > 0) {
+                self.target_direction = self.rotor_direction + 90;
+            } else {
+                self.target_direction = self.rotor_direction - 90;
+            }
             self.state.change("turning");
         }
 	})
@@ -28,8 +37,8 @@ self.state = new SnowState("still", false)
         }
 	});
 
-self.OnSpellHit = function(spell) {
+self.OnSpellHit = function(spell, hit_info) {
     if (spell.object_index != self.spell_response) return;
     
-    self.state.onspell();
+    self.state.onspell(hit_info);
 };

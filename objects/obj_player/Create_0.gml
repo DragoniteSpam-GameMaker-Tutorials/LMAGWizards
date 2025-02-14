@@ -199,9 +199,9 @@ self.IsGrounded = function() {
 };
 
 self.DrawSpellSymbol = function() {
-	if (self.spell_symbol != undefined) {
+	if (self.spell_symbol != undefined && self.spell_symbol.obj.spell_response != undefined) {
 		var info = self.spell_symbol;
-		
+        
 		static cache = { };
 		
 		if (cache[$ string(info.obj.spell_response)] == undefined) {

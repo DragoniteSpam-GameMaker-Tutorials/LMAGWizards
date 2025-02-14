@@ -15,7 +15,7 @@ self.caster.cobject.mask = caster_mask;
 
 if (raycast_result) {
     if (raycast_result.distance <= self.velocity.Magnitude() * DT) {
-        raycast_result.shape.object.reference.OnSpellHit(self.id);
+        raycast_result.shape.object.reference.OnSpellHit(self.id, raycast_result);
         instance_destroy();
         return;
     }
