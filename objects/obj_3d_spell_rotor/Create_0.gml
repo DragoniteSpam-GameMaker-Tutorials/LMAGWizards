@@ -1,6 +1,7 @@
 event_inherited();
 
 self.rotor_direction = self.target_direction;
+self.rotor_start_direction = self.rotor_direction;
 
 self.state = new SnowState("still", false)
 	.add("still", {
@@ -16,6 +17,7 @@ self.state = new SnowState("still", false)
             var vector_to_rotor = hit_info.shape.position.Sub(new Vector3(self.x, self.y, self.z));
             var direction_to_rotor = point_direction(0, 0, vector_to_rotor.x, vector_to_rotor.z);
             
+            self.rotor_start_direction = self.rotor_direction;
             if (angle_difference(direction_to_hit, direction_to_rotor) > 0) {
                 self.target_direction = self.rotor_direction + 90;
             } else {
@@ -26,10 +28,17 @@ self.state = new SnowState("still", false)
 	})
 	.add("turning", {
         update: function() {
-            self.rotor_direction = approach(self.rotor_direction, self.target_direction, 1);
+            static rotation_speed = 150;
+            self.rotor_direction = approach(self.rotor_direction, self.target_direction, rotation_speed * DT);
             
             self.rotation_mat = matrix_build(0, 0, 0, 0, self.rotor_direction, 0, 1, 1, 1);
             self.UpdateCollisionPositions();
+            
+            array_foreach(self.cobjects, function(cobject) {
+                if (obj_game.collision.CheckObject(cobject)) {
+                    self.target_direction = self.rotor_start_direction;
+                }
+            });
             
             if (self.rotor_direction == self.target_direction) {
                 self.state.change("still");

@@ -8,6 +8,7 @@ function ColObject(shape, reference, mask = 1, group = 1) constructor {
     static CheckObject = function(object) {
         if (object == self) return false;
         if ((self.mask & object.group) == 0) return false;
+        if (object.reference == self.reference) return false;
         return self.shape.CheckObject(object);
     };
     
