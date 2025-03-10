@@ -12,3 +12,5 @@ self.OnSpellHit = function(spell) {
 };
 
 self.motion = undefined;
+
+self.state = undefined;

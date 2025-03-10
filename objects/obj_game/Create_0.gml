@@ -94,9 +94,7 @@ var rotor_1 = instance_create_depth(100 - 128, 0, -450, obj_3d_spell_rotor);
 rotor_1.SetMesh(self.meshes.rotor_3);
 rotor_1.UpdateCollisionPositions();
 
-var block = instance_create_depth(rotor_1.x + 20, 0, rotor_1.z + 20, obj_3d_spell_block);
-block.SetMesh(self.meshes.block);
-block.UpdateCollisionPositions();
+var npc = instance_create_depth(rotor_1.x + 20, 0, rotor_1.z + 20, obj_npc);
 
 enum ECollisionMasks {
     NONE                    = 0b_0000_0000,
