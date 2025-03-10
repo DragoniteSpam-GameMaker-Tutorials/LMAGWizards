@@ -470,6 +470,7 @@
     {"id":{"name":"shd_gbuff_billboard_ripple","path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},},
     {"id":{"name":"shd_gbuff_billboard","path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},},
     {"id":{"name":"shd_gbuff_main","path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},},
+    {"id":{"name":"shd_gbuff_npc","path":"shaders/shd_gbuff_npc/shd_gbuff_npc.yy",},},
     {"id":{"name":"shd_gbuff_ripple","path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},},
     {"id":{"name":"bgm_test","path":"sounds/bgm_test/bgm_test.yy",},},
     {"id":{"name":"se_test","path":"sounds/se_test/se_test.yy",},},

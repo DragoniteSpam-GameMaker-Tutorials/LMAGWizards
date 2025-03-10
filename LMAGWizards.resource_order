@@ -397,6 +397,7 @@
     {"name":"shd_gbuff_billboard_ripple","order":3,"path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},
     {"name":"shd_gbuff_billboard","order":2,"path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},
     {"name":"shd_gbuff_main","order":4,"path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},
+    {"name":"shd_gbuff_npc","order":7,"path":"shaders/shd_gbuff_npc/shd_gbuff_npc.yy",},
     {"name":"shd_gbuff_ripple","order":5,"path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},
     {"name":"se_test","order":1,"path":"sounds/se_test/se_test.yy",},
     {"name":"spr_character_duck_back","order":1,"path":"sprites/spr_character_duck_back/spr_character_duck_back.yy",},

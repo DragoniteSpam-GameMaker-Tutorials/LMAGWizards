@@ -21,12 +21,15 @@ self.meshes.ground.Render();
 matrix_set(matrix_world, matrix_build_identity());
 self.meshes.ground.Render();
 
-with (obj_entity) {
-    event_perform(ev_draw, 0);
-}
-#endregion
-
+with (obj_3d_object) event_perform(ev_draw, 0);
 with (obj_spell) event_perform(ev_draw, 0);
+
+shader_set(shd_gbuff_npc);
+material_set_material_type(EMaterialTypes.NORMAL);
+gpu_set_cullmode(cull_noculling);
+
+with (obj_npc) event_perform(ev_draw, 0);
+#endregion
 
 Particles.Render();
 
