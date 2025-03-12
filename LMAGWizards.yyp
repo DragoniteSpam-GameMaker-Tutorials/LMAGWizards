@@ -12,6 +12,7 @@
   "Folders":[
     {"$GMFolder":"","%Name":"Animation Stuff","folderPath":"folders/Animation Stuff.yy","name":"Animation Stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Audio","folderPath":"folders/Audio.yy","name":"Audio","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Character stuff","folderPath":"folders/Character stuff.yy","name":"Character stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Collision Stuff","folderPath":"folders/Collision Stuff.yy","name":"Collision Stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Shapes","folderPath":"folders/Collision Stuff/Shapes.yy","name":"Shapes","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Critical stuff","folderPath":"folders/Critical stuff.yy","name":"Critical stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -20,7 +21,6 @@
     {"$GMFolder":"","%Name":"3D objects","folderPath":"folders/Gameplay/3D objects.yy","name":"3D objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Pickups","folderPath":"folders/Gameplay/3D objects/Pickups.yy","name":"Pickups","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Spells","folderPath":"folders/Gameplay/Spells.yy","name":"Spells","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Character stuff","folderPath":"folders/Character stuff.yy","name":"Character stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Input","folderPath":"folders/Input.yy","name":"Input","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"(System)","folderPath":"folders/Input/(System).yy","name":"(System)","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Classes","folderPath":"folders/Input/(System)/Classes.yy","name":"Classes","resourceType":"GMFolder","resourceVersion":"2.0",},

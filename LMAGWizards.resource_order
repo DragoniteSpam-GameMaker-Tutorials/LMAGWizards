@@ -2,6 +2,7 @@
   "FolderOrderSettings":[
     {"name":"Animation Stuff","order":42,"path":"folders/Animation Stuff.yy",},
     {"name":"Audio","order":30,"path":"folders/Audio.yy",},
+    {"name":"Character stuff","order":50,"path":"folders/Character stuff.yy",},
     {"name":"Collision Stuff","order":39,"path":"folders/Collision Stuff.yy",},
     {"name":"Shapes","order":1,"path":"folders/Collision Stuff/Shapes.yy",},
     {"name":"Critical stuff","order":26,"path":"folders/Critical stuff.yy",},
@@ -10,7 +11,6 @@
     {"name":"3D objects","order":3,"path":"folders/Gameplay/3D objects.yy",},
     {"name":"Pickups","order":14,"path":"folders/Gameplay/3D objects/Pickups.yy",},
     {"name":"Spells","order":4,"path":"folders/Gameplay/Spells.yy",},
-    {"name":"Character stuff","order":50,"path":"folders/Character stuff.yy",},
     {"name":"Input","order":31,"path":"folders/Input.yy",},
     {"name":"(System)","order":1,"path":"folders/Input/(System).yy",},
     {"name":"Classes","order":1,"path":"folders/Input/(System)/Classes.yy",},

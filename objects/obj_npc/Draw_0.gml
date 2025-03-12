@@ -5,7 +5,7 @@ var angle = (point_direction(self.x, self.z, obj_game.active_camera.x, obj_game.
 var current_sprite = character_sprites.front;
 var matrix = matrix_build(self.x, self.y, self.z, 0, self.direction + 90, 0, 1, -1, 1);
 
-if (angle < 35 || angle > 315) {
+if (angle < 45 || angle > 315) {
     // default values
 } else if (angle < 135) {
     current_sprite = character_sprites.side;
