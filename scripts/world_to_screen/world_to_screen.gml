@@ -17,5 +17,5 @@ function world_to_screen(x, y, z, view_mat, proj_mat, w = window_get_width(), h 
         cy = proj_mat[13] + proj_mat[5] * (view_mat[1] * x + view_mat[5] * y + view_mat[9]  * z + view_mat[13]);
     }
     
-    return new Vector3((0.5 + 0.5 * cx) * w, (0.5 + 0.5 * cy) * h, 0);
+    return new Vector3((0.5 + 0.5 * cx) * w, (0.5 - 0.5 * cy) * h, 0);
 };

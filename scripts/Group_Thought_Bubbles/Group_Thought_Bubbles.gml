@@ -10,4 +10,8 @@ function ThoughtBubble(text, time_to_live, parent) constructor {
     static StillAlive = function() {
         return self.time_to_live > 0;
     };
+    
+    static GetAnchorPoint = function() {
+        return new Vector3(self.parent.x, self.parent.y + 40, self.parent.z);
+    };
 }
