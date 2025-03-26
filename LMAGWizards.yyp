@@ -483,6 +483,7 @@
     {"id":{"name":"spr_character_duck_side","path":"sprites/spr_character_duck_side/spr_character_duck_side.yy",},},
     {"id":{"name":"spr_noise","path":"sprites/spr_noise/spr_noise.yy",},},
     {"id":{"name":"spr_particle_main","path":"sprites/spr_particle_main/spr_particle_main.yy",},},
+    {"id":{"name":"spr_speech_bubble","path":"sprites/spr_speech_bubble/spr_speech_bubble.yy",},},
     {"id":{"name":"spr_spell_symbol_bounce","path":"sprites/spr_spell_symbol_bounce/spr_spell_symbol_bounce.yy",},},
     {"id":{"name":"spr_spell_symbol_flower","path":"sprites/spr_spell_symbol_flower/spr_spell_symbol_flower.yy",},},
     {"id":{"name":"spr_spell_symbol_mind_read","path":"sprites/spr_spell_symbol_mind_read/spr_spell_symbol_mind_read.yy",},},

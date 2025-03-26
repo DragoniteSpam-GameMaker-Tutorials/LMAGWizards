@@ -408,6 +408,7 @@
     {"name":"spr_character_duck_side","order":3,"path":"sprites/spr_character_duck_side/spr_character_duck_side.yy",},
     {"name":"spr_noise","order":1,"path":"sprites/spr_noise/spr_noise.yy",},
     {"name":"spr_particle_main","order":2,"path":"sprites/spr_particle_main/spr_particle_main.yy",},
+    {"name":"spr_speech_bubble","order":53,"path":"sprites/spr_speech_bubble/spr_speech_bubble.yy",},
     {"name":"spr_spell_symbol_bounce","order":6,"path":"sprites/spr_spell_symbol_bounce/spr_spell_symbol_bounce.yy",},
     {"name":"spr_spell_symbol_flower","order":8,"path":"sprites/spr_spell_symbol_flower/spr_spell_symbol_flower.yy",},
     {"name":"spr_spell_symbol_mind_read","order":13,"path":"sprites/spr_spell_symbol_mind_read/spr_spell_symbol_mind_read.yy",},
