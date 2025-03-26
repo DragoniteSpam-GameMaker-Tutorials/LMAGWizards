@@ -4,6 +4,7 @@ self.radius = 16;
 
 self.cshape = new ColSphere(new Vector3(0, self.radius, 0), self.radius);
 self.cobject = new ColObject(self.cshape, self.id, ECollisionMasks.DEFAULT, ECollisionMasks.DEFAULT);
+obj_game.collision.Add(self.cobject);
 
 self.IsGrounded = function() {
     if (self.y <= 0) return true;
@@ -30,4 +31,22 @@ self.CheckMovingObjects = function() {
 };
 
 self.OnCollision = function(displacement_vector) {
+};
+
+self.OnSpellHit = function(spell) {
+    if (spell.object_index != self.spell_response) return;
+    
+    //self.state.onspell();
+    
+    show_debug_message("hit by mind read spell")
+};
+
+self.UpdateCollisionPositions = function() {
+    var position = self.cobject.shape.position;
+    position.x = self.x;
+    position.y = self.y;
+    position.z = self.z;
+    
+    obj_game.collision.Remove(self.cobject);
+    obj_game.collision.Add(self.cobject);
 };
