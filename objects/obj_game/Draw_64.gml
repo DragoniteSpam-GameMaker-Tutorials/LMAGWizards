@@ -17,7 +17,7 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
     ww = ceil(ww / 32) * 32;
     hh = ceil(hh / 32) * 32;
     
-    draw_sprite_stretched(spr_speech_bubble, 0, location.x - ww / 2 , location.y - hh, ww, hh);
+    draw_sprite_stretched(bubble.parent.mind_read_sprite, bubble.parent.mind_read_sprite_index, location.x - ww / 2 , location.y - hh, ww, hh);
     
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
