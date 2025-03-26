@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Group_Thought_Bubbles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_Thought_Bubbles",
+  "parent":{
+    "name":"LMAGWizards",
+    "path":"LMAGWizards.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -38,7 +38,7 @@ self.OnSpellHit = function(spell) {
     
     //self.state.onspell();
     
-    show_debug_message("hit by mind read spell")
+    array_push(obj_game.thought_bubbles, new ThoughtBubble(self.GetMindReadText(), 10, self));
 };
 
 self.UpdateCollisionPositions = function() {
@@ -49,4 +49,8 @@ self.UpdateCollisionPositions = function() {
     
     obj_game.collision.Remove(self.cobject);
     obj_game.collision.Add(self.cobject);
+};
+
+self.GetMindReadText = function() {
+    return "The quick brown fox jumped over me";
 };

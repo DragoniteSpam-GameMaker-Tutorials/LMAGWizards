@@ -22,6 +22,8 @@ self.gbuff_normal = -1;
 self.time_scale = 1;
 self.active_timer_objects = [];
 
+self.thought_bubbles = [];
+
 self.ActivateTimer = function(timer) {
 	array_push(self.active_timer_objects, timer);
 	self.time_scale = 0.25;
