@@ -18,5 +18,5 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
     
     draw_set_colour(c_black);
     
-    draw_text_ext(location.x, location.y - hh / 2, bubble.text, -1, ww - 32);
+    draw_text_ext(location.x, location.y - hh / 2, string_copy(bubble.text, 1, bubble.text_index), -1, ww - 32);
 }
