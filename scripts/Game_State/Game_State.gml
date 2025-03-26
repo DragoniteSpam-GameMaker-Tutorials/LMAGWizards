@@ -114,6 +114,7 @@ function GameStateClass() constructor {
                 case obj_spell_push: json.spells[i] = ESpellTypes.PUSH; break;
                 case obj_spell_time: json.spells[i] = ESpellTypes.SLOW_TIME; break;
                 case obj_spell_unlock: json.spells[i] = ESpellTypes.UNLOCK; break;
+                case obj_spell_mind_read: json.spells[i] = ESpellTypes.MIND_READ; break;
             }
         }
         
@@ -136,6 +137,7 @@ function GameStateClass() constructor {
                 case ESpellTypes.PUSH: self.known_spells[i] = obj_spell_push; break;
                 case ESpellTypes.SLOW_TIME: self.known_spells[i] = obj_spell_time; break;
                 case ESpellTypes.UNLOCK: self.known_spells[i] = obj_spell_unlock; break;
+                case ESpellTypes.MIND_READ: self.known_spells[i] = obj_spell_mind_read; break;
             }
         }
     };
@@ -147,3 +149,4 @@ GameState.AddSpell(obj_spell_bounce);
 GameState.AddSpell(obj_spell_unlock);
 GameState.AddSpell(obj_spell_flower);
 GameState.AddSpell(obj_spell_time);
+GameState.AddSpell(obj_spell_mind_read);

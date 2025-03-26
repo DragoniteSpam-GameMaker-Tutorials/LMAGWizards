@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_spell_time",
+  "%Name":"obj_spell_mind_read",
   "eventList":[],
   "managed":true,
-  "name":"obj_spell_time",
+  "name":"obj_spell_mind_read",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"type","path":"objects/obj_spell/obj_spell.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ESpellTypes.SLOW_TIME",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_spell","path":"objects/obj_spell/obj_spell.yy",},"propertyId":{"name":"type","path":"objects/obj_spell/obj_spell.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ESpellTypes.MIND_READ",},
   ],
   "parent":{
     "name":"Spells",
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_spell_symbol_time",
-    "path":"sprites/spr_spell_symbol_time/spr_spell_symbol_time.yy",
+    "name":"spr_spell_symbol_mind_read",
+    "path":"sprites/spr_spell_symbol_mind_read/spr_spell_symbol_mind_read.yy",
   },
   "spriteMaskId":null,
   "visible":false,

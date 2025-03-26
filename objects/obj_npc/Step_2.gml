@@ -23,5 +23,3 @@ if (self.cobject.shape.position.y < potential.y && self.yspeed > 0) {
 if (self.y < 0) {
     self.y = 0;
 }
-
-self.direction++;
