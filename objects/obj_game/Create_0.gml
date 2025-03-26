@@ -91,6 +91,11 @@ seesaw.UpdateCollisionPositions();
 
 var npc = instance_create_depth(100, 0, -450, obj_npc);
 
+npc = instance_create_depth(200, 0, -450, obj_npc);
+npc.GetMindReadText = function() {
+    return "Can someone explain sara's collision code, can someone explain what it does?\n\nfor I followed her video exactly, and it simply won't work, just because!";
+};
+
 instance_create_depth(0, 0, 0, obj_player);
 
 enum ECollisionMasks {
