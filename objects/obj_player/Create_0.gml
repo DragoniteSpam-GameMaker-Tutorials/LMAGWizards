@@ -40,7 +40,8 @@ self.state.add("default", {
     },
     update: function() {
         self.HandleCamera();
-		self.direction = 360 - self.camera.direction;
+        
+		self.direction = 360 - obj_game.camera.direction;
         
         // properly do this later
         static grav_up = 12;
@@ -69,7 +70,7 @@ self.state.add("default", {
     update: function() {
         self.HandleCamera();
         self.HandleCasting();
-		self.direction = 360 - self.camera.direction;
+		self.direction = 360 - obj_game.camera.direction;
         
         var bounce_speed = 250;
         
@@ -150,8 +151,6 @@ self.state.add("default", {
 
 self.climbing_target = undefined;
 
-self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
-
 #region Special collision object - climb detection
 var player_data = obj_game.meshes.player;
 var player_climb_collision = array_search_with_name(player_data.collision_shapes, "#ClimbDetection");
@@ -224,37 +223,38 @@ self.DrawSpellSymbol = function() {
 
 self.UpdateCamera = function() {
 	var camera_target = self.GetCameraTarget();
+    var camera = obj_game.camera;
     
-    self.camera.xto = camera_target.x;
-    self.camera.yto = camera_target.y;
-    self.camera.zto = camera_target.z;
+    camera.xto = camera_target.x;
+    camera.yto = camera_target.y;
+    camera.zto = camera_target.z;
     
-    self.camera.x = self.camera.xto - self.camera.distance * dcos(self.camera.direction) * dcos(self.camera.pitch);
-    self.camera.y = self.camera.yto + self.camera.distance * dsin(self.camera.pitch);
-    self.camera.z = self.camera.zto + self.camera.distance * dsin(self.camera.direction) * dcos(self.camera.pitch);
+    camera.x = camera.xto - camera.distance * dcos(camera.direction) * dcos(camera.pitch);
+    camera.y = camera.yto + camera.distance * dsin(camera.pitch);
+    camera.z = camera.zto + camera.distance * dsin(camera.direction) * dcos(camera.pitch);
 };
 
 self.HandleCamera = function() {
-    obj_game.active_camera = self.camera;
+    var camera = obj_game.camera;
     static look_sensitivity = 1 / 3;
     static max_pitch = 80;
     var mx = (input_cursor_x() - input_cursor_previous_x()) * look_sensitivity;
     var my = (input_cursor_y() - input_cursor_previous_y()) * look_sensitivity;
-    self.camera.direction += mx;
-    self.camera.pitch = clamp(self.camera.pitch + my, -max_pitch, max_pitch);
+    camera.direction += mx;
+    camera.pitch = clamp(camera.pitch + my, -max_pitch, max_pitch);
     
     static camera_speed = 600;
     static camera_min = 80;
     static camera_max = 240;
     
     if (input_check("camera_in")) {
-        self.camera.distance -= camera_speed * PDT;
+        camera.distance -= camera_speed * PDT;
     }
     if (input_check("camera_out")) {
-        self.camera.distance += camera_speed * PDT;
+        camera.distance += camera_speed * PDT;
     }
     
-    self.camera.distance = clamp(self.camera.distance, camera_min, camera_max);
+    camera.distance = clamp(camera.distance, camera_min, camera_max);
 };
 
 self.HandleJump = function() {
@@ -278,35 +278,37 @@ self.HandleMovement = function() {
     var speed_target = 0;
     var is_running = input_check("run");
     
+    var camera = obj_game.camera;
+    
     if (input_check("up")) {
-        dx += dcos(self.camera.direction);
-        dz -= dsin(self.camera.direction);
+        dx += dcos(camera.direction);
+        dz -= dsin(camera.direction);
         self.direction_of_motion = point_direction(0, 0, dx, dz);
-        self.direction = 360 - self.camera.direction;
+        self.direction = 360 - camera.direction;
         speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("down")) {
-        dx -= dcos(self.camera.direction);
-        dz += dsin(self.camera.direction);
+        dx -= dcos(camera.direction);
+        dz += dsin(camera.direction);
         self.direction_of_motion = point_direction(0, 0, dx, dz);
-        self.direction = 360 - self.camera.direction;
+        self.direction = 360 - camera.direction;
         speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("right")) {
-        dx -= dsin(self.camera.direction);
-        dz -= dcos(self.camera.direction);
+        dx -= dsin(camera.direction);
+        dz -= dcos(camera.direction);
         self.direction_of_motion = point_direction(0, 0, dx, dz);
-        self.direction = 360 - self.camera.direction;
+        self.direction = 360 - camera.direction;
         speed_target = (is_running ? speed_run : speed_walk);
     }
     
     if (input_check("left")) {
-        dx += dsin(self.camera.direction);
-        dz += dcos(self.camera.direction);
+        dx += dsin(camera.direction);
+        dz += dcos(camera.direction);
         self.direction_of_motion = point_direction(0, 0, dx, dz);
-        self.direction = 360 - self.camera.direction;
+        self.direction = 360 - camera.direction;
         speed_target = (is_running ? speed_run : speed_walk);
     }
     
@@ -360,10 +362,11 @@ self.HandleCasting = function() {
     var potential_spell_target = undefined;
     
 	var wand_target = self.GetCameraTarget();
+    var camera = obj_game.camera;
     
-    var dx = self.camera.xto - self.camera.x;
-    var dy = self.camera.yto - self.camera.y;
-    var dz = self.camera.zto - self.camera.z;
+    var dx = camera.xto - camera.x;
+    var dy = camera.yto - camera.y;
+    var dz = camera.zto - camera.z;
     var motion = new Vector3(dx, dy, dz).Normalize();
     var ray = new ColRay(wand_target, motion);
     
@@ -387,9 +390,9 @@ self.HandleCasting = function() {
     }
     
     if (potential_spell_target != undefined && input_check_released("cast")) {
-        var dx = self.camera.xto - self.camera.x;
-        var dy = self.camera.yto - self.camera.y;
-        var dz = self.camera.zto - self.camera.z;
+        var dx = camera.xto - camera.x;
+        var dy = camera.yto - camera.y;
+        var dz = camera.zto - camera.z;
         var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
         var spell = instance_create_depth(wand_target.x, wand_target.y, wand_target.z, potential_spell_target.spell_response, {
             velocity: motion,

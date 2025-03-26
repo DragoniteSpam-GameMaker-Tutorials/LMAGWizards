@@ -1,7 +1,7 @@
 #region Set up the render targets
 gpu_set_cullmode(cull_counterclockwise);
 
-self.active_camera.Apply();
+self.camera.Apply();
 
 shader_set(shd_gbuff_main);
 surface_set_target_ext(1, self.gbuff_position);
@@ -10,7 +10,7 @@ surface_set_target_ext(3, self.gbuff_normal);
 
 draw_clear(c_black);
 
-self.active_camera.DrawSkybox(self.meshes.skybox);
+self.camera.DrawSkybox(self.meshes.skybox);
 #endregion
 
 #region All of the stuff in the 3D world
