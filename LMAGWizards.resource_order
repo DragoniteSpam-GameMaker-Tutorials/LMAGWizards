@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings":[
     {"name":"Animation Stuff","order":42,"path":"folders/Animation Stuff.yy",},
+    {"name":"Aquila Pathfinding","order":54,"path":"folders/Aquila Pathfinding.yy",},
     {"name":"Audio","order":30,"path":"folders/Audio.yy",},
     {"name":"Character stuff","order":50,"path":"folders/Character stuff.yy",},
     {"name":"Collision Stuff","order":39,"path":"folders/Collision Stuff.yy",},

@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"Animation Stuff","folderPath":"folders/Animation Stuff.yy","name":"Animation Stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Aquila Pathfinding","folderPath":"folders/Aquila Pathfinding.yy","name":"Aquila Pathfinding","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Audio","folderPath":"folders/Audio.yy","name":"Audio","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Character stuff","folderPath":"folders/Character stuff.yy","name":"Character stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Collision Stuff","folderPath":"folders/Collision Stuff.yy","name":"Collision Stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -81,7 +82,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.11.0.179",
+    "IDEVersion":"2024.1400.0.827",
   },
   "name":"LMAGWizards",
   "resources":[
@@ -205,6 +206,7 @@
     {"id":{"name":"__input_window_changed","path":"scripts/__input_window_changed/__input_window_changed.yy",},},
     {"id":{"name":"__penguin_classes","path":"scripts/__penguin_classes/__penguin_classes.yy",},},
     {"id":{"name":"__snowstate_config","path":"scripts/__snowstate_config/__snowstate_config.yy",},},
+    {"id":{"name":"Aquila","path":"scripts/Aquila/Aquila.yy",},},
     {"id":{"name":"Camera","path":"scripts/Camera/Camera.yy",},},
     {"id":{"name":"cluck_apply","path":"scripts/cluck_apply/cluck_apply.yy",},},
     {"id":{"name":"cluck_init","path":"scripts/cluck_init/cluck_init.yy",},},
