@@ -1,12 +1,25 @@
 event_inherited();
 
 if (keyboard_check_pressed(vk_enter)) {
-    self.pathfinding = [
-        self.GetNearestPathfindingWaypoint()
-    ];
+    var start = self.GetNearestPathfindingWaypoint();
+    var target = choose(
+        obj_game.a1,
+        obj_game.a2,
+        obj_game.a3,
+        obj_game.a4,
+        obj_game.a5,
+        obj_game.a6,
+        obj_game.a7
+    );
+    
+    var path = obj_game.aquila.Navigate(start, target);
+    self.pathfinding = path.route;
 }
 
-if (self.pathfinding != undefined) {
+if (self.pathfinding == undefined) {
+    self.xspeed = 0;
+    self.zspeed = 0;
+} else {
     var speed_run = 300 * DT;
     var speed_walk = 180 * DT;
     
@@ -17,8 +30,21 @@ if (self.pathfinding != undefined) {
     
     var dist = point_distance(0, 0, dx, dz);
     
-    if (dist <= speed_walk) {
-        
+    // if you're right on top of a node, stop
+    if (dist <= 0.1) {
+        dx = 0;
+        dz = 0;
+        array_delete(self.pathfinding, 0, 1);
+        if (array_length(self.pathfinding) == 0) {
+            self.pathfinding = undefined;
+        }
+    // if you're close to a node, set the speed to the vector in the direction of the node
+    } else if (dist <= speed_walk) {
+        array_delete(self.pathfinding, 0, 1);
+        if (array_length(self.pathfinding) == 0) {
+            self.pathfinding = undefined;
+        }
+    // if you're far from a node, set the speed to a vector of the magnitude of the walk speed
     } else {
         dx /= dist;
         dz /= dist;

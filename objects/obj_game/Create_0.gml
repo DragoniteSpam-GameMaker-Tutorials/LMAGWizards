@@ -89,9 +89,9 @@ var map = new UnityMapImport("test.place", self.meshes);
 var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
 seesaw.UpdateCollisionPositions();
 
-var npc = instance_create_depth(-200, 0, -450, obj_npc);
+//var npc = instance_create_depth(-200, 0, -450, obj_npc);
 
-npc = instance_create_depth(200, 0, -450, obj_npc);
+var npc = instance_create_depth(200, 0, -450, obj_npc);
 npc.GetMindReadText = function() {
     return "Can someone explain sara's collision code, can someone explain what it does?\n\nfor I followed her video exactly, and it simply won't work, just because!";
 };

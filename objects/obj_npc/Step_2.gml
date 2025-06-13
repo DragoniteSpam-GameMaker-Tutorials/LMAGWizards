@@ -1,14 +1,14 @@
 var potential = new Vector3(self.xspeed + self.x, self.yspeed + self.y + self.radius, self.zspeed + self.z);
 potential = potential.Add(self.CheckMovingObjects());
 self.cobject.shape.Set(potential);
-var displaced_position = obj_game.collision.DisplaceSphere(self.cobject);
+/*var displaced_position = obj_game.collision.DisplaceSphere(self.cobject);
 
 if (displaced_position == undefined) {
     self.cobject.shape.Set(potential);
 } else {
 	self.OnCollision(displaced_position.Sub(self.cobject.shape.position));
     self.cobject.shape.Set(displaced_position);
-}
+}*/
 
 self.x = self.cobject.shape.position.x;
 self.y = self.cobject.shape.position.y - self.radius;
