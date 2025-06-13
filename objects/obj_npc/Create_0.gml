@@ -54,3 +54,33 @@ self.UpdateCollisionPositions = function() {
 self.GetMindReadText = function() {
     return "The quick brown fox jumped over me";
 };
+
+self.GetNearestPathfindingWaypoint = function() {
+    var choices = [
+        obj_game.a1,
+        obj_game.a2,
+        obj_game.a3,
+        obj_game.a4,
+        obj_game.a5,
+        obj_game.a6,
+        obj_game.a7,
+    ];
+    
+    var nearest = undefined;
+    var nearest_distance = infinity;
+    
+    for (var i = 0, n = array_length(choices); i < n; i++) {
+        if (nearest == undefined) {
+            nearest = choices[i];
+        } else {
+            var location = nearest.data;
+            var test_distance = point_distance_3d(self.x, self.y, self.z, location.x, location.y, location.z);
+            if (test_distance < nearest_distance) {
+                nearest_distance = test_distance;
+                nearest = choices[i];
+            }
+        }
+    }
+    
+    return nearest;
+};
