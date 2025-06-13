@@ -6,6 +6,8 @@ self.cshape = new ColSphere(new Vector3(0, self.radius, 0), self.radius);
 self.cobject = new ColObject(self.cshape, self.id, ECollisionMasks.DEFAULT, ECollisionMasks.DEFAULT);
 obj_game.collision.Add(self.cobject);
 
+self.pathfinding = undefined;
+
 self.IsGrounded = function() {
     if (self.y <= 0) return true;
     
@@ -70,11 +72,12 @@ self.GetNearestPathfindingWaypoint = function() {
     var nearest_distance = infinity;
     
     for (var i = 0, n = array_length(choices); i < n; i++) {
+        var location = choices[i].data;
+        var test_distance = point_distance_3d(self.x, self.y, self.z, location.x, location.y, location.z);
         if (nearest == undefined) {
             nearest = choices[i];
+            nearest_distance = test_distance;
         } else {
-            var location = nearest.data;
-            var test_distance = point_distance_3d(self.x, self.y, self.z, location.x, location.y, location.z);
             if (test_distance < nearest_distance) {
                 nearest_distance = test_distance;
                 nearest = choices[i];
