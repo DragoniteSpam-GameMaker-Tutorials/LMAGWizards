@@ -117,11 +117,44 @@ function UnityMapImport(filename, meshes) constructor {
     
     static load_pathfinding = function(buffer) {
         var node_count = buffer_read(buffer, buffer_s32);
-        show_message(node_count);
+        var nodes = { };
+        var aquila = new Aquila();
+        for (var i = 0; i < node_count; i++) {
+            var node_id = buffer_read(buffer, buffer_s32);
+            var node_x = buffer_read(buffer, buffer_f32);
+            var node_y = buffer_read(buffer, buffer_f32);
+            var node_z = buffer_read(buffer, buffer_f32);
+            var node_position = new Vector3(node_x, node_y, node_z);
+            var connection_count = buffer_read(buffer, buffer_s32);
+            var connections = array_create(connection_count);
+            for (var j = 0; j < connection_count; j++) {
+                connections[j] = buffer_read(buffer, buffer_s32);
+            }
+            
+            nodes[$ string(node_id)] = {
+                id: node_id,
+                position: node_position,
+                connections: connections,
+                aquila_node: aquila.AddNode(node_position)
+            };
+        }
+        
+        // yes you can use struct_foreach and array_map for this, but the code
+        // would look hideous
+        var keys = struct_get_names(nodes);
+        for (var i = 0, n = array_length(keys); i < n; i++) {
+            var node = nodes[$ keys[i]];
+            for (var j = 0, n2 = array_length(node.connections); j < n2; j++) {
+                node.connections[j] = nodes[$ string(node.connections[j])];
+                var other_node = node.connections[j];
+                node.aquila_node.Connect(other_node.aquila_node, node.position.DistanceTo(other_node.position));
+            }
+        }
     };
     
-    var buffer = buffer_load(filename);
+    self.aquila = undefined;
     
+    var buffer = buffer_load(filename);
     var header = buffer_read(buffer, buffer_string);
     
     if (header != header_value) {
@@ -139,7 +172,7 @@ function UnityMapImport(filename, meshes) constructor {
                 load_objects(buffer, meshes);
                 break;
             case "PATHFINDING":
-                load_pathfinding(buffer);
+                self.aquila = load_pathfinding(buffer);
                 break;
             default:
                 show_debug_message($"no reader function recognized: {type}");

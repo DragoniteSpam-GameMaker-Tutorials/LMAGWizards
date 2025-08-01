@@ -43,7 +43,7 @@ application_surface_draw_enable(false);
 var buffer = buffer_load("cube.vbuff");
 self.debug_cube = vertex_create_buffer_from_buffer(buffer, self.vertex_format);
 buffer_delete(buffer);
-var buffer = buffer_load("sphere.vbuff");
+buffer = buffer_load("sphere.vbuff");
 self.debug_sphere = vertex_create_buffer_from_buffer(buffer, self.vertex_format);
 buffer_delete(buffer);
 
@@ -66,7 +66,7 @@ try {
 }
 
 try {
-    var buffer = buffer_load(FILE_AUDIO_SETTINGS);
+    buffer = buffer_load(FILE_AUDIO_SETTINGS);
     var json = buffer_read(buffer, buffer_text);
     buffer_delete(buffer);
     
@@ -97,34 +97,6 @@ npc.GetMindReadText = function() {
 };
 
 instance_create_depth(0, 0, 0, obj_player);
-
-self.aquila = new Aquila();
-
-self.p1 = new Vector3(92, 0, -130);
-self.p2 = new Vector3(194, 0, -122);
-self.p3 = new Vector3(232, 0, 258);
-self.p4 = new Vector3(107, 0, 263);
-self.p5 = new Vector3(-102, 0, 221);
-self.p6 = new Vector3(-107, 0, 410);
-self.p7 = new Vector3(165, 0, 442);
-
-self.a1 = self.aquila.AddNode(self.p1);
-self.a2 = self.aquila.AddNode(self.p2);
-self.a3 = self.aquila.AddNode(self.p3);
-self.a4 = self.aquila.AddNode(self.p4);
-self.a5 = self.aquila.AddNode(self.p5);
-self.a6 = self.aquila.AddNode(self.p6);
-self.a7 = self.aquila.AddNode(self.p7);
-
-self.a1.Connect(self.a2, self.p1.DistanceTo(self.p2), true);
-self.a1.Connect(self.a5, self.p1.DistanceTo(self.p5), true);
-self.a2.Connect(self.a3, self.p2.DistanceTo(self.p3), true);
-self.a3.Connect(self.a4, self.p3.DistanceTo(self.p4), true);
-self.a1.Connect(self.a4, self.p1.DistanceTo(self.p4), true);
-self.a4.Connect(self.a5, self.p4.DistanceTo(self.p5), true);
-self.a5.Connect(self.a6, self.p5.DistanceTo(self.p6), true);
-self.a6.Connect(self.a7, self.p6.DistanceTo(self.p7), true);
-self.a7.Connect(self.a3, self.p7.DistanceTo(self.p3), true);
 
 enum ECollisionMasks {
     NONE                    = 0b_0000_0000,
