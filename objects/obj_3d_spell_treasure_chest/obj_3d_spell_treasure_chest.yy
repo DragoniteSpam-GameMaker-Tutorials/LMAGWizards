@@ -32,8 +32,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"can_be_unlocked","filters":[],"listItems":[],"multiselect":false,"name":"can_be_unlocked","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
-    {"$GMObjectProperty":"v1","%Name":"contents","filters":[],"listItems":[],"multiselect":false,"name":"contents","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[ { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } } ]","varType":4,},
+    {"$GMObjectProperty":"v2","%Name":"can_be_unlocked","filters":[],"listItems":[],"multiselect":false,"name":"can_be_unlocked","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"True","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"contents","filters":[],"listItems":[],"multiselect":false,"name":"contents","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[ { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } }, { type: obj_3d_pickup_card, data: { card_id: \"coneflower\" } } ]","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
