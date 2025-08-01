@@ -84,7 +84,7 @@ var spatial_hash = new ColWorldSpatialHash(100);
 var octree = new ColWorldOctree(NewColAABBFromMinMax(new Vector3(-1000, -100, -1000), new Vector3(1000, 1000, 1000)), 3);
 self.collision = new ColWorld(octree);
 
-var map = new UnityMapImport("test.place", self.meshes);
+self.map = new UnityMapImport("test.place", self.meshes);
 
 var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
 seesaw.UpdateCollisionPositions();

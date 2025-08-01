@@ -2,17 +2,10 @@ event_inherited();
 
 if (keyboard_check_pressed(vk_enter)) {
     var start = self.GetNearestPathfindingWaypoint();
-    var target = choose(
-        obj_game.a1,
-        obj_game.a2,
-        obj_game.a3,
-        obj_game.a4,
-        obj_game.a5,
-        obj_game.a6,
-        obj_game.a7
-    );
     
-    var path = obj_game.aquila.Navigate(start, target);
+    var target = obj_game.map.aquila_nodes[irandom(array_length(obj_game.map.aquila_nodes) - 1)].aquila_node;
+    
+    var path = obj_game.map.aquila.Navigate(start, target);
     self.pathfinding = path.route;
 }
 

@@ -58,29 +58,21 @@ self.GetMindReadText = function() {
 };
 
 self.GetNearestPathfindingWaypoint = function() {
-    var choices = [
-        obj_game.a1,
-        obj_game.a2,
-        obj_game.a3,
-        obj_game.a4,
-        obj_game.a5,
-        obj_game.a6,
-        obj_game.a7,
-    ];
+    var choices = obj_game.map.aquila_nodes;
     
     var nearest = undefined;
     var nearest_distance = infinity;
     
     for (var i = 0, n = array_length(choices); i < n; i++) {
-        var location = choices[i].data;
+        var location = choices[i].position;
         var test_distance = point_distance_3d(self.x, self.y, self.z, location.x, location.y, location.z);
         if (nearest == undefined) {
-            nearest = choices[i];
+            nearest = choices[i].aquila_node;
             nearest_distance = test_distance;
         } else {
             if (test_distance < nearest_distance) {
                 nearest_distance = test_distance;
-                nearest = choices[i];
+                nearest = choices[i].aquila_node;
             }
         }
     }

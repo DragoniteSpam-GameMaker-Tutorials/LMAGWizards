@@ -117,7 +117,7 @@ function UnityMapImport(filename, meshes) constructor {
     
     static load_pathfinding = function(buffer) {
         var node_count = buffer_read(buffer, buffer_s32);
-        var nodes = { };
+        var node_map = { };
         var aquila = new Aquila();
         for (var i = 0; i < node_count; i++) {
             var node_id = buffer_read(buffer, buffer_s32);
@@ -131,7 +131,7 @@ function UnityMapImport(filename, meshes) constructor {
                 connections[j] = buffer_read(buffer, buffer_s32);
             }
             
-            nodes[$ string(node_id)] = {
+            node_map[$ string(node_id)] = {
                 id: node_id,
                 position: node_position,
                 connections: connections,
@@ -141,18 +141,25 @@ function UnityMapImport(filename, meshes) constructor {
         
         // yes you can use struct_foreach and array_map for this, but the code
         // would look hideous
-        var keys = struct_get_names(nodes);
+        var keys = struct_get_names(node_map);
+        var nodes = array_create(array_length(keys));
         for (var i = 0, n = array_length(keys); i < n; i++) {
-            var node = nodes[$ keys[i]];
+            var node = node_map[$ keys[i]];
             for (var j = 0, n2 = array_length(node.connections); j < n2; j++) {
-                node.connections[j] = nodes[$ string(node.connections[j])];
+                node.connections[j] = node_map[$ string(node.connections[j])];
                 var other_node = node.connections[j];
                 node.aquila_node.Connect(other_node.aquila_node, node.position.DistanceTo(other_node.position));
             }
+            nodes[i] = node;
+        }
+        
+        return {
+            aquila, nodes
         }
     };
     
     self.aquila = undefined;
+    self.aquila_nodes = [];
     
     var buffer = buffer_load(filename);
     var header = buffer_read(buffer, buffer_string);
@@ -172,7 +179,9 @@ function UnityMapImport(filename, meshes) constructor {
                 load_objects(buffer, meshes);
                 break;
             case "PATHFINDING":
-                self.aquila = load_pathfinding(buffer);
+                var pathfinding = load_pathfinding(buffer);
+                self.aquila = pathfinding.aquila;
+                self.aquila_nodes = pathfinding.nodes;
                 break;
             default:
                 show_debug_message($"no reader function recognized: {type}");
