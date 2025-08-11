@@ -57,25 +57,17 @@ self.GetMindReadText = function() {
     return "The quick brown fox jumped over me";
 };
 
-self.GetNearestPathfindingWaypoint = function() {
-    var choices = obj_game.map.aquila_nodes;
+self.NavigateTo = function(x, y, z) {
+    var start = get_nearest_waypoint(self.x, self.y, self.z);
+    var target = get_nearest_waypoint(x, y, z);
     
-    var nearest = undefined;
-    var nearest_distance = infinity;
+    if (start == undefined || target == undefined) return;
     
-    for (var i = 0, n = array_length(choices); i < n; i++) {
-        var location = choices[i].position;
-        var test_distance = point_distance_3d(self.x, self.y, self.z, location.x, location.y, location.z);
-        if (nearest == undefined) {
-            nearest = choices[i].aquila_node;
-            nearest_distance = test_distance;
-        } else {
-            if (test_distance < nearest_distance) {
-                nearest_distance = test_distance;
-                nearest = choices[i].aquila_node;
-            }
-        }
-    }
+    var path = obj_game.map.aquila.Navigate(start, target);
     
-    return nearest;
+    self.pathfinding = path.route;
+    
+    array_push(self.pathfinding, {
+        data: new Vector3(x, y, z)
+    });
 };
