@@ -82,7 +82,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.0.861",
+    "IDEVersion":"2024.1400.0.866",
   },
   "name":"LMAGWizards",
   "resources":[
@@ -244,6 +244,7 @@
     {"id":{"name":"Group_Collectable_Cards","path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},},
     {"id":{"name":"Group_Common_Library","path":"scripts/Group_Common_Library/Group_Common_Library.yy",},},
     {"id":{"name":"Group_Material_Settings","path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},},
+    {"id":{"name":"Group_NPC_Navigation","path":"scripts/Group_NPC_Navigation/Group_NPC_Navigation.yy",},},
     {"id":{"name":"Group_Parabolic_Easing","path":"scripts/Group_Parabolic_Easing/Group_Parabolic_Easing.yy",},},
     {"id":{"name":"Group_Particles","path":"scripts/Group_Particles/Group_Particles.yy",},},
     {"id":{"name":"Group_Quest","path":"scripts/Group_Quest/Group_Quest.yy",},},

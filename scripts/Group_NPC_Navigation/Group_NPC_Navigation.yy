@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Group_NPC_Navigation",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Group_NPC_Navigation",
+  "parent":{
+    "name":"LMAGWizards",
+    "path":"LMAGWizards.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

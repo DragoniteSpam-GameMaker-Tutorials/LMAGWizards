@@ -195,6 +195,7 @@
     {"name":"Group_Collectable_Cards","order":43,"path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},
     {"name":"Group_Common_Library","order":2,"path":"scripts/Group_Common_Library/Group_Common_Library.yy",},
     {"name":"Group_Material_Settings","order":6,"path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},
+    {"name":"Group_NPC_Navigation","order":55,"path":"scripts/Group_NPC_Navigation/Group_NPC_Navigation.yy",},
     {"name":"Group_Parabolic_Easing","order":1,"path":"scripts/Group_Parabolic_Easing/Group_Parabolic_Easing.yy",},
     {"name":"Group_Quest","order":44,"path":"scripts/Group_Quest/Group_Quest.yy",},
     {"name":"Group_Thought_Bubbles","order":51,"path":"scripts/Group_Thought_Bubbles/Group_Thought_Bubbles.yy",},
