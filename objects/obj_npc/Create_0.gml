@@ -133,6 +133,8 @@ self.NavigationAction = function() {
     
     self.xspeed = dx;
     self.zspeed = dz;
+    
+    self.direction = point_direction(0, 0, dx, dz);
 };
 
 self.SetSprites = function(collection, animation_speed) {

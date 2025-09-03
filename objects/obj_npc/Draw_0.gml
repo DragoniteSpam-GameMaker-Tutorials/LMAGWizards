@@ -2,6 +2,7 @@
 
 self.state.sprites();
 
+// camera angle weirdness???
 var angle = (point_direction(self.x, self.z, obj_game.camera.x, obj_game.camera.z) + self.direction) % 360;
 var matrix = matrix_build(self.x, self.y, self.z, 0, self.direction + 90, 0, 1, -1, 1);
 
