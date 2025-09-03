@@ -2,6 +2,8 @@ function ThoughtBubble(text, time_to_live, parent) constructor {
     self.text = text;
     self.time_to_live = time_to_live;
     self.parent = parent;
+    self.typist = scribble_typist();
+    self.typist.in(1, 2);
     
     self.text_index = 0;
     

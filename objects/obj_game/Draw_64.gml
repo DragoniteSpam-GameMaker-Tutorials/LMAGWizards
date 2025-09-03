@@ -11,29 +11,22 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
     var max_speech_bubble_width = 480;
     var speech_bubble_padding = 32;
     
-    var ww = string_width_ext(bubble.text, -1, max_speech_bubble_width - speech_bubble_padding);
-    var hh = string_height_ext(bubble.text, -1, max_speech_bubble_width - speech_bubble_padding) + speech_bubble_padding;
+    var scrib = scribble(bubble.text)
+        .starting_format("fnt_game", c_white)
+        .sdf_border(c_black, 2)
+        .sdf_shadow(c_black, 0.5, 1, 1)
+        .scale(.4)
+        .wrap(max_speech_bubble_width - speech_bubble_padding)
+        .align(fa_center, fa_middle);
+    
+    
+    var ww = scrib.get_width() + speech_bubble_padding;
+    var hh = scrib.get_height() + speech_bubble_padding;
     
     ww = ceil(ww / 32) * 32;
     hh = ceil(hh / 32) * 32;
     
     draw_sprite_stretched(bubble.parent.mind_read_sprite, bubble.parent.mind_read_sprite_index, location.x - ww / 2 , location.y - hh, ww, hh);
     
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
-    
-    draw_set_colour(c_black);
-    
-    scribble(bubble.text)
-        .starting_format("fnt_game", c_white)
-        .sdf_border(c_black, 2)
-        .sdf_shadow(c_black, 0.5, 1, 1)
-        .scale(.4)
-        .wrap(ww - speech_bubble_padding)
-        .align(fa_center, fa_middle)
-        .draw(location.x, location.y - hh / 2);
-    
-    //draw_text_ext(location.x, location.y - hh / 2, string_copy(bubble.text, 1, bubble.text_index), -1, ww - speech_bubble_padding);
-    
-    
+    scrib.draw(location.x, location.y - hh / 2, bubble.typist);
 }
