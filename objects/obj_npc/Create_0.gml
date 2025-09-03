@@ -81,24 +81,27 @@ self.NavigateTo = function(x, y, z) {
     });
 };
 
-self.idle_time = 0;
+self.idle_walk_time = 0;
 
 self.state = new SnowState("idle")
     .add("idle", {
         enter: function() {
-            self.idle_time = 0;
+            self.idle_walk_time = max(3, random(self.random_walk_frequency));
         },
         update: function() {
-            self.idle_time += DT;
-            if (self.idle_time >= 10) {
-                self.state.change("walking_random");
+            self.idle_walk_time -= DT;
+            if (self.random_walk_allowed) {
+                if (self.idle_walk_time <= 0) {
+                    self.state.change("walking_random");
+                }
             }
         },
     })
     .add("walking_random", {
         enter: function() {
-            var target_x = self.xstart + random_range(-40, 40);
-            var target_z = self.zstart + random_range(-40, 40);
+            var s = self.random_walk_range / 2;
+            var target_x = self.xstart + random_range(-s, s);
+            var target_z = self.zstart + random_range(-s, s);
             if (get_line_of_sight(self, self.x, self.y + 8, self.z, target_x, self.y + 8, target_z)) {
                 self.pathfinding = [
                     { data: new Vector3(target_x, self.y, target_z) }
