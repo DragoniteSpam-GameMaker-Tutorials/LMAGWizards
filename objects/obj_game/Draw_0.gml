@@ -35,6 +35,19 @@ Particles.Render();
 
 obj_player.DrawSpellSymbol();
 
+if (DEBUG) {
+    with (obj_npc) {
+        if (self.pathfinding != undefined) {
+            var previous = new Vector3(self.x, self.y, self.z);
+            for (var i = 0; i < array_length(self.pathfinding); i++) {
+                var next = self.pathfinding[i].data;
+                d3d_draw_line(previous.x, previous.y, previous.z, next.x, next.y, next.z, 4, c_red, 1, c_red, 1, false);
+                previous = next;
+            }
+        }
+    }
+}
+
 gpu_set_ztestenable(false);
 gpu_set_zwriteenable(false);
 gpu_set_cullmode(cull_noculling);
