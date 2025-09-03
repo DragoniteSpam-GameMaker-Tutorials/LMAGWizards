@@ -135,12 +135,36 @@ self.NavigationAction = function() {
     self.zspeed = dz;
 };
 
+self.SetSprites = function(collection, animation_speed) {
+    var angle = (point_direction(self.x, self.z, obj_game.camera.x, obj_game.camera.z) + self.direction) % 360;
+    var current_sprite = collection.front;
+
+    if (angle < 45 || angle > 315) {
+        // default values
+    } else if (angle < 135) {
+        current_sprite = collection.side;
+    } else if (angle < 225) {
+        current_sprite = collection.back;
+    } else {
+        current_sprite = collection.side;
+    }
+    
+    if (self.sprite_index != current_sprite) {
+        self.image_index = 0;
+    }
+    self.sprite_index = current_sprite;
+    self.image_speed = animation_speed;
+};
+
 self.idle_walk_time = 0;
 
 self.state = new SnowState("idle")
     .add("idle", {
         enter: function() {
             self.idle_walk_time = max(3, random(self.random_walk_frequency));
+        },
+        sprites: function() {
+            self.SetSprites(CharacterSprites.duck, 0);
         },
         update: function() {
             self.NavigationCancel();
@@ -153,6 +177,9 @@ self.state = new SnowState("idle")
         },
     })
     .add("navigation", {
+        sprites: function() {
+            self.SetSprites(CharacterSprites.duck, 1);
+        },
         update: function() {
             if (self.pathfinding == undefined) {
                 self.state.change("idle");
@@ -173,6 +200,9 @@ self.state = new SnowState("idle")
             } else {
                 self.state.change("idle");
             }
+        },
+        sprites: function() {
+            self.SetSprites(CharacterSprites.duck, 1);
         },
         update: function() {
             if (self.pathfinding == undefined) {
