@@ -179,6 +179,11 @@ self.state = new SnowState("idle")
         },
     })
     .add("navigation", {
+        leave: function() {
+            self.xstart = self.x;
+            self.ystart = self.y;
+            self.zstart = self.z;
+        },
         sprites: function() {
             self.SetSprites(CharacterSprites.duck, 1);
         },
