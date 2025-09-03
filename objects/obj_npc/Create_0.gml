@@ -1,5 +1,7 @@
 event_inherited();
 
+self.zstart = self.z;
+
 self.radius = 16;
 
 self.cshape = new ColSphere(new Vector3(0, self.radius, 0), self.radius);
@@ -78,3 +80,36 @@ self.NavigateTo = function(x, y, z) {
         data: new Vector3(x, y, z)
     });
 };
+
+self.idle_time = 0;
+
+self.state = new SnowState("idle")
+    .add("idle", {
+        enter: function() {
+            self.idle_time = 0;
+        },
+        update: function() {
+            self.idle_time += DT;
+            if (self.idle_time >= 10) {
+                self.state.change("walking_random");
+            }
+        },
+    })
+    .add("walking_random", {
+        enter: function() {
+            var target_x = self.xstart + random_range(-40, 40);
+            var target_z = self.zstart + random_range(-40, 40);
+            if (get_line_of_sight(self, self.x, self.y + 8, self.z, target_x, self.y + 8, target_z)) {
+                self.pathfinding = [
+                    { data: new Vector3(target_x, self.y, target_z) }
+                ];
+            } else {
+                self.state.change("idle");
+            }
+        },
+        update: function() {
+            if (self.pathfinding == undefined) {
+                self.state.change("idle");
+            }
+        }
+    });
