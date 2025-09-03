@@ -18,17 +18,26 @@ if (self.pathfinding == undefined) {
     
     var dist = point_distance(0, 0, dx, dz);
     
-    // if you're right on top of a node, stop
-    if (dist <= 0.1) {
-        dx = 0;
-        dz = 0;
-        array_delete(self.pathfinding, 0, 1);
-        if (array_length(self.pathfinding) == 0) {
-            self.pathfinding = undefined;
-        }
     // if you're close to a node, set the speed to the vector in the direction of the node
-    } else if (dist <= speed_walk) {
+    if (dist <= speed_walk) {
+        // if you're right on top of a node, stop
+        if (dist <= 0.1) {
+            dx = 0;
+            dz = 0;
+        }
         array_delete(self.pathfinding, 0, 1);
+        
+        // a possible improvement (not yet working)
+        /*
+        for (var i = 1, n = array_length(self.pathfinding); i < n; i++) {
+            var node = self.pathfinding[i];
+            if (get_line_of_sight(self, self.x, self.y, self.z, node.x, node.y, node.z)) {
+                array_delete(self.pathfinding, 0, i);
+                show_debug_message("line of sight found")
+                break;
+            }
+        }
+        */
         if (array_length(self.pathfinding) == 0) {
             self.pathfinding = undefined;
         }
