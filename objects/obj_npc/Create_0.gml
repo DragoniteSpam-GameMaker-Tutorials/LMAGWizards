@@ -64,6 +64,7 @@ self.NavigateTo = function(x, y, z) {
         self.pathfinding = [{
             data: new Vector3(x, y, z)
         }];
+        self.state.change("navigation");
         return;
     }
     
@@ -79,6 +80,59 @@ self.NavigateTo = function(x, y, z) {
     array_push(self.pathfinding, {
         data: new Vector3(x, y, z)
     });
+    
+    self.state.change("navigation");
+};
+
+self.NavigationCancel = function() {
+    self.xspeed = 0;
+    self.zspeed = 0;
+};
+
+self.NavigationAction = function() {
+    var speed_run = 300 * DT;
+    var speed_walk = 180 * DT;
+    
+    var target = self.pathfinding[0].data;
+    var dx = target.x - self.x;
+    //var dy = target.y - self.y;
+    var dz = target.z - self.z;
+    
+    var dist = point_distance(0, 0, dx, dz);
+    
+    // if you're close to a node, set the speed to the vector in the direction of the node
+    if (dist <= speed_walk) {
+        // if you're right on top of a node, stop
+        if (dist <= 0.1) {
+            dx = 0;
+            dz = 0;
+        }
+        array_delete(self.pathfinding, 0, 1);
+        
+        // a possible improvement (not yet working)
+        /*
+        for (var i = 1, n = array_length(self.pathfinding); i < n; i++) {
+            var node = self.pathfinding[i];
+            if (get_line_of_sight(self, self.x, self.y, self.z, node.x, node.y, node.z)) {
+                array_delete(self.pathfinding, 0, i);
+                show_debug_message("line of sight found")
+                break;
+            }
+        }
+        */
+        if (array_length(self.pathfinding) == 0) {
+            self.pathfinding = undefined;
+        }
+    // if you're far from a node, set the speed to a vector of the magnitude of the walk speed
+    } else {
+        dx /= dist;
+        dz /= dist;
+        dx *= speed_walk;
+        dz *= speed_walk;
+    }
+    
+    self.xspeed = dx;
+    self.zspeed = dz;
 };
 
 self.idle_walk_time = 0;
@@ -89,6 +143,7 @@ self.state = new SnowState("idle")
             self.idle_walk_time = max(3, random(self.random_walk_frequency));
         },
         update: function() {
+            self.NavigationCancel();
             self.idle_walk_time -= DT;
             if (self.random_walk_allowed) {
                 if (self.idle_walk_time <= 0) {
@@ -96,6 +151,15 @@ self.state = new SnowState("idle")
                 }
             }
         },
+    })
+    .add("navigation", {
+        update: function() {
+            if (self.pathfinding == undefined) {
+                self.state.change("idle");
+                return;
+            }
+            self.NavigationAction();
+        }
     })
     .add("walking_random", {
         enter: function() {
@@ -113,6 +177,8 @@ self.state = new SnowState("idle")
         update: function() {
             if (self.pathfinding == undefined) {
                 self.state.change("idle");
+                return;
             }
+            self.NavigationAction();
         }
     });
