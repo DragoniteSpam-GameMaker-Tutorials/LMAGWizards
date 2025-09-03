@@ -87,6 +87,7 @@
     {"name":"Textures","order":23,"path":"folders/Textures.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"fnt_game","order":59,"path":"fonts/fnt_game/fnt_game.yy",},
     {"name":"scribble_fallback_font","order":24,"path":"fonts/scribble_fallback_font/scribble_fallback_font.yy",},
     {"name":"Col_Changelog","order":3,"path":"notes/Col_Changelog/Col_Changelog.yy",},
     {"name":"input_controller_object","order":24,"path":"objects/input_controller_object/input_controller_object.yy",},

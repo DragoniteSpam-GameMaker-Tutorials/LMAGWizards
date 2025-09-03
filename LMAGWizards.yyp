@@ -122,6 +122,7 @@
   "name":"LMAGWizards",
   "resources":[
     {"id":{"name":"ac_parabola","path":"animcurves/ac_parabola/ac_parabola.yy",},},
+    {"id":{"name":"fnt_game","path":"fonts/fnt_game/fnt_game.yy",},},
     {"id":{"name":"scribble_fallback_font","path":"fonts/scribble_fallback_font/scribble_fallback_font.yy",},},
     {"id":{"name":"Col_Changelog","path":"notes/Col_Changelog/Col_Changelog.yy",},},
     {"id":{"name":"input_controller_object","path":"objects/input_controller_object/input_controller_object.yy",},},

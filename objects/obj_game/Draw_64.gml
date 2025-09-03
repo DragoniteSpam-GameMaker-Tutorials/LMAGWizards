@@ -24,5 +24,16 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
     
     draw_set_colour(c_black);
     
-    draw_text_ext(location.x, location.y - hh / 2, string_copy(bubble.text, 1, bubble.text_index), -1, ww - speech_bubble_padding);
+    scribble(bubble.text)
+        .starting_format("fnt_game", c_white)
+        .sdf_border(c_black, 2)
+        .sdf_shadow(c_black, 0.5, 1, 1)
+        .scale(.4)
+        .wrap(ww - speech_bubble_padding)
+        .align(fa_center, fa_middle)
+        .draw(location.x, location.y - hh / 2);
+    
+    //draw_text_ext(location.x, location.y - hh / 2, string_copy(bubble.text, 1, bubble.text_index), -1, ww - speech_bubble_padding);
+    
+    
 }
