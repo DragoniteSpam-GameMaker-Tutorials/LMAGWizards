@@ -7,3 +7,5 @@
 
 #macro DT                           (game_get_speed(gamespeed_microseconds) / 1_000_000 * obj_game.time_scale)
 #macro PDT							(game_get_speed(gamespeed_microseconds) / 1_000_000)
+
+#macro DEBUG                        (os_get_config() == "Debug")
