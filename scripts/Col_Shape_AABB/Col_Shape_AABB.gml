@@ -232,6 +232,19 @@ function ColAABB(position, half_extents) constructor {
         static hit_info = new RaycastHitInformation();
         hit_info.distance = infinity;
         
+        static cached_point = new ColPoint(new Vector3(0, 0, 0));
+        cached_point.Set(line.start);
+        
+        if (self.CheckPoint(cached_point)) {
+            return true;
+        }
+        
+        cached_point.Set(line.finish);
+        
+        if (self.CheckPoint(cached_point)) {
+            return true;
+        }
+        
         if (self.CheckRay(line.property_ray, hit_info)) {
             return (hit_info.distance <= line.property_length);
         }

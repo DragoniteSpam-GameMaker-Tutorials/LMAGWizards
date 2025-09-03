@@ -46,8 +46,8 @@ function ColWorld(accelerator) constructor {
         self.Add(object);
     };
     
-    static CheckObject = function(object) {
-        return self.accelerator.CheckObject(object);
+    static CheckObject = function(object, debug = false) {
+        return self.accelerator.CheckObject(object, debug);
     };
     
     static CheckRay = function(ray, group = 1) {
@@ -158,7 +158,9 @@ function ColWorldOctree(bounds, depth) constructor {
     };
     
     static CheckObject = function(object) {
-        if (!object.shape.CheckAABB(self.bounds)) return;
+        if (!object.shape.CheckAABB(self.bounds)) {
+            return undefined;
+        }
         
         if (self.children == undefined) {
             var i = 0;

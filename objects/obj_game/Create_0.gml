@@ -48,7 +48,7 @@ self.debug_sphere = vertex_create_buffer_from_buffer(buffer, self.vertex_format)
 buffer_delete(buffer);
 
 try {
-    var buffer = buffer_load(FILE_VIDEO_SETTINGS);
+    buffer = buffer_load(FILE_VIDEO_SETTINGS);
     var json = buffer_read(buffer, buffer_text);
     buffer_delete(buffer);
     
@@ -106,5 +106,6 @@ enum ECollisionMasks {
 	SPELL_TARGET			= 0b_0000_1000,
 	PICKUP					= 0b_0001_0000,
     
-    ACTIVATOR               = 0b_0010_0000
+    ACTIVATOR               = 0b_0010_0000,
+    INHIBIT_PATHFINDING     = 0b_0100_0000
 }

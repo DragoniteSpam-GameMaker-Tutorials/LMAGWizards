@@ -58,8 +58,15 @@ self.GetMindReadText = function() {
 };
 
 self.NavigateTo = function(x, y, z) {
-    var start = get_nearest_waypoint(self.x, self.y, self.z);
-    var target = get_nearest_waypoint(x, y, z);
+    if (get_line_of_sight(self, self.x, self.y + 8, self.z, x, y + 8, z)) {
+        self.pathfinding = [{
+            data: new Vector3(x, y, z)
+        }];
+        return;
+    }
+    
+    var start = get_nearest_waypoint(self, self.x, self.y, self.z);
+    var target = get_nearest_waypoint(self, x, y, z);
     
     if (start == undefined || target == undefined) return;
     

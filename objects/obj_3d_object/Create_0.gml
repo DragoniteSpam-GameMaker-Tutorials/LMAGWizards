@@ -1,6 +1,6 @@
 event_inherited();
 
-self.default_collision_mask = ECollisionMasks.DEFAULT;
+self.default_collision_mask = ECollisionMasks.DEFAULT | ECollisionMasks.INHIBIT_PATHFINDING;
 
 self.mesh = undefined;
 self.cshapes = [];
