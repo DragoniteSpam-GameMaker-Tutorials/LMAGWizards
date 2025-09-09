@@ -93,7 +93,10 @@ seesaw.UpdateCollisionPositions();
 
 //var npc = instance_create_depth(-200, 0, -450, obj_npc);
 
-var npc = instance_create_depth(200, 0, -450, obj_npc);
+var npc = instance_create_depth(200, 0, -450, obj_npc, {
+    chatterbox_file: "test",
+    chatterbox_node: "Start"
+});
 npc.GetMindReadText = function() {
     return "Can someone explain sara's collision code, can someone explain what it does?\n\nfor I followed her video exactly, and it simply won't work, just because!";
 };

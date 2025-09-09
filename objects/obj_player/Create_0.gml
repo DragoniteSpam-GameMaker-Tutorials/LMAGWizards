@@ -418,13 +418,10 @@ self.HandleInteraction = function() {
     if (hit_info != undefined) {
         if (hit_info.distance <= max_interaction_range) {
             var obj = hit_info.shape.object.reference;
-            if (obj.chatterbox_file != "" && obj.chatterbox_node != "") {
-                // show some button prompt probably
-                if (input_check_pressed("action")) {
-                    input_verb_consume("action");
-                    obj_game.SetGameState(EGameStates.CUTSCENE);
-                    obj_cutscene.current_line = obj.chatterbox_node;
-                }
+            // show some button prompt probably
+            if (input_check_pressed("action")) {
+                input_verb_consume("action");
+                obj_cutscene.PlayCutscene(obj);
             }
         }
     }

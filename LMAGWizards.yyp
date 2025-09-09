@@ -113,6 +113,7 @@
     {"$GMIncludedFile":"","%Name":"test_load_mapping.json","CopyToMask":-1,"filePath":"datafiles","name":"test_load_mapping.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"test.place","CopyToMask":-1,"filePath":"datafiles","name":"test.place","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"test.place_meshes.txt","CopyToMask":-1,"filePath":"datafiles","name":"test.place_meshes.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"test.yarn","CopyToMask":-1,"filePath":"datafiles/words","name":"test.yarn","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
