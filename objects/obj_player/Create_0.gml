@@ -24,6 +24,7 @@ self.state.add("default", {
         self.HandleMovement();
         self.HandleClimbing();
         self.HandleCasting();
+        self.HandleInteraction();
         
         if (!self.IsGrounded()) {
             self.state.change("airborne");
@@ -398,6 +399,32 @@ self.HandleCasting = function() {
             velocity: motion,
             caster: self.id
         });
+    }
+};
+
+self.HandleInteraction = function() {
+    static max_interaction_range = 64;
+    
+	var camera_target = self.GetCameraTarget();
+    var camera = obj_game.camera;
+    
+    var dx = camera.xto - camera.x;
+    var dy = camera.yto - camera.y;
+    var dz = camera.zto - camera.z;
+    var motion = new Vector3(dx, dy, dz).Normalize();
+    var ray = new ColRay(camera_target, motion);
+    
+    var hit_info = obj_game.collision.CheckRay(ray, ECollisionMasks.DEFAULT);
+    if (hit_info != undefined) {
+        if (hit_info.distance <= max_interaction_range) {
+            var obj = hit_info.shape.object.reference;
+            if (obj.chatterbox_file != "" && obj.chatterbox_node != "") {
+                // show some button prompt probably
+                if (input_check("action")) {
+		            
+                }
+            }
+        }
     }
 };
 
