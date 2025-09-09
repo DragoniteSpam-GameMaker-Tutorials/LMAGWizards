@@ -422,7 +422,7 @@ self.HandleInteraction = function() {
                 // show some button prompt probably
                 if (input_check_pressed("action")) {
                     input_verb_consume("action");
-		            obj_game.active_game_state = EGameStates.CUTSCENE;
+                    obj_game.SetGameState(EGameStates.CUTSCENE);
                     obj_cutscene.current_line = obj.chatterbox_node;
                 }
             }

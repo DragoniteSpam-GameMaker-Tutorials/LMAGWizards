@@ -119,6 +119,24 @@ enum EGameStates {
     TITLE
 }
 
+self.SetGameState = function(state) {
+    self.active_game_state = state;
+    switch (state) {
+        case EGameStates.PLAYING:
+            input_mouse_capture_set(false);
+            break;
+        case EGameStates.CUTSCENE:
+            input_mouse_capture_set(false);
+            break;
+        case EGameStates.TITLE:
+            input_mouse_capture_set(false);
+            break;
+        case EGameStates.PAUSED:
+            input_mouse_capture_set(false);
+            break;
+    }
+}
+
 self.active_game_state = EGameStates.PLAYING;
 
 #macro IS_PLAYING (obj_game.active_game_state == EGameStates.PLAYING)

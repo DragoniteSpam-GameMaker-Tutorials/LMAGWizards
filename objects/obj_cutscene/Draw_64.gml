@@ -7,5 +7,5 @@ draw_set_color(c_black);
 draw_text(ww, hh, current_line);
 
 if (input_check_pressed("action")) {
-    obj_game.active_game_state = EGameStates.PLAYING;
+    obj_game.SetGameState(EGameStates.PLAYING);
 }
