@@ -109,3 +109,17 @@ enum ECollisionMasks {
     ACTIVATOR               = 0b_0010_0000,
     INHIBIT_PATHFINDING     = 0b_0100_0000
 }
+
+enum EGameStates {
+    PLAYING,
+    PAUSED,
+    CUTSCENE,
+    TITLE
+}
+
+self.active_game_state = EGameStates.PLAYING;
+
+#macro IS_PLAYING (obj_game.active_game_state == EGameStates.PLAYING)
+#macro IS_PAUSED (obj_game.active_game_state == EGameStates.PAUSED)
+#macro IS_CUTSCENE (obj_game.active_game_state == EGameStates.CUTSCENE)
+#macro IS_TITLE (obj_game.active_game_state == EGameStates.TITLE)
