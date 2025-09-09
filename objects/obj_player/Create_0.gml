@@ -420,7 +420,8 @@ self.HandleInteraction = function() {
             var obj = hit_info.shape.object.reference;
             if (obj.chatterbox_file != "" && obj.chatterbox_node != "") {
                 // show some button prompt probably
-                if (input_check("action")) {
+                if (input_check_pressed("action")) {
+                    input_verb_consume("action");
 		            obj_game.active_game_state = EGameStates.CUTSCENE;
                     obj_cutscene.current_line = obj.chatterbox_node;
                 }

@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 // would use xprevious and zprevious, but we don't have zprevious, so i'll do it myself
 var original_x = self.x;
 var original_z = self.z;

@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 self.lifespan -= DT;
 
 if (self.lifespan <= 0) {

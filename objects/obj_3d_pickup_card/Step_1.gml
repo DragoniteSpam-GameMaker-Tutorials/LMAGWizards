@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 event_inherited();
 
 var t = current_time / 1000;

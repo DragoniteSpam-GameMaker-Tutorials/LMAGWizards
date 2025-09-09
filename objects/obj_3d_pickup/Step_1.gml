@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 if (self.is_moving) {
     self.yspeed -= 100 * DT;
     

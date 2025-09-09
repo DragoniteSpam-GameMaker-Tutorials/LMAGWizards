@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 var potential = new Vector3(self.xspeed + self.x, self.yspeed + self.y + self.radius, self.zspeed + self.z);
 potential = potential.Add(self.CheckMovingObjects());
 self.cobject.shape.Set(potential);

@@ -1,3 +1,5 @@
+if (!IS_PLAYING) return;
+
 if (((current_time / 1000) % 10) < 5) {
     self.motion.x = 15;
     self.motion.y = 15;
