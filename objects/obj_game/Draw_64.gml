@@ -30,3 +30,7 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
     
     scrib.draw(location.x, location.y - hh / 2, bubble.typist);
 }
+
+if (IS_CUTSCENE) {
+    with (obj_cutscene) event_perform(ev_draw, ev_gui);
+}

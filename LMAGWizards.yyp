@@ -144,6 +144,7 @@
     {"id":{"name":"obj_3d_spell_secret_wall","path":"objects/obj_3d_spell_secret_wall/obj_3d_spell_secret_wall.yy",},},
     {"id":{"name":"obj_3d_spell_toggle_switch","path":"objects/obj_3d_spell_toggle_switch/obj_3d_spell_toggle_switch.yy",},},
     {"id":{"name":"obj_3d_spell_treasure_chest","path":"objects/obj_3d_spell_treasure_chest/obj_3d_spell_treasure_chest.yy",},},
+    {"id":{"name":"obj_cutscene","path":"objects/obj_cutscene/obj_cutscene.yy",},},
     {"id":{"name":"obj_entity","path":"objects/obj_entity/obj_entity.yy",},},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},},
     {"id":{"name":"obj_moving","path":"objects/obj_moving/obj_moving.yy",},},
