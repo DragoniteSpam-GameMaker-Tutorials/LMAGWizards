@@ -14,3 +14,6 @@ self.OnSpellHit = function(spell) {
 self.motion = undefined;
 
 self.state = undefined;
+
+self.SetMesh = function() { };
+self.UpdateCollisionPositions = function() { };

@@ -4,6 +4,7 @@ bouncepad
 chest
 flower
 hourglass
+npc_pawn
 rotor_1
 unity default resources
 wall

@@ -106,6 +106,25 @@ function UnityMapImport(filename, meshes) constructor {
                 case EWizardSchoolObjects.HOURGLASS:
                     type = obj_3d_spell_hourglass;
                     break;
+                case EWizardSchoolObjects.ROTOR:
+                    type = obj_3d_spell_rotor;
+                    break;
+                
+                case EWizardSchoolObjects.NPC:
+                    type = obj_npc;
+                    var direction_fix = buffer_read(buffer, buffer_u8);
+                    var random_walk_allowed = buffer_read(buffer, buffer_u8);
+                    var random_walk_range = buffer_read(buffer, buffer_f32);
+                    var random_walk_frequency = buffer_read(buffer, buffer_f32);
+                    var chatterbox_file = buffer_read(buffer, buffer_string);
+                    var chatterbox_node = buffer_read(buffer, buffer_string);
+                    params.direction_fix = direction_fix;
+                    params.random_walk_allowed = random_walk_allowed;
+                    params.random_walk_range = random_walk_range;
+                    params.random_walk_frequency = random_walk_frequency;
+                    params.chatterbox_file = chatterbox_file;
+                    params.chatterbox_node = chatterbox_node;
+                    break;
             }
             
             var inst = instance_create_depth(xx, yy, zz, type, params);
@@ -207,5 +226,9 @@ enum EWizardSchoolObjects {
     
     BOUNCE_PAD,
 	FLOWER,
-	HOURGLASS
+	HOURGLASS,
+    
+    ROTOR,
+    
+    NPC
 }
