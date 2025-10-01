@@ -31,5 +31,9 @@ self.chatterbox_line
     .draw(box_center_x, box_center_y, self.chatterbox_typist);
 
 if (input_check_pressed("action")) {
-    obj_game.SetGameState(EGameStates.PLAYING);
+    if (self.chatterbox_typist.get_state() == 1) {
+        self.Continue();
+    } else {
+        self.chatterbox_typist.in(3, 2);
+    }
 }
