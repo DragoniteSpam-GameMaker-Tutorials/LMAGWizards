@@ -687,6 +687,7 @@
     {"name":"spr_spell_symbol_time","order":10,"path":"sprites/spr_spell_symbol_time/spr_spell_symbol_time.yy",},
     {"name":"spr_spell_symbol_unlock","order":5,"path":"sprites/spr_spell_symbol_unlock/spr_spell_symbol_unlock.yy",},
     {"name":"spr_spell_symbol","order":3,"path":"sprites/spr_spell_symbol/spr_spell_symbol.yy",},
+    {"name":"spr_windowskin","order":61,"path":"sprites/spr_windowskin/spr_windowskin.yy",},
     {"name":"tex_block_singular","order":1,"path":"sprites/tex_block_singular/tex_block_singular.yy",},
     {"name":"tex_bloom","order":8,"path":"sprites/tex_bloom/tex_bloom.yy",},
     {"name":"tex_bouncepad","order":7,"path":"sprites/tex_bouncepad/tex_bouncepad.yy",},

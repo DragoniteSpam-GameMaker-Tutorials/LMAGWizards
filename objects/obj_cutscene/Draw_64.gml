@@ -25,10 +25,10 @@ if (self.speaker != undefined) {
     }
 }
 
-draw_set_color(c_white);
-draw_rectangle(box_x1, box_y1, box_x2, box_y2, false);
-draw_set_color(c_black);
-draw_text(box_center_x, box_center_y, self.chatterbox_line);
+draw_sprite_stretched(spr_windowskin, 0, box_x1, box_y1, box_width, box_height);
+self.chatterbox_line
+    .wrap(box_width - box_padding * 2)
+    .draw(box_center_x, box_center_y, self.chatterbox_typist);
 
 if (input_check_pressed("action")) {
     obj_game.SetGameState(EGameStates.PLAYING);

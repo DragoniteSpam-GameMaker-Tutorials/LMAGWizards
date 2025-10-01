@@ -793,6 +793,7 @@
     {"id":{"name":"spr_spell_symbol_time","path":"sprites/spr_spell_symbol_time/spr_spell_symbol_time.yy",},},
     {"id":{"name":"spr_spell_symbol_unlock","path":"sprites/spr_spell_symbol_unlock/spr_spell_symbol_unlock.yy",},},
     {"id":{"name":"spr_spell_symbol","path":"sprites/spr_spell_symbol/spr_spell_symbol.yy",},},
+    {"id":{"name":"spr_windowskin","path":"sprites/spr_windowskin/spr_windowskin.yy",},},
     {"id":{"name":"tex_barrel","path":"sprites/tex_barrel/tex_barrel.yy",},},
     {"id":{"name":"tex_block_singular","path":"sprites/tex_block_singular/tex_block_singular.yy",},},
     {"id":{"name":"tex_bloom","path":"sprites/tex_bloom/tex_bloom.yy",},},
