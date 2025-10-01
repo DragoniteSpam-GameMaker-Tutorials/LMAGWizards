@@ -421,6 +421,12 @@ self.HandleInteraction = function() {
             // show some button prompt probably
             if (input_check_pressed("action")) {
                 input_verb_consume("action");
+                // this is probably broken
+                if (obj.object_index == obj_npc || object_is_ancestor(obj_npc, obj.object_index)) {
+                    if (!obj.direction_fix) {
+                        obj.direction = point_direction(obj.x, obj.z, self.x, self.z);
+                    }
+                }
                 obj_cutscene.PlayCutscene(obj);
             }
         }

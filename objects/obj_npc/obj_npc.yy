@@ -39,6 +39,7 @@
     {"$GMObjectProperty":"v2","%Name":"random_walk_allowed","filters":[],"listItems":[],"multiselect":false,"name":"random_walk_allowed","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
     {"$GMObjectProperty":"v2","%Name":"random_walk_range","filters":[],"listItems":[],"multiselect":false,"name":"random_walk_range","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"100","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"random_walk_frequency","filters":[],"listItems":[],"multiselect":false,"name":"random_walk_frequency","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"10","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"direction_fix","filters":[],"listItems":[],"multiselect":false,"name":"direction_fix","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
