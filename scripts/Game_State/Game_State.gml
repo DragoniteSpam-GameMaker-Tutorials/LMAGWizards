@@ -39,6 +39,10 @@ function GameStateClass() constructor {
 		self.currency = max(0, self.currency + amount);
 	};
     
+	static GetCurrency = function() {
+		return self.currency;
+	};
+    
     static AddCard = function(card) {
         self.cards[$ card.ID] = true;
     };

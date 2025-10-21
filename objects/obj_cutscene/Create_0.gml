@@ -83,61 +83,121 @@ ChatterboxAddFunction("PlayerGetHealth", function() {
 ChatterboxAddFunction("PlayerGetHealthPercent", function() {
     return GameState.GetHealthPercent();
 });
-/*
-	static KnowsSpell = function(spell) {
-		return array_contains(self.known_spells, spell);
-	};
-	
-	static AddSpell = function(spell) {
-		if (!self.KnowsSpell(spell)) {
-			array_push(self.known_spells, spell);
-		}
-	};
-	
-	static RemoveSpell = function(spell) {
-		if (self.KnowsSpell(spell)) {
-			array_delete(self.known_spells, array_get_index(self.known_spells, spell), 1);
-		}
-	};
-	
-	static AddCurrency = function(amount) {
-		self.currency = max(0, self.currency + amount);
-	};
-    
-    static AddCard = function(card) {
-        self.cards[$ card.ID] = true;
-    };
-    
-    static RemoveCard = function(card) {
-        if (variable_struct_exists(self.cards, card.ID))
-            variable_struct_remove(self.cards, card.ID);
-    };
-    
-    static HasCard = function(card) {
-        return variable_struct_exists(self.cards, card.ID);
-    };
-    
-    static StartQuest = function(quests) {
-        if (!variable_struct_exists(self.quests, quests.ID))
-            self.quests[$ quests.ID] = EQuestStates.STARTED;
-    };
-    
-    static CompleteQuest = function(quests) {
-        if (variable_struct_exists(self.quests, quests.ID))
-            self.quests[$ quests.ID] = EQuestStates.COMPLETED;
-    };
-    
-    static RemoveQuest = function(quests) {
-        if (variable_struct_exists(self.quests, quests.ID))
-            variable_struct_remove(self.quests, quests.ID);
-    };
-    
-    static HasStartedQuest = function(quests) {
-        return self.quests[$ quests.ID] == EQuestStates.STARTED;
-    };
-    
-    static HasCompletedQuest = function(quests) {
-        return self.quests[$ quests.ID] == EQuestStates.COMPLETED;
-    };
-    */
+
+self.spell_lookup = {
+    bounce: obj_spell_bounce,
+    push: obj_spell_push,
+    mindread: obj_spell_mind_read,
+    time: obj_spell_time,
+    unlock: obj_spell_unlock,
+    flower: obj_spell_flower
+};
+
+// untested
+ChatterboxAddFunction("PlayerKnowsSpell", function(spell_name) {
+    var spell_type = self.spell_lookup[$ spell_name];
+    if (spell_type != undefined) {
+        return GameState.KnowsSpell(spell_type);
+    }
+    show_error($"Spell does not exist: {spell_name}", true);
+});
+// untested
+ChatterboxAddFunction("PlayerAddSpell", function(spell_name) {
+    var spell_type = self.spell_lookup[$ spell_name];
+    if (spell_type != undefined) {
+        GameState.AddSpell(spell_type);
+    } else {
+        show_error($"Spell does not exist: {spell_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerRemoveSpell", function(spell_name) {
+    var spell_type = self.spell_lookup[$ spell_name];
+    if (spell_type != undefined) {
+        GameState.RemoveSpell(spell_type);
+    } else {
+        show_error($"Spell does not exist: {spell_name}", true);
+    }
+});
+
+// untested
+ChatterboxAddFunction("PlayerAddCurrency", function(amount) {
+    GameState.AddCurrency(real(amount));
+});
+// untested
+ChatterboxAddFunction("PlayerGetCurrency", function() {
+    return GameState.GetCurrency();
+});
+
+// untested
+ChatterboxAddFunction("PlayerAddCard", function(card_name) {
+    var card_type = CardDB[$ card_name];
+    if (card_type != undefined) {
+        GameState.AddCard(card_type);
+    } else {
+        show_error($"Card does not exist: {card_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerRemoveCard", function(card_name) {
+    var card_type = CardDB[$ card_name];
+    if (card_type != undefined) {
+        GameState.RemoveCard(card_type);
+    } else {
+        show_error($"Card does not exist: {card_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerHasCard", function(card_name) {
+    var card_type = CardDB[$ card_name];
+    if (card_type != undefined) {
+        return GameState.HasCard(card_type);
+    }
+    show_error($"Card does not exist: {card_name}", true);
+});
+
+// untested
+ChatterboxAddFunction("PlayerStartQuest", function(quest_name) {
+    var quest_type = QuestDB[$ quest_name];
+    if (quest_type != undefined) {
+        GameState.StartQuest(quest_type);
+    } else {
+        show_error($"Quest does not exist: {quest_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerCompleteQuest", function(quest_name) {
+    var quest_type = QuestDB[$ quest_name];
+    if (quest_type != undefined) {
+        GameState.CompleteQuest(quest_type);
+    } else {
+        show_error($"Quest does not exist: {quest_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerRemoveQuest", function(quest_name) {
+    var quest_type = QuestDB[$ quest_name];
+    if (quest_type != undefined) {
+        GameState.RemoveQuest(quest_type);
+    } else {
+        show_error($"Quest does not exist: {quest_name}", true);
+    }
+});
+// untested
+ChatterboxAddFunction("PlayerHasStartedQuest", function(quest_name) {
+    var quest_type = QuestDB[$ quest_name];
+    if (quest_type != undefined) {
+        return GameState.HasStartedQuest(quest_type);
+    }
+    show_error($"Quest does not exist: {quest_name}", true);
+});
+// untested
+ChatterboxAddFunction("PlayerHasCompletedQuest", function(quest_name) {
+    var quest_type = QuestDB[$ quest_name];
+    if (quest_type != undefined) {
+        return GameState.HasCompletedQuest(quest_type);
+    }
+    show_error($"Quest does not exist: {quest_name}", true);
+});
+
 #endregion
