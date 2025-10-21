@@ -51,6 +51,8 @@ self.Continue = function() {
 
 self.PlayCutscene = function(speaker, file = speaker.chatterbox_file, node = speaker.chatterbox_node) {
     if (file != "" && node != "") {
+        obj_game.thought_bubbles = [];
+        
         self.speaker = speaker;
         obj_game.SetGameState(EGameStates.CUTSCENE);
         self.active_chatterbox = self.chatterboxes[$ file];
