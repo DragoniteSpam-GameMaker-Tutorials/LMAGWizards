@@ -61,7 +61,7 @@ if (self.chatterbox_typist.get_state() == 1) {
             var option = self.chatterbox_option_lines[i];
             var option_bbox = option.get_bbox(option_box_x2 - box_padding, option_y);
             
-            if (point_in_rectangle(window_mouse_get_x(), window_mouse_get_y(), option_bbox.left, option_bbox.top, option_bbox.right, option_bbox.bottom)) {
+            if (point_in_rectangle(input_cursor_x(), input_cursor_y(), option_bbox.left, option_bbox.top, option_bbox.right, option_bbox.bottom)) {
                 self.chatterbox_option_selected = i;
             }
             
