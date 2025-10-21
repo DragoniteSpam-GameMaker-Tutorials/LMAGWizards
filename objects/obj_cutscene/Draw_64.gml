@@ -2,7 +2,7 @@ var ww = window_get_width() / 2;
 var hh = window_get_height() / 2;
 
 var box_padding = 32;
-var box_width = 800;
+var box_width = 1024;
 var box_height = 200;
 var box_center_x = ww;
 var box_center_y = box_height / 2 + box_padding;
@@ -30,31 +30,41 @@ self.chatterbox_line
     .wrap(box_width - box_padding * 2)
     .draw(box_center_x, box_center_y, self.chatterbox_typist);
 
-if (array_length(self.chatterbox_option_lines) > 0) {
-    var option_max_width = 0;
-    var option_total_height = 0;
-    
-    for (var i = 0; i < array_length(self.chatterbox_option_lines); i++) {
-        var option = self.chatterbox_option_lines[i];
-        option_max_width = max(option_max_width, option.get_width());
-        option_total_height += option.get_height();
-    }
-    
-    var option_box_x1 = box_x2 - box_padding * 2 - option_max_width;
-    var option_box_y1 = box_y2 + box_padding;
-    var option_box_x2 = box_x2;
-    var option_box_y2 = option_box_y1 + box_padding * 2 + option_total_height;
-    
-    draw_sprite_stretched(spr_windowskin, 0, option_box_x1, option_box_y1, option_box_x2 - option_box_x1, option_box_y2 - option_box_y1);
-    
-    var option_y = option_box_y1 + box_padding;
-
-    for (var i = 0; i < array_length(self.chatterbox_option_lines); i++) {
-        var option = self.chatterbox_option_lines[i];
-        option
-            .draw(option_box_x2 - box_padding, option_y);
+if (self.chatterbox_typist.get_state() == 1) {
+    var option_count = array_length(self.chatterbox_option_lines);
+    if (option_count > 0) {
+        var option_max_width = 0;
+        var option_total_height = 0;
         
-        option_y += option.get_height();
+        if (input_check_pressed("up")) {
+            self.chatterbox_option_selected = max(self.chatterbox_option_selected - 1, 0);
+        } else if (input_check_pressed("down")) {
+            self.chatterbox_option_selected = min(self.chatterbox_option_selected + 1, option_count - 1);
+        }
+        
+        for (var i = 0; i < option_count; i++) {
+            var option = self.chatterbox_option_lines[i];
+            option_max_width = max(option_max_width, option.get_width());
+            option_total_height += option.get_height();
+        }
+        
+        var option_box_x1 = box_x2 - box_padding * 2.5 - option_max_width;
+        var option_box_y1 = box_y2 + box_padding;
+        var option_box_x2 = box_x2;
+        var option_box_y2 = option_box_y1 + box_padding * 2 + option_total_height;
+        
+        draw_sprite_stretched(spr_windowskin, 0, option_box_x1, option_box_y1, option_box_x2 - option_box_x1, option_box_y2 - option_box_y1);
+        
+        var option_y = option_box_y1 + box_padding;
+        
+        for (var i = 0; i < option_count; i++) {
+            var option = self.chatterbox_option_lines[i];
+            option
+                .sdf_border(c_black, (self.chatterbox_option_selected == i) ? 2 : 1)
+                .draw(option_box_x2 - box_padding, option_y);
+        
+            option_y += option.get_height();
+        }
     }
 }
 

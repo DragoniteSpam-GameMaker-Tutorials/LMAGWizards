@@ -3,6 +3,7 @@ self.speaker = undefined;
 self.chatterbox_line = undefined;
 self.chatterbox_typist = undefined;
 self.chatterbox_option_lines = [];
+self.chatterbox_option_selected = 0;
 
 ChatterboxLoadFromFile("words/test.yarn", "test");
 self.chatterboxes = {
@@ -21,7 +22,9 @@ self.SetUpContent = function(chatterbox) {
     self.chatterbox_typist = scribble_typist()
         .in(1, 2);
     
+    self.chatterbox_option_selected = 0;
     self.chatterbox_option_lines = array_create(array_length(options));
+    
     for (var i = 0; i < array_length(options); i++) {
         self.chatterbox_option_lines[i] = scribble(options[i].text)
             .starting_format("fnt_game")
