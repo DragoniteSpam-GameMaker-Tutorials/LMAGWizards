@@ -126,7 +126,7 @@ self.SetGameState = function(state) {
     self.active_game_state = state;
     switch (state) {
         case EGameStates.PLAYING:
-            input_mouse_capture_set(false);
+            input_mouse_capture_set(true);
             break;
         case EGameStates.CUTSCENE:
             input_mouse_capture_set(false);
