@@ -59,16 +59,30 @@ if (self.chatterbox_typist.get_state() == 1) {
         
         for (var i = 0; i < option_count; i++) {
             var option = self.chatterbox_option_lines[i];
+            var option_bbox = option.get_bbox(option_box_x2 - box_padding, option_y);
+            
+            if (point_in_rectangle(window_mouse_get_x(), window_mouse_get_y(), option_bbox.left, option_bbox.top, option_bbox.right, option_bbox.bottom)) {
+                self.chatterbox_option_selected = i;
+            }
+            
+            option_y += option.get_height();
+        }
+        
+        option_y = option_box_y1 + box_padding;
+        
+        for (var i = 0; i < option_count; i++) {
+            var option = self.chatterbox_option_lines[i];
             option
                 .sdf_border(c_black, (self.chatterbox_option_selected == i) ? 2 : 1)
                 .draw(option_box_x2 - box_padding, option_y);
-        
+            
             option_y += option.get_height();
         }
     }
 }
 
-if (input_check_pressed("action")) {
+if (input_check_pressed(["action", "cast"])) {
+    input_verb_consume(["action", "cast"])
     if (self.chatterbox_typist.get_state() == 1) {
         self.Continue();
     } else {

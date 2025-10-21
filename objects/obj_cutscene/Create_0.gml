@@ -38,7 +38,7 @@ self.Continue = function() {
     if (ChatterboxIsWaiting(self.active_chatterbox)) {
         ChatterboxContinue(self.active_chatterbox);
     } else {
-        //
+        ChatterboxSelect(self.active_chatterbox, self.chatterbox_option_selected);
     }
     
     if (ChatterboxIsStopped(self.active_chatterbox)) {
@@ -46,6 +46,7 @@ self.Continue = function() {
         self.speaker = undefined;
         self.chatterbox_line = undefined;
         self.chatterbox_typist = undefined;
+        self.chatterbox_option_selected = 0;
         obj_game.SetGameState(EGameStates.PLAYING);
     } else {
         self.SetUpContent(self.active_chatterbox);
