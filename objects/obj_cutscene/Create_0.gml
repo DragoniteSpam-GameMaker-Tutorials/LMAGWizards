@@ -66,3 +66,78 @@ self.PlayCutscene = function(speaker, file = speaker.chatterbox_file, node = spe
         }
     }
 };
+
+#region chatterbox functions
+ChatterboxAddFunction("PlayerAddHealth", function(amount) {
+    GameState.AddHealth(real(amount));
+});
+
+ChatterboxAddFunction("PlayerRemoveHealth", function(amount) {
+    GameState.RemoveHealth(real(amount));
+});
+
+ChatterboxAddFunction("PlayerGetHealth", function() {
+    return GameState.GetHealth();
+});
+
+ChatterboxAddFunction("PlayerGetHealthPercent", function() {
+    return GameState.GetHealthPercent();
+});
+/*
+	static KnowsSpell = function(spell) {
+		return array_contains(self.known_spells, spell);
+	};
+	
+	static AddSpell = function(spell) {
+		if (!self.KnowsSpell(spell)) {
+			array_push(self.known_spells, spell);
+		}
+	};
+	
+	static RemoveSpell = function(spell) {
+		if (self.KnowsSpell(spell)) {
+			array_delete(self.known_spells, array_get_index(self.known_spells, spell), 1);
+		}
+	};
+	
+	static AddCurrency = function(amount) {
+		self.currency = max(0, self.currency + amount);
+	};
+    
+    static AddCard = function(card) {
+        self.cards[$ card.ID] = true;
+    };
+    
+    static RemoveCard = function(card) {
+        if (variable_struct_exists(self.cards, card.ID))
+            variable_struct_remove(self.cards, card.ID);
+    };
+    
+    static HasCard = function(card) {
+        return variable_struct_exists(self.cards, card.ID);
+    };
+    
+    static StartQuest = function(quests) {
+        if (!variable_struct_exists(self.quests, quests.ID))
+            self.quests[$ quests.ID] = EQuestStates.STARTED;
+    };
+    
+    static CompleteQuest = function(quests) {
+        if (variable_struct_exists(self.quests, quests.ID))
+            self.quests[$ quests.ID] = EQuestStates.COMPLETED;
+    };
+    
+    static RemoveQuest = function(quests) {
+        if (variable_struct_exists(self.quests, quests.ID))
+            variable_struct_remove(self.quests, quests.ID);
+    };
+    
+    static HasStartedQuest = function(quests) {
+        return self.quests[$ quests.ID] == EQuestStates.STARTED;
+    };
+    
+    static HasCompletedQuest = function(quests) {
+        return self.quests[$ quests.ID] == EQuestStates.COMPLETED;
+    };
+    */
+#endregion
