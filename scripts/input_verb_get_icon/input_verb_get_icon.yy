@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"input_verb_get_icon",
   "parent":{
-    "name":"Verbs",
-    "path":"folders/Input/Verbs.yy",
+    "name":"08  Icons",
+    "path":"folders/Input/08  Icons.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

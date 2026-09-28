@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Removes any cursor limits you have set using input_cursor_limit_aabb() or input_cursor_limit_circle() 
 /// @param   [playerIndex=0]
 
@@ -29,6 +30,8 @@ function input_cursor_limit_remove(_player_index = 0)
         __limit_x      = undefined;
         __limit_y      = undefined;
         __limit_radius = undefined;
+        
+        __limit_boundary_margin = undefined;
         
         __limit();
     }

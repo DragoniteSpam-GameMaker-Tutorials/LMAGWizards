@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Returns the name of the given gamepad (after SDL remapping)
 /// @param   gamepadIndex
 
@@ -14,5 +15,5 @@ function input_gamepad_get_description(_index)
     
     var _gamepad = _global.__gamepads[_index];
     if (!is_struct(_gamepad)) return "Unknown";
-    return _gamepad.description;
+    return _gamepad.__description;
 }

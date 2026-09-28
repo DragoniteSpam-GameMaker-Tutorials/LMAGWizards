@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Whether to capture the mouse in the game window, and its movement speed for Input's built-in mouse tracking
 /// @param   state
 /// @param   [sensitivity=1]
@@ -9,7 +10,7 @@ function input_mouse_capture_set(_state, _sensitivity = 1)
     static _monitor_coords       = undefined; 
     static _monitor_update_frame = -infinity;
     
-    if (!__INPUT_ON_DESKTOP || __INPUT_ON_WEB)
+    if (!INPUT_ON_PC || INPUT_ON_WEB)
     {
         if (__INPUT_DEBUG_CAPTURE) __input_trace("Mouse capture unsupported for this platform");
         return;
@@ -40,10 +41,11 @@ function input_mouse_capture_set(_state, _sensitivity = 1)
             var _i = 0;
             repeat((array_length(_monitor_coords) div 8))
             {
-                if  ((_monitor_coords[_i*8 + 2] != 0) //W=0 is identity for "not on this monitor"
-                &&   (_monitor_coords[_i*8 + 3] != 0) //H=0 is identity for "not on this monitor"
-                && (((_monitor_coords[_i*8 + 2] - _monitor_coords[_i*8])    != _window_width)    //Intersects a horizontal edge
-                  || (_monitor_coords[_i*8 + 3] - _monitor_coords[_i*8 + 1] != _window_height))) //Intersects a vertical edge
+                if  ((__input_wrap_underflow(_monitor_coords[_i*8 + 2]) != 0) //W=0 is identity for "not on this monitor"
+                &&   (__input_wrap_underflow(_monitor_coords[_i*8 + 3]) != 0) //H=0 is identity for "not on this monitor"
+                && (((__input_wrap_underflow(_monitor_coords[_i*8 + 2]) - __input_wrap_underflow(_monitor_coords[_i*8]))    != _window_width)    //Intersects a horizontal edge
+                  || (__input_wrap_underflow(_monitor_coords[_i*8 + 3]) - __input_wrap_underflow(_monitor_coords[_i*8 + 1]) != _window_height))) //Intersects a vertical edge
+                 
                 {
                     if (__INPUT_DEBUG_CAPTURE) __input_trace("Window exceeds display bounds on monitor ", _i + 1, ", mouse capture blocked");
                     _global.__mouse_capture_blocked = true;

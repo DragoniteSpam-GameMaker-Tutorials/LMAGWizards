@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Limits the cursor’s motion inside an axis-aligned bounding box with the given coordinates
 /// @param   left
 /// @param   top
@@ -33,6 +34,8 @@ function input_cursor_limit_aabb(_l, _t, _r, _b, _player_index = 0)
         __limit_x      = undefined;
         __limit_y      = undefined;
         __limit_radius = undefined;
+        
+        __limit_boundary_margin = undefined;
         
         __limit();
     }

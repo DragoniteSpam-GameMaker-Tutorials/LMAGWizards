@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"input_icon_empty",
   "parent":{
-    "name":"Other",
-    "path":"folders/Input/Other.yy",
+    "name":"Icons",
+    "path":"folders/Input/(System)/Icons.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

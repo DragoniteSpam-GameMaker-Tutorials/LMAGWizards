@@ -239,8 +239,8 @@ self.HandleCamera = function() {
     var camera = obj_game.camera;
     static look_sensitivity = 1 / 3;
     static max_pitch = 80;
-    var mx = (input_cursor_x() - input_cursor_previous_x()) * look_sensitivity;
-    var my = (input_cursor_y() - input_cursor_previous_y()) * look_sensitivity;
+    var mx = input_cursor_dx() * look_sensitivity;
+    var my = input_cursor_dy() * look_sensitivity;
     camera.direction += mx;
     camera.pitch = clamp(camera.pitch + my, -max_pitch, max_pitch);
     

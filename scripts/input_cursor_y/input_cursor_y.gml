@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Returns the y-coordinate of the player's cursor
 ///          The coordinate space should be a member of the INPUT_COORD_SPACE enum:
 ///              .ROOM      Room coordinates; should be the same as mouse_x and mouse_y. This is the default value
@@ -16,5 +17,5 @@ function input_cursor_y(_player_index = 0, _output_system = undefined)
     return __input_transform_coordinate(_cursor.__x,
                                         _cursor.__y,
                                         _cursor.__coord_space,
-                                        _output_system ?? _global.__pointer_coord_space).y;
+                                        _output_system ?? _cursor.__coord_space).y;
 }

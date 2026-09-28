@@ -1,3 +1,4 @@
+// Feather disable all
 /// @desc    Sets the binding for the given verb. The alternate index parameter can be used to
 ///          set multiple parallel inputs for one verb. If no profile name is provided, the
 ///          current profile is used.
@@ -25,7 +26,7 @@ function input_binding_set_safe(_verb_name, _binding, _player_index = 0, _altern
         var _collisions = input_binding_test_collisions(_verb_name, _binding, _player_index, _profile_name);
         if (array_length(_collisions) == 0)
         {
-            input_binding_set(_verb_name, _binding, _player_index, _alternate);
+            input_binding_set(_verb_name, _binding, _player_index, _alternate, _profile_name);
         }
         else
         {
@@ -42,8 +43,8 @@ function input_binding_set_safe(_verb_name, _binding, _player_index = 0, _altern
                 return false;
             }
             
-            var _verb_b      = _collisions[0].verb;
-            var _alternate_b = _collisions[0].alternate;
+            var _verb_b      = _collisions[0].__verb;
+            var _alternate_b = _collisions[0].__alternate;
             
             if ((_verb_name != _verb_b) || (_alternate != _alternate_b))
             {
@@ -59,7 +60,6 @@ function input_binding_set_safe(_verb_name, _binding, _player_index = 0, _altern
             }
         }
         
-        input_verb_consume(_verb_name, _player_index);
         return true;
     }
     else
