@@ -13,7 +13,7 @@
   "option_windows_display_cursor":true,
   "option_windows_display_name":"Created with GameMaker",
   "option_windows_enable_steam":false,
-  "option_windows_executable_name":"${project_name}.exe",
+  "option_windows_executable_name":"LMAGWizards.exe",
   "option_windows_icon":"${base_options_dir}/windows/icons/icon.ico",
   "option_windows_installer_finished":"${base_options_dir}/windows/installer/finished.bmp",
   "option_windows_installer_header":"${base_options_dir}/windows/installer/header.bmp",
@@ -32,7 +32,7 @@
   "option_windows_use_raw_mouse":false,
   "option_windows_use_splash":false,
   "option_windows_version":"1.0.0.0",
-  "option_windows_vsync":false,
+  "option_windows_vsync":true,
   "resourceType":"GMWindowsOptions",
   "resourceVersion":"2.0",
 }
