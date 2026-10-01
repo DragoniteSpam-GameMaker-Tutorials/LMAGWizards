@@ -626,6 +626,7 @@
     {"name":"macros","order":3,"path":"scripts/macros/macros.yy",},
     {"name":"Map_Import","order":4,"path":"scripts/Map_Import/Map_Import.yy",},
     {"name":"penguin_load","order":1,"path":"scripts/penguin_load/penguin_load.yy",},
+    {"name":"screen_to_world","order":65,"path":"scripts/screen_to_world/screen_to_world.yy",},
     {"name":"scribble_anim_cycle","order":1,"path":"scripts/scribble_anim_cycle/scribble_anim_cycle.yy",},
     {"name":"scribble_anim_disabled","order":2,"path":"scripts/scribble_anim_disabled/scribble_anim_disabled.yy",},
     {"name":"scribble_anim_get_disabled","order":3,"path":"scripts/scribble_anim_get_disabled/scribble_anim_get_disabled.yy",},

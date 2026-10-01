@@ -18,6 +18,8 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
     self.direction = 0;
     self.distance = 160;
     
+    self.view_mat = matrix_build_identity();
+    self.proj_mat = matrix_build_identity();
     self.camera = camera_create();
     
     self.UpdateFree = function() {
@@ -67,10 +69,10 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
     };
     
     self.Apply = function() {
-        var view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
-        var proj_mat = matrix_build_projection_perspective_fov(-self.fov, -self.aspect, self.znear, self.zfar);
-        camera_set_view_mat(self.camera, view_mat);
-        camera_set_proj_mat(self.camera, proj_mat);
+        self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
+        self.proj_mat = matrix_build_projection_perspective_fov(-self.fov, -self.aspect, self.znear, self.zfar);
+        camera_set_view_mat(self.camera, self.view_mat);
+        camera_set_proj_mat(self.camera, self.proj_mat);
         camera_apply(self.camera);
     };
     
