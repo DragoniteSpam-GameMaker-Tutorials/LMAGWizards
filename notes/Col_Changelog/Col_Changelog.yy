@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"v1",
+  "$GMNotes":"v2",
   "%Name":"Col_Changelog",
   "name":"Col_Changelog",
   "parent":{

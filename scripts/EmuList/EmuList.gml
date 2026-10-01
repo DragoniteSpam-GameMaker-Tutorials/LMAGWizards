@@ -1,7 +1,7 @@
 // Emu (c) 2020 @dragonitespam
 // See the Github wiki for documentation: https://github.com/DragoniteSpam/Documentation/wiki/Emu
 function EmuList(x, y, width, header_height, text, element_height, content_slots, callback) : EmuCallback(x, y, width, header_height, text, 0, callback) constructor {
-    enum E_ListEntryTypes { STRINGS, STRUCTS, SCRIPTS };
+    enum E_ListEntryTypes { STRINGS, STRUCTS, SCRIPTS, GM_OBJECT };
     
     self.element_height = element_height;
     self.slots = content_slots;
@@ -284,6 +284,7 @@ function EmuList(x, y, width, header_height, text, element_height, content_slots
                     case E_ListEntryTypes.STRINGS: index_text += string(self.entries[current_index]); break;
                     case E_ListEntryTypes.STRUCTS: index_text += self.entries[current_index].name; break;
                     case E_ListEntryTypes.SCRIPTS: index_text = index_text + string(self.entries[current_index](current_index)); break;
+                    case E_ListEntryTypes.GM_OBJECT: index_text = index_text + object_get_name(self.entries[current_index]); break;
                 }
                 
                 scribble(index_text)

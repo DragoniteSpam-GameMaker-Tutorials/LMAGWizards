@@ -36,3 +36,10 @@ for (var i = array_length(self.thought_bubbles) - 1; i >= 0; i--) {
 if (IS_CUTSCENE) {
     with (obj_cutscene) event_perform(ev_draw, ev_gui);
 }
+
+if (DEBUG) {
+    if (IS_EDITOR && !is_undefined(self.editor_ui)) {
+        draw_rectangle_colour(Editor.x, Editor.y, Editor.w, Editor.h, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
+        self.editor_ui.Render(Editor.x, Editor.y);
+    }
+}
