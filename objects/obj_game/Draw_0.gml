@@ -35,7 +35,7 @@ Particles.Render();
 
 obj_player.DrawSpellSymbol();
 
-if (DEBUG) {
+if (Debug.visuals.show_pathfinding) {
     with (obj_npc) {
         if (self.pathfinding != undefined) {
             var previous = new Vector3(self.x, self.y, self.z);
