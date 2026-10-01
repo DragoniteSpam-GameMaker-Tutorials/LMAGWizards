@@ -405,6 +405,7 @@
     {"name":"Group_Collectable_Cards","order":43,"path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},
     {"name":"Group_Common_Library","order":2,"path":"scripts/Group_Common_Library/Group_Common_Library.yy",},
     {"name":"Group_Debug","order":63,"path":"scripts/Group_Debug/Group_Debug.yy",},
+    {"name":"Group_Editor","order":64,"path":"scripts/Group_Editor/Group_Editor.yy",},
     {"name":"Group_Material_Settings","order":6,"path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},
     {"name":"Group_NPC_Navigation","order":55,"path":"scripts/Group_NPC_Navigation/Group_NPC_Navigation.yy",},
     {"name":"Group_Parabolic_Easing","order":1,"path":"scripts/Group_Parabolic_Easing/Group_Parabolic_Easing.yy",},

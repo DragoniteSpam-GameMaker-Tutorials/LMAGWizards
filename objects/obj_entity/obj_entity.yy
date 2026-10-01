@@ -39,5 +39,8 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
+  "tags":[
+    "placeable",
+  ],
   "visible":false,
 }

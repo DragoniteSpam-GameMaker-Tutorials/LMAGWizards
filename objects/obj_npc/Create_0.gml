@@ -219,3 +219,15 @@ self.state = new SnowState("idle")
             self.NavigationAction();
         }
     });
+
+array_push(self.editor_properties,
+    new EditorInspectorSection(
+        "NPC",
+        [
+            // mind read sprite and sprite inde
+            new EditorInspectorKey("random_walk_allowed", EEditorTypes.BOOLEAN),
+            new EditorInspectorKey("random_walk_range", EEditorTypes.REAL),
+            new EditorInspectorKey("random_walk_frequency", EEditorTypes.REAL)
+        ]
+    )
+);

@@ -17,3 +17,34 @@ self.state = undefined;
 
 self.SetMesh = function() { };
 self.UpdateCollisionPositions = function() { };
+
+enum EEditorTypes {
+    REAL,
+    INT,
+    STRING,
+    BOOLEAN
+}
+
+self.editor_properties = [
+    new EditorInspectorSection(
+        "Position",
+        [
+            new EditorInspectorKey("x", EEditorTypes.REAL),
+            new EditorInspectorKey("y", EEditorTypes.REAL),
+            new EditorInspectorKey("z", EEditorTypes.REAL)
+        ]
+    ),
+    new EditorInspectorSection(
+        "General",
+        [
+            new EditorInspectorKey("seesaw_mass", EEditorTypes.REAL)
+        ]
+    ),
+    new EditorInspectorSection(
+        "General",
+        [
+            new EditorInspectorKey("chatterbox_file", EEditorTypes.STRING),
+            new EditorInspectorKey("chatterbox_node", EEditorTypes.STRING)
+        ]
+    )
+];

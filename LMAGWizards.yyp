@@ -477,6 +477,7 @@
     {"id":{"name":"Group_Collectable_Cards","path":"scripts/Group_Collectable_Cards/Group_Collectable_Cards.yy",},},
     {"id":{"name":"Group_Common_Library","path":"scripts/Group_Common_Library/Group_Common_Library.yy",},},
     {"id":{"name":"Group_Debug","path":"scripts/Group_Debug/Group_Debug.yy",},},
+    {"id":{"name":"Group_Editor","path":"scripts/Group_Editor/Group_Editor.yy",},},
     {"id":{"name":"Group_Material_Settings","path":"scripts/Group_Material_Settings/Group_Material_Settings.yy",},},
     {"id":{"name":"Group_NPC_Navigation","path":"scripts/Group_NPC_Navigation/Group_NPC_Navigation.yy",},},
     {"id":{"name":"Group_Parabolic_Easing","path":"scripts/Group_Parabolic_Easing/Group_Parabolic_Easing.yy",},},
