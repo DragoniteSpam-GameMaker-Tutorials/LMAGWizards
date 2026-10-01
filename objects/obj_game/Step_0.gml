@@ -30,6 +30,15 @@ if (IS_EDITOR) {
             hit_x = round(hit_x / Editor.cursor.snapping) * Editor.cursor.snapping;
             //hit_y = round(hit_y / Editor.cursor.snapping) * Editor.cursor.snapping;
             hit_z = round(hit_z / Editor.cursor.snapping) * Editor.cursor.snapping;
+            
+            if (keyboard_check_pressed(vk_space)) {
+                var selection = self.editor_ui.GetChild("OBJECT LIST").GetSelectedItem();
+                if (!is_undefined(selection)) {
+                    with (instance_create_depth(hit_x, hit_y, hit_z, selection)) {
+                        self.UpdateCollisionPositions();
+                    }
+                }
+            }
         }
     }
 }

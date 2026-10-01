@@ -161,6 +161,7 @@ if (DEBUG) {
         new EmuList(Editor.spacing, EMU_AUTO, Editor.w - Editor.spacing * 2, Editor.spacing, "Available objects:", Editor.spacing, 16, function() {
             
         })
+            .SetID("OBJECT LIST")
             .SetEntryTypes(E_ListEntryTypes.GM_OBJECT)
             .AddEntries(objects)
     ])
