@@ -4,8 +4,8 @@ Video = new VideoSettingsConstructor();
 
 function VideoSettingsConstructor() constructor {
     self.resolution = {
-        x: 1366,
-        y: 768
+        x: 1920,
+        y: 1080
     };
     
     self.frame_rate = 60;
