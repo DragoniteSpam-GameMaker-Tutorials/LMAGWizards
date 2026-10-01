@@ -391,10 +391,10 @@ self.HandleCasting = function() {
     }
     
     if (potential_spell_target != undefined && input_check_released("cast")) {
-        var dx = camera.xto - camera.x;
-        var dy = camera.yto - camera.y;
-        var dz = camera.zto - camera.z;
-        var motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
+        dx = camera.xto - camera.x;
+        dy = camera.yto - camera.y;
+        dz = camera.zto - camera.z;
+        motion = new Vector3(dx, dy, dz).Normalize().Mul(spell_velocity);
         var spell = instance_create_depth(wand_target.x, wand_target.y, wand_target.z, potential_spell_target.spell_response, {
             velocity: motion,
             caster: self.id

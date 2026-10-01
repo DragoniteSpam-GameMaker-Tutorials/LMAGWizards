@@ -119,7 +119,8 @@ enum EGameStates {
     PLAYING,
     PAUSED,
     CUTSCENE,
-    TITLE
+    TITLE,
+    EDITOR
 }
 
 self.SetGameState = function(state) {
@@ -137,6 +138,9 @@ self.SetGameState = function(state) {
         case EGameStates.PAUSED:
             input_mouse_capture_set(false);
             break;
+        case EGameStates.EDITOR:
+            input_mouse_capture_set(false);
+            break;
     }
 }
 
@@ -146,3 +150,4 @@ self.active_game_state = EGameStates.PLAYING;
 #macro IS_PAUSED (obj_game.active_game_state == EGameStates.PAUSED)
 #macro IS_CUTSCENE (obj_game.active_game_state == EGameStates.CUTSCENE)
 #macro IS_TITLE (obj_game.active_game_state == EGameStates.TITLE)
+#macro IS_EDITOR (obj_game.active_game_state == EGameStates.EDITOR)

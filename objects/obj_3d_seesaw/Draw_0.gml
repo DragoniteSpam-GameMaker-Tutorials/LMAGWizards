@@ -1,4 +1,4 @@
-if (keyboard_check(vk_f1)) {
+if (Debug.visuals.show_collision) {
     col_object_debug_draw(self.cobjects[0], self.matrix_base);
     col_object_debug_draw(self.cobject_seesaw, self.matrix_seesaw);
     col_object_debug_draw(self.cobject_block_left, self.matrix_block_left);
