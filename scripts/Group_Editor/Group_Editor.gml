@@ -23,6 +23,8 @@ Editor = {
     
     ui: undefined,
     
+    selected: { },
+    
     Update: function() {
         obj_game.camera.UpdateFree();
     
@@ -60,14 +62,28 @@ Editor = {
             var ray = new ColRay(mouse_pos, mouse_dir);
             var raycast_result = obj_game.collision.CheckRay(ray, ~0);
             
+            if (!keyboard_check(vk_control)) {
+                self.selected = { };
+            }
+            
             if (!is_undefined(raycast_result)) {
-                if (instance_exists(raycast_result.shape.object.reference)) {
-                    
-                } else {
-                    
-                }
+                var what = raycast_result.shape.object.reference;
+                self.selected[$ string(what.id)] = what;
             }
         }
+    },
+    
+    Draw: function() {
+        shader_set(shd_gbuff_editor);
+        shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time"), current_time / 1000 * 5);
+        
+        struct_foreach(self.selected, function(key, value) {
+            with (value) {
+                event_perform(ev_draw, 0);
+            }
+        });
+        
+        shader_reset();
     },
     
     DrawGUI: function() {

@@ -849,6 +849,7 @@
     {"id":{"name":"shd_emu_color_buckets","path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},},
     {"id":{"name":"shd_gbuff_billboard_ripple","path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},},
     {"id":{"name":"shd_gbuff_billboard","path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},},
+    {"id":{"name":"shd_gbuff_editor","path":"shaders/shd_gbuff_editor/shd_gbuff_editor.yy",},},
     {"id":{"name":"shd_gbuff_main","path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},},
     {"id":{"name":"shd_gbuff_npc","path":"shaders/shd_gbuff_npc/shd_gbuff_npc.yy",},},
     {"id":{"name":"shd_gbuff_ripple","path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},},

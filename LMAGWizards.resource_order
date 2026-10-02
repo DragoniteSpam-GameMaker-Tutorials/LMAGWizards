@@ -734,6 +734,7 @@
     {"name":"shd_emu_color_buckets","order":3,"path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},
     {"name":"shd_gbuff_billboard_ripple","order":3,"path":"shaders/shd_gbuff_billboard_ripple/shd_gbuff_billboard_ripple.yy",},
     {"name":"shd_gbuff_billboard","order":2,"path":"shaders/shd_gbuff_billboard/shd_gbuff_billboard.yy",},
+    {"name":"shd_gbuff_editor","order":8,"path":"shaders/shd_gbuff_editor/shd_gbuff_editor.yy",},
     {"name":"shd_gbuff_main","order":4,"path":"shaders/shd_gbuff_main/shd_gbuff_main.yy",},
     {"name":"shd_gbuff_npc","order":7,"path":"shaders/shd_gbuff_npc/shd_gbuff_npc.yy",},
     {"name":"shd_gbuff_ripple","order":5,"path":"shaders/shd_gbuff_ripple/shd_gbuff_ripple.yy",},

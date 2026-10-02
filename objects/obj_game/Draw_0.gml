@@ -48,6 +48,12 @@ if (Debug.visuals.show_pathfinding) {
     }
 }
 
+if (DEBUG) {
+    if (IS_EDITOR) {
+        Editor.Draw();
+    }
+}
+
 gpu_set_ztestenable(false);
 gpu_set_zwriteenable(false);
 gpu_set_cullmode(cull_noculling);
