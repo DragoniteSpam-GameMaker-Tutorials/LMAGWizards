@@ -22,7 +22,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
     self.proj_mat = matrix_build_identity();
     self.camera = camera_create();
     
-    self.UpdateFree = function() {
+    static UpdateFree = function() {
         var dx = 0;
         var dy = 0;
         var dz = 0;
@@ -68,7 +68,7 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
         self.zto = self.z - dsin(self.direction) * dcos(self.pitch);
     };
     
-    self.Apply = function() {
+    static Apply = function() {
         self.view_mat = matrix_build_lookat(self.x, self.y, self.z, self.xto, self.yto, self.zto, self.xup, self.yup, self.zup);
         self.proj_mat = matrix_build_projection_perspective_fov(-self.fov, -self.aspect, self.znear, self.zfar);
         camera_set_view_mat(self.camera, self.view_mat);
@@ -76,15 +76,24 @@ function Camera(x, y, z, xto, yto, zto, xup, yup, zup, fov, aspect, znear, zfar)
         camera_apply(self.camera);
     };
     
-    self.GetViewMat = function() {
+    static GetViewMat = function() {
         return camera_get_view_mat(self.camera);
     };
     
-    self.GetProjMat = function() {
+    static GetProjMat = function() {
         return camera_get_proj_mat(self.camera);
     };
     
-    self.DrawSkybox = function(skybox_model) {
+    static GetMouseVector = function(mx,  my) {
+        var world_vec = screen_to_world(mx, my, self.view_mat, self.proj_mat);
+        var dx = world_vec[0];
+        var dy = world_vec[1];
+        var dz = world_vec[2];
+        
+        return new Vector3(dx, dy, dz).Normalize();
+    };
+    
+    static DrawSkybox = function(skybox_model) {
         gpu_set_ztestenable(false);
         gpu_set_zwriteenable(false);
         material_set_material_type(EMaterialTypes.UNLIT);

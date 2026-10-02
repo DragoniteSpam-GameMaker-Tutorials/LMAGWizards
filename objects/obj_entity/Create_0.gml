@@ -15,7 +15,7 @@ self.motion = undefined;
 
 self.state = undefined;
 
-self.SetMesh = function() { };
+self.SetMesh = function(mesh) { };
 self.UpdateCollisionPositions = function() { };
 
 enum EEditorTypes {

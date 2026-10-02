@@ -29,26 +29,16 @@ Editor = {
         var mx = window_mouse_get_x();
         var my = window_mouse_get_y();
         
+        var mouse_dir = obj_game.camera.GetMouseVector(mx, my);
+        var mouse_pos = new Vector3(obj_game.camera.x, obj_game.camera.y, obj_game.camera.z);
+        
         if (mx > 0 and my > 0 and mx < window_get_width() and my < window_get_height()) {
-            var world_vec = screen_to_world(mx, my, obj_game.camera.view_mat, obj_game.camera.proj_mat);
-            var dx = world_vec[0];
-            var dy = world_vec[1];
-            var dz = world_vec[2];
-            var mag = point_distance_3d(0, 0, 0, dx, dy, dz);
-            dx /= mag;
-            dy /= mag;
-            dz /= mag;
-            
-            if (dy < 0) {
-                var px = world_vec[3];
-                var py = world_vec[4];
-                var pz = world_vec[5];
+            if (mouse_dir.y < 0) {
+                var m = -(mouse_pos.y - self.cursor.floor_z) / mouse_dir.y;
                 
-                var m = -(py - self.cursor.floor_z) / dy;
-                
-                var hit_x = px + dx * m;
-                var hit_y = py + dy * m;
-                var hit_z = pz + dz * m;
+                var hit_x = mouse_pos.x + mouse_dir.x * m;
+                var hit_y = mouse_pos.y + mouse_dir.y * m;
+                var hit_z = mouse_pos.z + mouse_dir.z * m;
                 
                 hit_x = round(hit_x / self.cursor.snapping) * self.cursor.snapping;
                 //hit_y = round(hit_y / self.cursor.snapping) * self.cursor.snapping;
@@ -58,9 +48,23 @@ Editor = {
                     var selection = self.ui.GetChild("OBJECT LIST").GetSelectedItem();
                     if (!is_undefined(selection)) {
                         with (instance_create_depth(hit_x, hit_y, hit_z, selection)) {
+                            self.SetMesh(obj_game.meshes.block);
                             self.UpdateCollisionPositions();
                         }
                     }
+                }
+            }
+        }
+        
+        if (mouse_check_button_pressed(mb_left)) {
+            var ray = new ColRay(mouse_pos, mouse_dir);
+            var raycast_result = obj_game.collision.CheckRay(ray, ~0);
+            
+            if (!is_undefined(raycast_result)) {
+                if (instance_exists(raycast_result.shape.object.reference)) {
+                    
+                } else {
+                    
                 }
             }
         }
