@@ -150,19 +150,3 @@ self.active_game_state = EGameStates.PLAYING;
 #macro IS_CUTSCENE (obj_game.active_game_state == EGameStates.CUTSCENE)
 #macro IS_TITLE (obj_game.active_game_state == EGameStates.TITLE)
 #macro IS_EDITOR (obj_game.active_game_state == EGameStates.EDITOR)
-
-self.editor_ui = undefined;
-if (DEBUG) {
-    var objects = tag_get_asset_ids("placeable", asset_object);
-    array_sort(objects, true);
-    
-    self.editor_ui = new EmuCore(Editor.x, Editor.y, Editor.w, Editor.h);
-    self.editor_ui.AddContent([
-        new EmuList(Editor.spacing, EMU_AUTO, Editor.w - Editor.spacing * 2, Editor.spacing, "Available objects:", Editor.spacing, 16, function() {
-            
-        })
-            .SetID("OBJECT LIST")
-            .SetEntryTypes(E_ListEntryTypes.GM_OBJECT)
-            .AddEntries(objects)
-    ])
-}
