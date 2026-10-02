@@ -71,6 +71,15 @@ Editor = {
                 self.selected[$ string(what.id)] = what;
             }
         }
+        
+        if (keyboard_check_pressed(vk_delete)) {
+            struct_foreach(self.selected, function(key, value) {
+                if (instance_exists(value)) {
+                    instance_destroy(value);
+                }
+            });
+            self.selected = { };
+        }
     },
     
     Draw: function() {
