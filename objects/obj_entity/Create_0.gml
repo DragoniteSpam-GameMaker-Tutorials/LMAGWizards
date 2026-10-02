@@ -1,3 +1,5 @@
+array_push(global.all_things, self.id);
+
 self.xspeed = 0;
 self.yspeed = 0;
 self.zspeed = 0;

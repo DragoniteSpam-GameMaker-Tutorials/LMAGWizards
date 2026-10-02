@@ -150,3 +150,7 @@ self.active_game_state = EGameStates.PLAYING;
 #macro IS_CUTSCENE (obj_game.active_game_state == EGameStates.CUTSCENE)
 #macro IS_TITLE (obj_game.active_game_state == EGameStates.TITLE)
 #macro IS_EDITOR (obj_game.active_game_state == EGameStates.EDITOR)
+
+if (DEBUG) {
+    Editor.InitUI();
+}

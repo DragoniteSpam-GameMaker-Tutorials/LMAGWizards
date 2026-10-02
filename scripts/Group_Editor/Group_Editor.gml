@@ -23,13 +23,13 @@ Editor = {
     
     ui: undefined,
     
-    selected: { },
-    
     Update: function() {
         obj_game.camera.UpdateFree();
     
         var mx = window_mouse_get_x();
         var my = window_mouse_get_y();
+        
+        var all_things = self.ui.GetChild("ALL THINGS");
         
         var mouse_dir = obj_game.camera.GetMouseVector(mx, my);
         var mouse_pos = new Vector3(obj_game.camera.x, obj_game.camera.y, obj_game.camera.z);
@@ -63,22 +63,26 @@ Editor = {
             var raycast_result = obj_game.collision.CheckRay(ray, ~0);
             
             if (!keyboard_check(vk_control)) {
-                self.selected = { };
+                all_things.ClearSelection();
             }
             
             if (!is_undefined(raycast_result)) {
                 var what = raycast_result.shape.object.reference;
-                self.selected[$ string(what.id)] = what;
+                var all_things_index = array_get_index(global.all_things, what);
+                if (all_things_index >= 0){
+                    all_things.Select(all_things_index, true);
+                }
             }
         }
         
         if (keyboard_check_pressed(vk_delete)) {
-            struct_foreach(self.selected, function(key, value) {
-                if (instance_exists(value)) {
-                    instance_destroy(value);
+            var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
+            array_foreach(selected, function(thing) {
+                if (instance_exists(thing)) {
+                    instance_destroy(thing);
                 }
             });
-            self.selected = { };
+            self.ui.GetChild("ALL THINGS").ClearSelection();
         }
     },
     
@@ -86,8 +90,9 @@ Editor = {
         shader_set(shd_gbuff_editor);
         shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time"), current_time / 1000 * 5);
         
-        struct_foreach(self.selected, function(key, value) {
-            with (value) {
+        var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
+        array_foreach(selected, function(thing) {
+            with (thing) {
                 event_perform(ev_draw, 0);
             }
         });
@@ -98,20 +103,27 @@ Editor = {
     DrawGUI: function() {
         draw_rectangle_colour(Editor.x, Editor.y, Editor.w, Editor.h, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
         self.ui.Render(Editor.x, Editor.y);
+    },
+    
+    InitUI: function() {
+        var objects = tag_get_asset_ids("placeable", asset_object);
+        array_sort(objects, true);
+        
+        Editor.ui = new EmuCore(Editor.x, Editor.y, Editor.w, Editor.h);
+        Editor.ui.AddContent([
+            new EmuList(Editor.spacing, EMU_AUTO, Editor.w - Editor.spacing * 2, Editor.spacing, "Available objects:", Editor.spacing, 16, function() {
+                
+            })
+                .SetID("OBJECT LIST")
+                .SetEntryTypes(E_ListEntryTypes.GM_OBJECT)
+                .AddEntries(objects),
+            new EmuList(Editor.spacing, EMU_AUTO, Editor.w - Editor.spacing * 2, Editor.spacing, "All of the things:", Editor.spacing, 30, function() {
+                
+            })
+                .SetID("ALL THINGS")
+                .SetMultiSelect(true, false, false)
+                .SetEntryTypes(E_ListEntryTypes.GM_INSTANCE)
+                .AddEntries(global.all_things),
+        ])
     }
 };
-
-if (DEBUG) {
-    var objects = tag_get_asset_ids("placeable", asset_object);
-    array_sort(objects, true);
-    
-    Editor.ui = new EmuCore(Editor.x, Editor.y, Editor.w, Editor.h);
-    Editor.ui.AddContent([
-        new EmuList(Editor.spacing, EMU_AUTO, Editor.w - Editor.spacing * 2, Editor.spacing, "Available objects:", Editor.spacing, 16, function() {
-            
-        })
-            .SetID("OBJECT LIST")
-            .SetEntryTypes(E_ListEntryTypes.GM_OBJECT)
-            .AddEntries(objects)
-    ])
-}

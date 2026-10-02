@@ -232,3 +232,5 @@ enum EWizardSchoolObjects {
     
     NPC
 }
+
+global.all_things = [];
