@@ -9,6 +9,7 @@ vertex_format_add_colour();
 self.vertex_format = vertex_format_end();
 
 self.meshes = penguin_load("meshes.derg", self.vertex_format);
+self.gizmos = penguin_load("gizmos.derg", self.vertex_format);
 
 self.camera = new Camera(0, 250, 0, 1000, 0, 1000, 0, 1, 0, 60, 16 / 9, 1, 10000);
 
@@ -85,10 +86,14 @@ var spatial_hash = new ColWorldSpatialHash(100);
 var octree = new ColWorldOctree(NewColAABBFromMinMax(new Vector3(-1000, -100, -1000), new Vector3(1000, 1000, 1000)), 3);
 self.collision = new ColWorld(octree);
 
-self.map = new UnityMapImport("test.place", self.meshes);
+//self.map = new UnityMapImport("test.place", self.meshes);
 
 var seesaw = instance_create_depth(100, 0, -300, obj_3d_seesaw);
 seesaw.UpdateCollisionPositions();
+
+var block = instance_create_depth(0, 0, 0, obj_3d_object);
+block.SetMesh(meshes.block);
+block.UpdateCollisionPositions();
 
 //var npc = instance_create_depth(-200, 0, -450, obj_npc);
 
