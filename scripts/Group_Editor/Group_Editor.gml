@@ -123,7 +123,7 @@ Editor = {
                 .SetID("ALL THINGS")
                 .SetMultiSelect(true, false, false)
                 .SetEntryTypes(E_ListEntryTypes.GM_INSTANCE)
-                .AddEntries(global.all_things),
+                .SetList(global.all_things)
         ])
     }
 };
