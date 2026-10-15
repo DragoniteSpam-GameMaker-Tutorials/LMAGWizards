@@ -29,6 +29,7 @@ Editor = {
     spacing: 20,
     
     selected_gizmo: EditorGizmos.NONE,
+    selected_gizmo_position: undefined,
     
     ui: undefined,
     
@@ -59,6 +60,61 @@ Editor = {
         );
     },
     
+    GetSelectionPlaneMouseLocation: function() {
+        var selected_center = self.GetSelectionCenter();
+        
+        var mx = window_mouse_get_x();
+        var my = window_mouse_get_y();
+        
+        var mouse_dir = obj_game.camera.GetMouseVector(mx, my);
+        var mouse_pos = new Vector3(obj_game.camera.x, obj_game.camera.y, obj_game.camera.z);
+        var ray = new ColRay(mouse_pos, mouse_dir);
+        
+        switch (self.selected_gizmo) {
+            case EditorGizmos.X: {
+                var test_plane_plus = new ColObject(new ColPlane(new Vector3(0, 0,  1), selected_center.z), undefined);
+                var test_plane_minu = new ColObject(new ColPlane(new Vector3(0, 0, -1), selected_center.z), undefined);
+                var ray_hit_info = new RaycastHitInformation();
+                
+                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+                
+                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+            } break;
+            case EditorGizmos.Y: {
+                var test_plane_plus = new ColObject(new ColPlane(new Vector3( 1, 0, 0), selected_center.x), undefined);
+                var test_plane_minu = new ColObject(new ColPlane(new Vector3(-1, 0, 0), selected_center.x), undefined);
+                var ray_hit_info = new RaycastHitInformation();
+                
+                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+                
+                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+            } break;
+            case EditorGizmos.Z: {
+                var test_plane_plus = new ColObject(new ColPlane(new Vector3(0,  1, 0), selected_center.y), undefined);
+                var test_plane_minu = new ColObject(new ColPlane(new Vector3(0, -1, 0), selected_center.y), undefined);
+                var ray_hit_info = new RaycastHitInformation();
+                
+                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+                
+                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
+                    return ray_hit_info.point;
+                }
+            } break;
+        }
+        
+        return new Vector3(0, 0, 0);
+    },
+    
     Update: function() {
         obj_game.camera.UpdateFree();
     
@@ -69,6 +125,7 @@ Editor = {
         
         var mouse_dir = obj_game.camera.GetMouseVector(mx, my);
         var mouse_pos = new Vector3(obj_game.camera.x, obj_game.camera.y, obj_game.camera.z);
+        var ray = new ColRay(mouse_pos, mouse_dir);
         
         if (mx > 0 and my > 0 and mx < window_get_width() and my < window_get_height()) {
             if (mouse_dir.y < 0) {
@@ -95,21 +152,24 @@ Editor = {
         }
         
         var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
+        var selected_center = self.GetSelectionCenter();
         
         if (!mouse_check_button(mb_left)) {
             self.selected_gizmo = EditorGizmos.NONE;
+            self.selected_gizmo_position = undefined;
         }
         
         if (mouse_check_button_pressed(mb_left)) {
             static mouse_surf = -1;
             mouse_surf = surface_validate(mouse_surf, surface_get_width(application_surface), surface_get_height(application_surface));
             
+            // figure out what you clicked on
             surface_set_target(mouse_surf);
             
                 obj_game.camera.Apply();
                 draw_clear(c_black);
-                var center = self.GetSelectionCenter();
-                matrix_set(matrix_world, matrix_build(center.x, center.y, center.z, 0, 0, 0, 25, 25, 25));
+                
+                matrix_set(matrix_world, matrix_build(selected_center.x, selected_center.y, selected_center.z, 0, 0, 0, 25, 25, 25));
                 gpu_set_ztestenable(false);
                 
                 shader_reset();
@@ -122,6 +182,7 @@ Editor = {
             
             surface_reset_target();
             
+            // yes this is slow
             var mouse_pick_color = surface_getpixel(mouse_surf, mx, my);
             
             if (mouse_pick_color == #fe3232) {
@@ -132,8 +193,11 @@ Editor = {
                 self.selected_gizmo = EditorGizmos.Z;
             }
             
-            if (self.selected_gizmo == EditorGizmos.NONE) {
-                var ray = new ColRay(mouse_pos, mouse_dir);
+            // code that happens when you first select a gizmo thingy
+            if (self.selected_gizmo != EditorGizmos.NONE) {
+                self.selected_gizmo_position = self.GetSelectionPlaneMouseLocation();
+            // code that happens when you have not selected a gizmo thingy
+            } else {
                 var raycast_result = obj_game.collision.CheckRay(ray, ~0);
                 
                 if (!keyboard_check(vk_control)) {
@@ -146,6 +210,41 @@ Editor = {
                     if (all_things_index >= 0){
                         all_things.Select(all_things_index, true);
                     }
+                }
+            }
+        }
+        
+        if (mouse_check_button(mb_left)) {
+            if (self.selected_gizmo != EditorGizmos.NONE) {
+                var current_gizmo_mouse_position = self.GetSelectionPlaneMouseLocation();
+                if (current_gizmo_mouse_position != undefined && self.selected_gizmo_position != undefined) {
+                    var delta = current_gizmo_mouse_position.Sub(self.selected_gizmo_position);
+                    
+                    switch (self.selected_gizmo) {
+                        case EditorGizmos.X: {
+                            for (var i = 0, n = array_length(selected); i < n; i++) {
+                                var thing = selected[i];
+                                thing.x += delta.x;
+                                thing.UpdateCollisionPositions();
+                            }
+                        } break;
+                        case EditorGizmos.Y: {
+                            for (var i = 0, n = array_length(selected); i < n; i++) {
+                                var thing = selected[i];
+                                thing.y += delta.y;
+                                thing.UpdateCollisionPositions();
+                            }
+                        } break;
+                        case EditorGizmos.Z: {
+                            for (var i = 0, n = array_length(selected); i < n; i++) {
+                                var thing = selected[i];
+                                thing.z += delta.z;
+                                thing.UpdateCollisionPositions();
+                            }
+                        } break;
+                    }
+                    
+                    self.selected_gizmo_position = current_gizmo_mouse_position;
                 }
             }
         }
