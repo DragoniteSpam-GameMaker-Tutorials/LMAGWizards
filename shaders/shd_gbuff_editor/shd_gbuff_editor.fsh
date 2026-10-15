@@ -11,6 +11,7 @@ varying vec3 v_vVSPosition;
 uniform float u_MaterialType;
 uniform float u_time;
 uniform float u_time_enabled;
+uniform vec4 u_override_color;
 
 vec3 ToNormalColor(vec3 normal) {
     return normal * 0.5 + 0.5;
@@ -24,6 +25,7 @@ void main() {
     vec4 diffuse = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
     float t = (sin(u_time) * 0.5 + 0.5) * 0.6 + 0.2;
     vec4 selected_color = mix(diffuse, vec4(1, 0, 0, 1), t * u_time_enabled);
+    selected_color.rgb = mix(selected_color.rgb, u_override_color.rgb, u_override_color.a);
     
     gl_FragData[GBUFF_DIFFUSE] = selected_color;
     gl_FragData[GBUFF_VS_POSITION] = vec4(v_vVSPosition, 1);

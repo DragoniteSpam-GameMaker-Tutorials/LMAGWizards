@@ -164,6 +164,7 @@ Editor = {
         shader_set(shd_gbuff_editor);
         shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time"), current_time / 1000 * 5);
         shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time_enabled"), 1);
+        shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_override_color"), 0, 0, 0, 0);
         
         var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
         var center = self.GetSelectionCenter();
@@ -179,9 +180,17 @@ Editor = {
         matrix_set(matrix_world, matrix_build(center.x, center.y, center.z, 0, 0, 0, 25, 25, 25));
         gpu_set_ztestenable(false);
         
+        static set_override_color = function(enabled) {
+            shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_override_color"), $ff / 255, $ff / 255, $99 / 255, enabled);
+        };
+        
+        set_override_color(self.selected_gizmo == EditorGizmos.X);
         obj_game.gizmos.translate_x.Render();
+        set_override_color(self.selected_gizmo == EditorGizmos.Y);
         obj_game.gizmos.translate_y.Render();
+        set_override_color(self.selected_gizmo == EditorGizmos.Z);
         obj_game.gizmos.translate_z.Render();
+        set_override_color(false);
         
         matrix_set(matrix_world, matrix_build_identity());
         gpu_set_ztestenable(true);
