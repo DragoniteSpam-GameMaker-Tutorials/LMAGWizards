@@ -70,46 +70,45 @@ Editor = {
         var mouse_pos = new Vector3(obj_game.camera.x, obj_game.camera.y, obj_game.camera.z);
         var ray = new ColRay(mouse_pos, mouse_dir);
         
+        static test_plane_plus = new ColObject(undefined, undefined);
+        static test_plane_minu = new ColObject(undefined, undefined);
+        
+        static plane_x_plus = new ColPlane(new Vector3(0, 0,  1), 0);
+        static plane_x_minu = new ColPlane(new Vector3(0, 0, -1), 0);
+        static plane_y_plus = new ColPlane(new Vector3( 1, 0, 0), 0);
+        static plane_y_minu = new ColPlane(new Vector3(-1, 0, 0), 0);
+        static plane_z_plus = new ColPlane(new Vector3(0,  1, 0), 0);
+        static plane_z_minu = new ColPlane(new Vector3(0, -1, 0), 0);
+        static ray_hit_info = new RaycastHitInformation();
+        ray_hit_info.Clear();
+        
         switch (self.selected_gizmo) {
             case EditorGizmos.X: {
-                var test_plane_plus = new ColObject(new ColPlane(new Vector3(0, 0,  1), selected_center.z), undefined);
-                var test_plane_minu = new ColObject(new ColPlane(new Vector3(0, 0, -1), selected_center.z), undefined);
-                var ray_hit_info = new RaycastHitInformation();
-                
-                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
-                
-                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
+                plane_x_plus.distance = selected_center.z;
+                plane_x_minu.distance = selected_center.z;
+                test_plane_plus.shape = plane_x_plus;
+                test_plane_minu.shape = plane_x_minu;
             } break;
             case EditorGizmos.Y: {
-                var test_plane_plus = new ColObject(new ColPlane(new Vector3( 1, 0, 0), selected_center.x), undefined);
-                var test_plane_minu = new ColObject(new ColPlane(new Vector3(-1, 0, 0), selected_center.x), undefined);
-                var ray_hit_info = new RaycastHitInformation();
-                
-                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
-                
-                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
+                plane_y_plus.distance = selected_center.x;
+                plane_y_minu.distance = selected_center.x;
+                test_plane_plus.shape = plane_y_plus;
+                test_plane_minu.shape = plane_y_minu;
             } break;
             case EditorGizmos.Z: {
-                var test_plane_plus = new ColObject(new ColPlane(new Vector3(0,  1, 0), selected_center.y), undefined);
-                var test_plane_minu = new ColObject(new ColPlane(new Vector3(0, -1, 0), selected_center.y), undefined);
-                var ray_hit_info = new RaycastHitInformation();
-                
-                if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
-                
-                if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
-                    return ray_hit_info.point;
-                }
+                plane_z_plus.distance = selected_center.y;
+                plane_z_minu.distance = selected_center.y;
+                test_plane_plus.shape = plane_z_plus;
+                test_plane_minu.shape = plane_z_minu;
             } break;
+        }
+        
+        if (test_plane_plus.CheckRay(ray, ray_hit_info)) {
+            return ray_hit_info.point;
+        }
+        
+        if (test_plane_minu.CheckRay(ray, ray_hit_info)) {
+            return ray_hit_info.point;
         }
         
         return new Vector3(0, 0, 0);
