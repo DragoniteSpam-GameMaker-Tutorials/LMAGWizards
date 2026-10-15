@@ -91,11 +91,38 @@ Editor = {
         shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time"), current_time / 1000 * 5);
         
         var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
-        array_foreach(selected, function(thing) {
+        
+        var min_x = infinity;
+        var min_y = infinity;
+        var min_z = infinity;
+        var max_x = -infinity;
+        var max_y = -infinity;
+        var max_z = -infinity;
+        
+        for (var i = 0, n = array_length(selected); i < n; i++) {
+            var thing = selected[i];
             with (thing) {
                 event_perform(ev_draw, 0);
+                min_x = min(min_x, self.x);
+                min_y = min(min_y, self.y);
+                min_z = min(min_z, self.z);
+                max_x = max(max_x, self.x);
+                max_y = max(max_y, self.y);
+                max_z = max(max_z, self.z);
             }
-        });
+        };
+        
+        var center_x = mean(min_x, max_x);
+        var center_y = mean(min_y, max_y);
+        var center_z = mean(min_z, max_z);
+        
+        matrix_set(matrix_world, matrix_build(center_x, center_y, center_z, 0, 0, 0, 25, 25, 25));
+        
+        obj_game.gizmos.translate_x.Render();
+        obj_game.gizmos.translate_y.Render();
+        obj_game.gizmos.translate_z.Render();
+        
+        matrix_set(matrix_world, matrix_build_identity());
         
         shader_reset();
     },
