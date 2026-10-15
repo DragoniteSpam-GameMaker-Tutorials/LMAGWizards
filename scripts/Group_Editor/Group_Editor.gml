@@ -8,6 +8,13 @@ function EditorInspectorKey(key, type) constructor {
     self.type = type;
 }
 
+enum EditorGizmos {
+    NONE,
+    X,
+    Y,
+    Z
+}
+
 #macro Editor global.__editor__
 
 Editor = {
@@ -20,6 +27,8 @@ Editor = {
     w: 400,
     h: 1080,
     spacing: 20,
+    
+    selected_gizmo: EditorGizmos.NONE,
     
     ui: undefined,
     
@@ -87,6 +96,10 @@ Editor = {
         
         var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
         
+        if (!mouse_check_button(mb_left)) {
+            self.selected_gizmo = EditorGizmos.NONE;
+        }
+        
         if (mouse_check_button_pressed(mb_left)) {
             static mouse_surf = -1;
             mouse_surf = surface_validate(mouse_surf, surface_get_width(application_surface), surface_get_height(application_surface));
@@ -109,18 +122,30 @@ Editor = {
             
             surface_reset_target();
             
-            var ray = new ColRay(mouse_pos, mouse_dir);
-            var raycast_result = obj_game.collision.CheckRay(ray, ~0);
+            var mouse_pick_color = surface_getpixel(mouse_surf, mx, my);
             
-            if (!keyboard_check(vk_control)) {
-                all_things.ClearSelection();
+            if (mouse_pick_color == #fe3232) {
+                self.selected_gizmo = EditorGizmos.X;
+            } else if (mouse_pick_color == #32fe32) {
+                self.selected_gizmo = EditorGizmos.Y;
+            } else if (mouse_pick_color == #3232fe) {
+                self.selected_gizmo = EditorGizmos.Z;
             }
             
-            if (!is_undefined(raycast_result)) {
-                var what = raycast_result.shape.object.reference;
-                var all_things_index = array_get_index(global.all_things, what);
-                if (all_things_index >= 0){
-                    all_things.Select(all_things_index, true);
+            if (self.selected_gizmo == EditorGizmos.NONE) {
+                var ray = new ColRay(mouse_pos, mouse_dir);
+                var raycast_result = obj_game.collision.CheckRay(ray, ~0);
+                
+                if (!keyboard_check(vk_control)) {
+                    all_things.ClearSelection();
+                }
+                
+                if (!is_undefined(raycast_result)) {
+                    var what = raycast_result.shape.object.reference;
+                    var all_things_index = array_get_index(global.all_things, what);
+                    if (all_things_index >= 0){
+                        all_things.Select(all_things_index, true);
+                    }
                 }
             }
         }
