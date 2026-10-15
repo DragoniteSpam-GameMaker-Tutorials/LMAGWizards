@@ -23,6 +23,33 @@ Editor = {
     
     ui: undefined,
     
+    GetSelectionCenter: function() {
+        var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
+        
+        var min_x = infinity;
+        var min_y = infinity;
+        var min_z = infinity;
+        var max_x = -infinity;
+        var max_y = -infinity;
+        var max_z = -infinity;
+        
+        for (var i = 0, n = array_length(selected); i < n; i++) {
+            var thing = selected[i];
+            min_x = min(min_x, thing.x);
+            min_y = min(min_y, thing.y);
+            min_z = min(min_z, thing.z);
+            max_x = max(max_x, thing.x);
+            max_y = max(max_y, thing.y);
+            max_z = max(max_z, thing.z);
+        };
+        
+        return new Vector3(
+            mean(min_x, max_x),
+            mean(min_y, max_y),
+            mean(min_z, max_z)
+        );
+    },
+    
     Update: function() {
         obj_game.camera.UpdateFree();
     
@@ -58,7 +85,30 @@ Editor = {
             }
         }
         
+        var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
+        
         if (mouse_check_button_pressed(mb_left)) {
+            static mouse_surf = -1;
+            mouse_surf = surface_validate(mouse_surf, surface_get_width(application_surface), surface_get_height(application_surface));
+            
+            surface_set_target(mouse_surf);
+            
+                obj_game.camera.Apply();
+                draw_clear(c_black);
+                var center = self.GetSelectionCenter();
+                matrix_set(matrix_world, matrix_build(center.x, center.y, center.z, 0, 0, 0, 25, 25, 25));
+                gpu_set_ztestenable(false);
+                
+                shader_reset();
+                obj_game.gizmos.translate_x.Render();
+                obj_game.gizmos.translate_y.Render();
+                obj_game.gizmos.translate_z.Render();
+                
+                matrix_set(matrix_world, matrix_build_identity());
+                gpu_set_ztestenable(true);
+            
+            surface_reset_target();
+            
             var ray = new ColRay(mouse_pos, mouse_dir);
             var raycast_result = obj_game.collision.CheckRay(ray, ~0);
             
@@ -76,7 +126,6 @@ Editor = {
         }
         
         if (keyboard_check_pressed(vk_delete)) {
-            var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
             array_foreach(selected, function(thing) {
                 if (instance_exists(thing)) {
                     instance_destroy(thing);
@@ -89,41 +138,28 @@ Editor = {
     Draw: function() {
         shader_set(shd_gbuff_editor);
         shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time"), current_time / 1000 * 5);
+        shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time_enabled"), 1);
         
         var selected = self.ui.GetChild("ALL THINGS").GetAllSelectedItems();
-        
-        var min_x = infinity;
-        var min_y = infinity;
-        var min_z = infinity;
-        var max_x = -infinity;
-        var max_y = -infinity;
-        var max_z = -infinity;
+        var center = self.GetSelectionCenter();
         
         for (var i = 0, n = array_length(selected); i < n; i++) {
             var thing = selected[i];
             with (thing) {
                 event_perform(ev_draw, 0);
-                min_x = min(min_x, self.x);
-                min_y = min(min_y, self.y);
-                min_z = min(min_z, self.z);
-                max_x = max(max_x, self.x);
-                max_y = max(max_y, self.y);
-                max_z = max(max_z, self.z);
             }
         };
         
-        var center_x = mean(min_x, max_x);
-        var center_y = mean(min_y, max_y);
-        var center_z = mean(min_z, max_z);
-        
-        matrix_set(matrix_world, matrix_build(center_x, center_y, center_z, 0, 0, 0, 25, 25, 25));
+        shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_time_enabled"), 0);
+        matrix_set(matrix_world, matrix_build(center.x, center.y, center.z, 0, 0, 0, 25, 25, 25));
+        gpu_set_ztestenable(false);
         
         obj_game.gizmos.translate_x.Render();
         obj_game.gizmos.translate_y.Render();
         obj_game.gizmos.translate_z.Render();
         
         matrix_set(matrix_world, matrix_build_identity());
-        
+        gpu_set_ztestenable(true);
         shader_reset();
     },
     
