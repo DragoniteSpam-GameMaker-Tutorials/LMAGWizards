@@ -222,9 +222,10 @@ Editor = {
         };
         
         static editor_gizmo_rotate = function(selected, delta) {
+            var mouse_delta_x = window_mouse_get_delta_x();
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    var R = matrix_build(0, 0, 0, delta.z, 0, 0, 1, 1, 1);
+                    var R = matrix_build(0, 0, 0, mouse_delta_x, 0, 0, 1, 1, 1);
                     for (var i = 0, n = array_length(selected); i < n; i++) {
                         var thing = selected[i];
                         matrix_multiply(thing.rotation_mat, R, thing.rotation_mat);
@@ -232,7 +233,7 @@ Editor = {
                     }
                 } break;
                 case EditorGizmos.Y: {
-                    var R = matrix_build(0, 0, 0, 0, delta.x, 0, 1, 1, 1);
+                    var R = matrix_build(0, 0, 0, 0, mouse_delta_x, 0, 1, 1, 1);
                     for (var i = 0, n = array_length(selected); i < n; i++) {
                         var thing = selected[i];
                         matrix_multiply(thing.rotation_mat, R, thing.rotation_mat);
@@ -240,7 +241,7 @@ Editor = {
                     }
                 } break;
                 case EditorGizmos.Z: {
-                    var R = matrix_build(0, 0, 0, 0, 0, delta.y, 1, 1, 1);
+                    var R = matrix_build(0, 0, 0, 0, 0, mouse_delta_x, 1, 1, 1);
                     for (var i = 0, n = array_length(selected); i < n; i++) {
                         var thing = selected[i];
                         matrix_multiply(thing.rotation_mat, R, thing.rotation_mat);
