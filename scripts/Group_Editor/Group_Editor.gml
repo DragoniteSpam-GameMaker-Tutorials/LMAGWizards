@@ -154,8 +154,20 @@ Editor = {
     },
     
     Update: function() {
+        if (self.GetMouseOverUI()) {
+            return;
+        }
+        
+        if (keyboard_check(vk_anykey)) {
+            _emu_active_element(pointer_null);
+        }
+        
+        if (mouse_check_button(mb_any)) {
+            _emu_active_element(pointer_null);
+        }
+        
         obj_game.camera.UpdateFree();
-    
+        
         var mx = window_mouse_get_x();
         var my = window_mouse_get_y();
         
@@ -414,6 +426,16 @@ Editor = {
         self.ui.Render(0, 0);
     },
     
+    GetMouseOverUI: function() {
+        var mx = window_mouse_get_x();
+        var my = window_mouse_get_y();
+        
+        if (point_in_rectangle(mx, my, 0, 0, Editor.w, Editor.h)) return true;
+        if (point_in_rectangle(mx, my, 0, 0, window_get_width(), 100)) return true;
+        
+        return false;
+    },
+    
     InitUI: function() {
         var objects = tag_get_asset_ids("placeable", asset_object);
         array_sort(objects, true);
@@ -443,13 +465,13 @@ Editor = {
                 .SetID("TRANSFORM TYPE")
                 .AddOptions(["Translate", "Rotate"])
                 .SetColumns(1, 160),
-            new EmuInput(Editor.w + 320, EMU_INLINE, 400, 32, "Snapping (translate):", Editor.snapping_translate, "some number", 4, E_InputTypes.INT, function() {
+            new EmuInput(Editor.w + 320, EMU_INLINE, 400, 32, "Snapping (translate):", string(Editor.snapping_translate), "some number", 4, E_InputTypes.INT, function() {
                 Editor.snapping_translate = real(self.value);
             })
                 .SetNext("TRANSFORM SNAP ROTATE")
                 .SetPrevious("TRANSFORM SNAP ROTATE")
                 .SetID("TRANSFORM SNAP TRANSLATE"),
-            new EmuInput(Editor.w + 320, EMU_AUTO, 400, 32, "Snapping (rotate):", Editor.snapping_rotate, "some number", 4, E_InputTypes.INT, function() {
+            new EmuInput(Editor.w + 320, EMU_AUTO, 400, 32, "Snapping (rotate):", string(Editor.snapping_rotate), "some number", 4, E_InputTypes.INT, function() {
                 Editor.snapping_rotate = real(self.value);
             })
                 .SetNext("TRANSFORM SNAP TRANSLATE")
