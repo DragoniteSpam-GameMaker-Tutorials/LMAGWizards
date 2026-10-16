@@ -15,6 +15,13 @@ enum EditorGizmos {
     Z
 }
 
+enum EditorGizmoModes {
+    NONE,
+    TRANSLATE,
+    ROTATE,
+    SCALE
+}
+
 #macro Editor global.__editor__
 
 Editor = {
@@ -30,6 +37,7 @@ Editor = {
     
     selected_gizmo: EditorGizmos.NONE,
     selected_gizmo_position: undefined,
+    gizmo_type: EditorGizmoModes.ROTATE,
     
     ui: undefined,
     
@@ -73,33 +81,61 @@ Editor = {
         static test_plane_plus = new ColObject(undefined, undefined);
         static test_plane_minu = new ColObject(undefined, undefined);
         
-        static plane_x_plus = new ColPlane(new Vector3(0, 0,  1), 0);
-        static plane_x_minu = new ColPlane(new Vector3(0, 0, -1), 0);
-        static plane_y_plus = new ColPlane(new Vector3( 1, 0, 0), 0);
-        static plane_y_minu = new ColPlane(new Vector3(-1, 0, 0), 0);
-        static plane_z_plus = new ColPlane(new Vector3(0,  1, 0), 0);
-        static plane_z_minu = new ColPlane(new Vector3(0, -1, 0), 0);
+        static plane_x_plus = new ColPlane(new Vector3( 1, 0, 0), 0);
+        static plane_x_minu = new ColPlane(new Vector3(-1, 0, 0), 0);
+        static plane_y_plus = new ColPlane(new Vector3(0,  1, 0), 0);
+        static plane_y_minu = new ColPlane(new Vector3(0, -1, 0), 0);
+        static plane_z_plus = new ColPlane(new Vector3(0, 0,  1), 0);
+        static plane_z_minu = new ColPlane(new Vector3(0, 0, -1), 0);
         static ray_hit_info = new RaycastHitInformation();
         ray_hit_info.Clear();
         
-        switch (self.selected_gizmo) {
-            case EditorGizmos.X: {
-                plane_x_plus.distance = selected_center.z;
-                plane_x_minu.distance = selected_center.z;
-                test_plane_plus.shape = plane_x_plus;
-                test_plane_minu.shape = plane_x_minu;
+        switch (self.gizmo_type) {
+            // when you translate, you can use any plane that isn't the axis
+            // of translation
+            case EditorGizmoModes.TRANSLATE: {
+                switch (self.selected_gizmo) {
+                    case EditorGizmos.X: {
+                        plane_z_plus.distance = selected_center.z;
+                        plane_z_minu.distance = selected_center.z;
+                        test_plane_plus.shape = plane_z_plus;
+                        test_plane_minu.shape = plane_z_minu;
+                    } break;
+                    case EditorGizmos.Y: {
+                        plane_x_plus.distance = selected_center.x;
+                        plane_x_minu.distance = selected_center.x;
+                        test_plane_plus.shape = plane_x_plus;
+                        test_plane_minu.shape = plane_x_minu;
+                    } break;
+                    case EditorGizmos.Z: {
+                        plane_y_plus.distance = selected_center.y;
+                        plane_y_minu.distance = selected_center.y;
+                        test_plane_plus.shape = plane_y_plus;
+                        test_plane_minu.shape = plane_y_minu;
+                    } break;
+                }
             } break;
-            case EditorGizmos.Y: {
-                plane_y_plus.distance = selected_center.x;
-                plane_y_minu.distance = selected_center.x;
-                test_plane_plus.shape = plane_y_plus;
-                test_plane_minu.shape = plane_y_minu;
-            } break;
-            case EditorGizmos.Z: {
-                plane_z_plus.distance = selected_center.y;
-                plane_z_minu.distance = selected_center.y;
-                test_plane_plus.shape = plane_z_plus;
-                test_plane_minu.shape = plane_z_minu;
+            case EditorGizmoModes.ROTATE: {
+                switch (self.selected_gizmo) {
+                    case EditorGizmos.X: {
+                        plane_x_plus.distance = selected_center.x;
+                        plane_x_minu.distance = selected_center.x;
+                        test_plane_plus.shape = plane_x_plus;
+                        test_plane_minu.shape = plane_x_minu;
+                    } break;
+                    case EditorGizmos.Y: {
+                        plane_y_plus.distance = selected_center.y;
+                        plane_y_minu.distance = selected_center.y;
+                        test_plane_plus.shape = plane_y_plus;
+                        test_plane_minu.shape = plane_y_minu;
+                    } break;
+                    case EditorGizmos.Z: {
+                        plane_z_plus.distance = selected_center.z;
+                        plane_z_minu.distance = selected_center.z;
+                        test_plane_plus.shape = plane_z_plus;
+                        test_plane_minu.shape = plane_z_minu;
+                    } break;
+                }
             } break;
         }
         
@@ -169,12 +205,26 @@ Editor = {
                 draw_clear(c_black);
                 
                 matrix_set(matrix_world, matrix_build(selected_center.x, selected_center.y, selected_center.z, 0, 0, 0, 25, 25, 25));
-                gpu_set_ztestenable(false);
+                gpu_set_ztestenable(true);
                 
                 shader_reset();
-                obj_game.gizmos.translate_x.Render();
-                obj_game.gizmos.translate_y.Render();
-                obj_game.gizmos.translate_z.Render();
+                switch (self.gizmo_type) {
+                    case EditorGizmoModes.TRANSLATE: {
+                        obj_game.gizmos.translate_x.Render();
+                        obj_game.gizmos.translate_y.Render();
+                        obj_game.gizmos.translate_z.Render();
+                    } break;
+                    case EditorGizmoModes.ROTATE: {
+                        obj_game.gizmos.rotate_x.Render();
+                        obj_game.gizmos.rotate_y.Render();
+                        obj_game.gizmos.rotate_z.Render();
+                    } break;
+                    case EditorGizmoModes.SCALE: {
+                        obj_game.gizmos.scale_x.Render();
+                        obj_game.gizmos.scale_y.Render();
+                        obj_game.gizmos.scale_z.Render();
+                    } break;
+                }
                 
                 matrix_set(matrix_world, matrix_build_identity());
                 gpu_set_ztestenable(true);
@@ -219,26 +269,55 @@ Editor = {
                 if (current_gizmo_mouse_position != undefined && self.selected_gizmo_position != undefined) {
                     var delta = current_gizmo_mouse_position.Sub(self.selected_gizmo_position);
                     
-                    switch (self.selected_gizmo) {
-                        case EditorGizmos.X: {
-                            for (var i = 0, n = array_length(selected); i < n; i++) {
-                                var thing = selected[i];
-                                thing.x += delta.x;
-                                thing.UpdateCollisionPositions();
+                    switch (self.gizmo_type) {
+                        case EditorGizmoModes.TRANSLATE: {
+                            switch (self.selected_gizmo) {
+                                case EditorGizmos.X: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        thing.x += delta.x;
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
+                                case EditorGizmos.Y: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        thing.y += delta.y;
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
+                                case EditorGizmos.Z: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        thing.z += delta.z;
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
                             }
                         } break;
-                        case EditorGizmos.Y: {
-                            for (var i = 0, n = array_length(selected); i < n; i++) {
-                                var thing = selected[i];
-                                thing.y += delta.y;
-                                thing.UpdateCollisionPositions();
-                            }
-                        } break;
-                        case EditorGizmos.Z: {
-                            for (var i = 0, n = array_length(selected); i < n; i++) {
-                                var thing = selected[i];
-                                thing.z += delta.z;
-                                thing.UpdateCollisionPositions();
+                        case EditorGizmoModes.ROTATE: {
+                            switch (self.selected_gizmo) {
+                                case EditorGizmos.X: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, delta.z, 0, 0, 1, 1, 1), thing.rotation_mat);
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
+                                case EditorGizmos.Y: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, delta.x, 0, 1, 1, 1), thing.rotation_mat);
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
+                                case EditorGizmos.Z: {
+                                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                                        var thing = selected[i];
+                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, 0, delta.y, 1, 1, 1), thing.rotation_mat);
+                                        thing.UpdateCollisionPositions();
+                                    }
+                                } break;
                             }
                         } break;
                     }
@@ -282,13 +361,32 @@ Editor = {
             shader_set_uniform_f(shader_get_uniform(shd_gbuff_editor, "u_override_color"), $ff / 255, $ff / 255, $99 / 255, enabled);
         };
         
-        set_override_color(self.selected_gizmo == EditorGizmos.X);
-        obj_game.gizmos.translate_x.Render();
-        set_override_color(self.selected_gizmo == EditorGizmos.Y);
-        obj_game.gizmos.translate_y.Render();
-        set_override_color(self.selected_gizmo == EditorGizmos.Z);
-        obj_game.gizmos.translate_z.Render();
-        set_override_color(false);
+        switch (self.gizmo_type) {
+            case EditorGizmoModes.TRANSLATE: {
+                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                obj_game.gizmos.translate_x.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                obj_game.gizmos.translate_y.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                obj_game.gizmos.translate_z.Render();
+            } break;
+            case EditorGizmoModes.ROTATE: {
+                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                obj_game.gizmos.rotate_x.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                obj_game.gizmos.rotate_y.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                obj_game.gizmos.rotate_z.Render();
+            } break;
+            case EditorGizmoModes.SCALE: {
+                set_override_color(self.selected_gizmo == EditorGizmos.X);
+                obj_game.gizmos.scale_x.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Y);
+                obj_game.gizmos.scale_y.Render();
+                set_override_color(self.selected_gizmo == EditorGizmos.Z);
+                obj_game.gizmos.scale_z.Render();
+            } break;
+        }
         
         matrix_set(matrix_world, matrix_build_identity());
         gpu_set_ztestenable(true);
