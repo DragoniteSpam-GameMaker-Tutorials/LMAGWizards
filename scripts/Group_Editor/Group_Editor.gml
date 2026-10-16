@@ -36,7 +36,7 @@ Editor = {
     
     selected_gizmo: EditorGizmos.NONE,
     selected_gizmo_position: undefined,
-    gizmo_type: EditorGizmoModes.ROTATE,
+    gizmo_type: EditorGizmoModes.TRANSLATE,
     
     snapping_translate: 4,
     snapping_rotate: 10,
@@ -209,34 +209,51 @@ Editor = {
             self.selected_gizmo_position = undefined;
         }
         
-        static editor_gizmo_translate = function(selected, delta) {
+        static editor_gizmo_translate = function(selected, delta, delta_threshold) {
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
-                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                        var thing = selected[i];
-                        thing.x += delta.x;
-                        thing.UpdateCollisionPositions();
+                    if (abs(delta.x) >= delta_threshold) {
+                        for (var i = 0, n = array_length(selected); i < n; i++) {
+                            var thing = selected[i];
+                            thing.x += delta.x;
+                            thing.UpdateCollisionPositions();
+                        }
+                        return true;
                     }
+                    return false;
                 } break;
                 case EditorGizmos.Y: {
-                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                        var thing = selected[i];
-                        thing.y += delta.y;
-                        thing.UpdateCollisionPositions();
+                    if (abs(delta.y) >= delta_threshold) {
+                        for (var i = 0, n = array_length(selected); i < n; i++) {
+                            var thing = selected[i];
+                            thing.y += delta.y;
+                            thing.UpdateCollisionPositions();
+                        }
+                        return true;
                     }
+                    return false;
                 } break;
                 case EditorGizmos.Z: {
-                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                        var thing = selected[i];
-                        thing.z += delta.z;
-                        thing.UpdateCollisionPositions();
+                    if (abs(delta.z) >= delta_threshold) {
+                        for (var i = 0, n = array_length(selected); i < n; i++) {
+                            var thing = selected[i];
+                            thing.z += delta.z;
+                            thing.UpdateCollisionPositions();
+                        }
+                        return true;
                     }
+                    return false;
                 } break;
             }
         };
         
-        static editor_gizmo_rotate = function(selected, delta) {
+        static editor_gizmo_rotate = function(selected, delta, delta_threshold) {
             var mouse_delta_x = window_mouse_get_delta_x();
+            
+            if (abs(mouse_delta_x) < delta_threshold) {
+                return false;
+            }
+            
             switch (self.selected_gizmo) {
                 case EditorGizmos.X: {
                     var R = matrix_build(0, 0, 0, mouse_delta_x, 0, 0, 1, 1, 1);
@@ -263,6 +280,8 @@ Editor = {
                     }
                 } break;
             }
+            
+            return true;
         }
         
         if (mouse_check_button_pressed(mb_left)) {
@@ -342,14 +361,16 @@ Editor = {
                     
                     switch (self.gizmo_type) {
                         case EditorGizmoModes.TRANSLATE: {
-                            editor_gizmo_translate(selected, delta);
+                            if (editor_gizmo_translate(selected, delta, self.snapping_translate)) {
+                                self.selected_gizmo_position = current_gizmo_mouse_position;
+                            }
                         } break;
                         case EditorGizmoModes.ROTATE: {
-                            editor_gizmo_rotate(selected, delta);
+                            if (editor_gizmo_rotate(selected, delta, self.snapping_rotate)) {
+                                self.selected_gizmo_position = current_gizmo_mouse_position;
+                            }
                         } break;
                     }
-                    
-                    self.selected_gizmo_position = current_gizmo_mouse_position;
                 }
             }
         }
@@ -459,7 +480,7 @@ Editor = {
             
             
             
-            new EmuRadioArray(Editor.w + 32, EMU_BASE, 400, 32, "Transformation:", 0, function() {
+            new EmuRadioArray(Editor.w + 32, EMU_BASE, 400, 32, "Transformation:", Editor.gizmo_type, function() {
                 Editor.gizmo_type = self.value;
             })
                 .SetID("TRANSFORM TYPE")
