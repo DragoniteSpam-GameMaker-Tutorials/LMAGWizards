@@ -16,7 +16,6 @@ enum EditorGizmos {
 }
 
 enum EditorGizmoModes {
-    NONE,
     TRANSLATE,
     ROTATE,
     SCALE
@@ -38,6 +37,9 @@ Editor = {
     selected_gizmo: EditorGizmos.NONE,
     selected_gizmo_position: undefined,
     gizmo_type: EditorGizmoModes.ROTATE,
+    
+    snapping_translate: 4,
+    snapping_rotate: 10,
     
     ui: undefined,
     
@@ -407,8 +409,9 @@ Editor = {
     },
     
     DrawGUI: function() {
-        draw_rectangle_colour(Editor.x, Editor.y, Editor.w, Editor.h, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
-        self.ui.Render(Editor.x, Editor.y);
+        draw_rectangle_colour(0, 0, Editor.w, Editor.h, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
+        draw_rectangle_colour(0, 0, window_get_width(), 100, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, EMU_COLOR_BACK, false);
+        self.ui.Render(0, 0);
     },
     
     InitUI: function() {
@@ -429,7 +432,29 @@ Editor = {
                 .SetID("ALL THINGS")
                 .SetMultiSelect(true, false, false)
                 .SetEntryTypes(E_ListEntryTypes.GM_INSTANCE)
-                .SetList(global.all_things)
+                .SetList(global.all_things),
+            
+            
+            
+            
+            new EmuRadioArray(Editor.w + 32, EMU_BASE, 400, 32, "Transformation:", 0, function() {
+                Editor.gizmo_type = self.value;
+            })
+                .SetID("TRANSFORM TYPE")
+                .AddOptions(["Translate", "Rotate"])
+                .SetColumns(1, 160),
+            new EmuInput(Editor.w + 320, EMU_INLINE, 400, 32, "Snapping (translate):", Editor.snapping_translate, "some number", 4, E_InputTypes.INT, function() {
+                Editor.snapping_translate = real(self.value);
+            })
+                .SetNext("TRANSFORM SNAP ROTATE")
+                .SetPrevious("TRANSFORM SNAP ROTATE")
+                .SetID("TRANSFORM SNAP TRANSLATE"),
+            new EmuInput(Editor.w + 320, EMU_AUTO, 400, 32, "Snapping (rotate):", Editor.snapping_rotate, "some number", 4, E_InputTypes.INT, function() {
+                Editor.snapping_rotate = real(self.value);
+            })
+                .SetNext("TRANSFORM SNAP TRANSLATE")
+                .SetPrevious("TRANSFORM SNAP TRANSLATE")
+                .SetID("TRANSFORM SNAP ROTATE"),
         ])
     }
 };
