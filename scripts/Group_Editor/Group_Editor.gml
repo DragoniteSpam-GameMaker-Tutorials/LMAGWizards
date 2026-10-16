@@ -206,8 +206,8 @@ Editor = {
                 
                 matrix_set(matrix_world, matrix_build(selected_center.x, selected_center.y, selected_center.z, 0, 0, 0, 25, 25, 25));
                 gpu_set_ztestenable(true);
-                
                 shader_reset();
+            
                 switch (self.gizmo_type) {
                     case EditorGizmoModes.TRANSLATE: {
                         obj_game.gizmos.translate_x.Render();
@@ -271,54 +271,10 @@ Editor = {
                     
                     switch (self.gizmo_type) {
                         case EditorGizmoModes.TRANSLATE: {
-                            switch (self.selected_gizmo) {
-                                case EditorGizmos.X: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        thing.x += delta.x;
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                                case EditorGizmos.Y: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        thing.y += delta.y;
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                                case EditorGizmos.Z: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        thing.z += delta.z;
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                            }
+                            editor_gizmo_translate(selected, delta);
                         } break;
                         case EditorGizmoModes.ROTATE: {
-                            switch (self.selected_gizmo) {
-                                case EditorGizmos.X: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, delta.z, 0, 0, 1, 1, 1), thing.rotation_mat);
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                                case EditorGizmos.Y: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, delta.x, 0, 1, 1, 1), thing.rotation_mat);
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                                case EditorGizmos.Z: {
-                                    for (var i = 0, n = array_length(selected); i < n; i++) {
-                                        var thing = selected[i];
-                                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, 0, delta.y, 1, 1, 1), thing.rotation_mat);
-                                        thing.UpdateCollisionPositions();
-                                    }
-                                } break;
-                            }
+                            editor_gizmo_rotate(selected, delta);
                         } break;
                     }
                     
@@ -334,6 +290,58 @@ Editor = {
                 }
             });
             self.ui.GetChild("ALL THINGS").ClearSelection();
+        }
+        
+        static editor_gizmo_translate = function(selected, delta) {
+            switch (self.selected_gizmo) {
+                case EditorGizmos.X: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        thing.x += delta.x;
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+                case EditorGizmos.Y: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        thing.y += delta.y;
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+                case EditorGizmos.Z: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        thing.z += delta.z;
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+            }
+        };
+        
+        static editor_gizmo_rotate = function(selected, delta) {
+            switch (self.selected_gizmo) {
+                case EditorGizmos.X: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, delta.z, 0, 0, 1, 1, 1), thing.rotation_mat);
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+                case EditorGizmos.Y: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, delta.x, 0, 1, 1, 1), thing.rotation_mat);
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+                case EditorGizmos.Z: {
+                    for (var i = 0, n = array_length(selected); i < n; i++) {
+                        var thing = selected[i];
+                        matrix_multiply(thing.rotation_mat, matrix_build(0, 0, 0, 0, 0, delta.y, 1, 1, 1), thing.rotation_mat);
+                        thing.UpdateCollisionPositions();
+                    }
+                } break;
+            }
         }
     },
     
